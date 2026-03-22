@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #F7F7F9;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #F7F7F9;
+  color: #0A0A0C;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glass utility — light */
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Shimmer sweep */
+.shimmer-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 70%
+  );
+  animation: shimmer 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Blueprint grid lines */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Glow border on hover for bento cards */
+.glow-card {
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glow-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(124,92,252,0), rgba(196,75,247,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.glow-card:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg, rgba(124,92,252,0.4), rgba(196,75,247,0.4));
+}
+.glow-card:hover {
+  border-color: rgba(124,92,252,0.35) !important;
+  box-shadow: 0 8px 40px rgba(124,92,252,0.12), 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Spec table row hover */
+.spec-row:hover {
+  background: rgba(124,92,252,0.04);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(124,92,252,0.2);
+  color: #0A0A0C;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #F7F7F9; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(124,92,252,0.4); }
