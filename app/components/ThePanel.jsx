@@ -1,11 +1,11 @@
 'use client';
 import { motion } from 'framer-motion';
 
-const stats = [
-  { value: '218',  unit: 'ppi',  label: 'Pixel density'     },
-  { value: '99%',  unit: 'P3',   label: 'DCI-P3 colour'     },
-  { value: '120',  unit: 'Hz',   label: 'ProMotion'         },
-  { value: 'ΔE<1', unit: '',     label: 'Factory calibrated' },
+const chips = [
+  { value: '218 ppi', label: 'Pixel density'     },
+  { value: '99% P3',  label: 'DCI-P3 colour'     },
+  { value: '120 Hz',  label: 'ProMotion'          },
+  { value: 'ΔE < 1',  label: 'Factory calibrated' },
 ];
 
 export default function ThePanel() {
@@ -13,118 +13,137 @@ export default function ThePanel() {
     <section
       id="display-quality"
       aria-label="32-inch 6K Retina panel — colour accuracy and display technology"
-      className="relative bg-white py-28 md:py-44 px-6 overflow-hidden"
+      className="relative bg-[#F7F7F9] py-20 md:py-32 px-6 overflow-hidden"
     >
-      {/* Very faint violet bloom at top */}
-      <div
-        className="absolute top-0 left-0 right-0 pointer-events-none"
-        style={{
-          height: '60%',
-          background:
-            'radial-gradient(ellipse 60% 55% at 50% 0%, rgba(124,92,252,0.07) 0%, transparent 70%)',
-        }}
-      />
+      <div className="relative max-w-[1100px] mx-auto">
 
-      <div className="relative max-w-[900px] mx-auto text-center">
-
-        {/* Eyebrow */}
+        {/* Eyebrow above the panel */}
         <motion.p
-          className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-6"
-          initial={{ opacity: 0, y: 12 }}
+          className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-7"
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           The Panel
         </motion.p>
 
-        {/* Headline */}
-        <motion.h2
-          className="font-black tracking-[-0.05em] leading-[0.93] text-[#0A0A0C]"
-          style={{ fontSize: 'clamp(44px, 7vw, 92px)' }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-        >
-          32-Inch 6K Retina.<br />Colour beyond reproach.
-        </motion.h2>
-
-        {/* Body */}
-        <motion.p
-          className="mt-7 text-[#0A0A0C]/60 font-normal leading-relaxed mx-auto"
-          style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', maxWidth: 480 }}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
-        >
-          218 pixels per inch across 32 inches of IPS.
-          99% DCI-P3, factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
-        </motion.p>
-
-        {/* Violet accent line — grows in from center */}
+        {/* ── The display card ─────────────────────────────── */}
         <motion.div
-          className="mx-auto mt-14 mb-14"
+          className="relative w-full overflow-hidden"
           style={{
-            height: 3,
-            width: '100%',
-            borderRadius: 99,
-            background: 'linear-gradient(90deg, transparent 0%, #7C5CFC 30%, #C44BF7 70%, transparent 100%)',
-            originX: '50%',
-            boxShadow: '0 0 18px rgba(124,92,252,0.35)',
+            height: 'clamp(340px, 56vh, 580px)',
+            borderRadius: 20,
+            background: '#04040A',
+            border: '1px solid rgba(0,0,0,0.1)',
+            boxShadow:
+              '0 40px 100px rgba(0,0,0,0.13), ' +
+              '0 4px 16px rgba(0,0,0,0.07)',
           }}
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.24 }}
-        />
+          initial={{ opacity: 0, y: 52, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Aurora inside */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(ellipse 65% 60% at 20% 55%, rgba(124,92,252,0.55) 0%, transparent 55%), ' +
+                'radial-gradient(ellipse 60% 55% at 80% 40%, rgba(196,75,247,0.4) 0%, transparent 55%), ' +
+                'radial-gradient(ellipse 45% 40% at 50% 5%,  rgba(124,92,252,0.22) 0%, transparent 50%)',
+            }}
+          />
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4">
-          {stats.map(({ value, unit, label }, i) => (
+          {/* Scan lines */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 6px)',
+              opacity: 0.5,
+            }}
+          />
+
+          {/* Inner layout: headline top-center, chips bottom */}
+          <div className="absolute inset-0 flex flex-col items-center justify-between px-8 md:px-14 py-10 md:py-14">
+
+            {/* Headline */}
             <motion.div
-              key={value}
-              className="flex flex-col items-center py-10 px-4"
-              style={{
-                borderRight: i < stats.length - 1 ? '1px solid rgba(0,0,0,0.07)' : 'none',
-              }}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{
-                duration: 0.65,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.1 + i * 0.09,
-              }}
+              className="flex-1 flex flex-col items-center justify-center text-center"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
             >
-              {/* Number */}
-              <div className="flex items-baseline gap-1 leading-none mb-3">
+              <h2
+                className="font-black tracking-[-0.05em] leading-[0.93] text-white"
+                style={{ fontSize: 'clamp(36px, 6.5vw, 86px)' }}
+              >
+                32-Inch 6K Retina.<br />
                 <span
-                  className="font-black tracking-[-0.04em] bg-clip-text text-transparent"
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #FF6B6B 0%, #FFD93D 22%, #6BCB77 44%, #4D96FF 66%, #A78BFA 83%, #E879F9 100%)' }}
+                >
+                  Colour
+                </span>{' beyond reproach.'}
+              </h2>
+            </motion.div>
+
+            {/* Chips row */}
+            <div className="w-full flex flex-wrap justify-center gap-2 md:gap-3">
+              {chips.map(({ value, label }, i) => (
+                <motion.div
+                  key={value}
+                  className="text-center"
                   style={{
-                    fontSize: 'clamp(38px, 5.5vw, 68px)',
-                    backgroundImage: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)',
+                    padding: 'clamp(8px,1.2vw,13px) clamp(14px,2vw,24px)',
+                    background: 'rgba(255,255,255,0.07)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    borderRadius: 12,
+                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: 0.45 + i * 0.08,
                   }}
                 >
-                  {value}
-                </span>
-                {unit && (
-                  <span
-                    className="font-light text-[#0A0A0C]/40"
-                    style={{ fontSize: 'clamp(15px, 2vw, 24px)' }}
+                  <p
+                    className="font-bold text-white leading-none"
+                    style={{ fontSize: 'clamp(13px, 1.5vw, 16px)', letterSpacing: '-0.01em' }}
                   >
-                    {unit}
-                  </span>
-                )}
-              </div>
-              {/* Label */}
-              <p className="text-[11px] font-semibold tracking-[1.5px] uppercase text-[#0A0A0C]/40">
-                {label}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+                    {value}
+                  </p>
+                  <p
+                    className="font-normal text-white/42 mt-1"
+                    style={{ fontSize: 'clamp(9px, 0.9vw, 11px)', letterSpacing: '0.02em' }}
+                  >
+                    {label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </motion.div>
+
+        {/* Brief body text below the panel */}
+        <motion.p
+          className="mt-7 text-[#0A0A0C]/55 font-normal leading-relaxed max-w-xl"
+          style={{ fontSize: 'clamp(14px, 1.5vw, 17px)' }}
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.8 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          218 pixels per inch across 32 inches of IPS. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
+        </motion.p>
 
       </div>
     </section>
