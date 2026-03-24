@@ -18,7 +18,7 @@ export default function ThePanel() {
   const overlayOp     = useTransform(scrollYProgress, [0.55, 0.75], [0, 0.65]);
 
   return (
-    <section ref={ref} id="design" className="relative" style={{ height: '300vh' }}>
+    <section ref={ref} id="design" className="relative" style={{ height: '300vh' }} aria-label="32-inch 6K Retina panel — colour accuracy and display technology">
       {/* Light background before screen fills */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center bg-[#F7F7F9]">
 
@@ -74,10 +74,10 @@ export default function ThePanel() {
             className="font-black tracking-[-0.05em] leading-[0.94] text-white mb-6"
             style={{ fontSize: 'clamp(48px, 8vw, 100px)' }}
           >
-            6K Retina.<br />Colour beyond reproach.
+            32-Inch 6K Retina.<br />Colour beyond reproach.
           </h2>
           <p className="text-white/80 font-normal leading-relaxed mx-auto" style={{ fontSize: 'clamp(15px, 1.8vw, 19px)', maxWidth: 520 }}>
-            218 pixels per inch. 99% DCI-P3. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
+            218 pixels per inch across 32 inches of IPS. 99% DCI-P3. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
             What you see is exactly what was intended.
           </p>
         </motion.div>

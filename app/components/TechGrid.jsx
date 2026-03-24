@@ -4,41 +4,41 @@ import { motion } from 'framer-motion';
 const cards = [
   {
     id: 'resolution',
-    eyebrow: '01 — Resolution',
+    eyebrow: '6K Retina',
     value: '6K',
-    unit: 'Retina',
-    detail: '6016 × 3384 pixels\n218 ppi · True Tone',
+    unit: '',
+    detail: '6016 × 3384 pixels\n218 ppi · 120Hz ProMotion',
     accent: 'rgba(124,92,252,0.07)',
     span: 'col-span-1 md:col-span-2',
     tall: true,
   },
   {
-    id: 'refresh',
-    eyebrow: '02 — Refresh',
-    value: '120',
-    unit: 'Hz',
-    detail: 'ProMotion adaptive\n1–120 Hz dynamic',
+    id: 'size',
+    eyebrow: '32 Inches',
+    value: '32"',
+    unit: '',
+    detail: 'IPS panel · 16:10\nFull-width precision glass',
     accent: 'rgba(196,75,247,0.06)',
     span: 'col-span-1',
     tall: false,
   },
   {
-    id: 'connectivity',
-    eyebrow: '03 — Connectivity',
-    value: 'TB5',
-    unit: '×3',
-    detail: 'Thunderbolt 5\n240 W host charging',
-    accent: 'rgba(59,130,246,0.06)',
+    id: 'aluminium',
+    eyebrow: 'Full Aluminium',
+    value: 'Alu',
+    unit: '',
+    detail: 'CNC 6061-T6\nEvery surface machined',
+    accent: 'rgba(124,92,252,0.05)',
     span: 'col-span-1',
     tall: false,
   },
   {
-    id: 'color',
-    eyebrow: '04 — Colour',
-    value: '99%',
-    unit: 'P3',
-    detail: 'DCI-P3 gamut\nΔE < 1 · factory calibrated',
-    accent: 'rgba(124,92,252,0.05)',
+    id: 'price',
+    eyebrow: 'Starting From',
+    value: '$1,499',
+    unit: '',
+    detail: 'Stand included\nShips in 5–7 business days',
+    accent: 'rgba(124,92,252,0.04)',
     span: 'col-span-1 md:col-span-2',
     tall: false,
   },
@@ -56,7 +56,7 @@ const cardVariants = {
 
 export default function TechGrid() {
   return (
-    <section id="specs" className="relative bg-[#F0F0F4] py-24 md:py-36 px-6">
+    <section id="specs" aria-label="Key specifications — 6K resolution, 32-inch size, aluminium build, $1,499 price" className="relative bg-[#F0F0F4] py-24 md:py-36 px-6">
 
       {/* Very faint violet bloom */}
       <div
@@ -119,16 +119,24 @@ export default function TechGrid() {
                 <div className="flex items-baseline gap-2 leading-none">
                   <span
                     className="font-black tracking-[-0.05em] text-[#0A0A0C]"
-                    style={{ fontSize: card.tall ? 'clamp(64px, 8vw, 96px)' : 'clamp(44px, 5.5vw, 68px)' }}
+                    style={{
+                      fontSize: card.tall
+                        ? 'clamp(64px, 8vw, 96px)'
+                        : card.id === 'price'
+                          ? 'clamp(32px, 4vw, 52px)'
+                          : 'clamp(44px, 5.5vw, 68px)',
+                    }}
                   >
                     {card.value}
                   </span>
-                  <span
-                    className="font-light text-[#0A0A0C]/55"
-                    style={{ fontSize: card.tall ? 'clamp(22px, 2.8vw, 34px)' : 'clamp(16px, 2vw, 24px)' }}
-                  >
-                    {card.unit}
-                  </span>
+                  {card.unit && (
+                    <span
+                      className="font-light text-[#0A0A0C]/55"
+                      style={{ fontSize: card.tall ? 'clamp(22px, 2.8vw, 34px)' : 'clamp(16px, 2vw, 24px)' }}
+                    >
+                      {card.unit}
+                    </span>
+                  )}
                 </div>
 
                 {/* Detail */}

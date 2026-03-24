@@ -106,6 +106,7 @@ export default function TheStand() {
     <section
       ref={ref}
       id="technology"
+      aria-label="Full aluminium CNC-machined stand and body — Meirro Pro design"
       className="relative min-h-screen overflow-hidden bg-white flex items-center"
       style={{ padding: 'clamp(80px, 12vh, 160px) 0' }}
     >

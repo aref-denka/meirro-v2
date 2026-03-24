@@ -113,6 +113,7 @@ export default function Hero() {
       id="display"
       className="relative"
       style={{ height: '220vh' }}
+      aria-label="Meirro Pro — 32-inch 6K Retina monitor"
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center bg-[#F7F7F9]">
 
@@ -129,20 +130,25 @@ export default function Hero() {
           className="absolute top-[22%] left-0 right-0 text-center z-10 px-6 pointer-events-none"
           style={{ opacity: titleOpacity, y: titleY }}
         >
-          <motion.p
-            className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/50 mb-5"
-            initial={{ opacity: 0, y: 16 }}
+          {/* Good Design Award badge */}
+          <motion.div
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full mb-5 border"
+            style={{ borderColor: 'rgba(124,92,252,0.28)', background: 'rgba(124,92,252,0.07)' }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            Introducing
-          </motion.p>
+            <span className="text-[10px] font-semibold tracking-[2px] uppercase" style={{ color: '#7C5CFC' }}>
+              Good Design Award 2026
+            </span>
+          </motion.div>
+
           <motion.h1
             className="font-black tracking-[-0.06em] leading-[0.92] text-[#0A0A0C]"
             style={{ fontSize: 'clamp(64px, 12vw, 160px)' }}
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
             Meirro Pro.
           </motion.h1>
@@ -151,9 +157,9 @@ export default function Hero() {
             style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.55, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            6K · 120Hz · Thunderbolt 5 · 99% P3
+            32 inches · 6K Retina
           </motion.p>
         </motion.div>
 

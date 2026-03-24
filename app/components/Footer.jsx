@@ -55,7 +55,7 @@ export default function Footer() {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
             >
-              Order — from $1,599
+              Order — from $1,499
             </motion.a>
             <p className="text-[12px] text-[#0A0A0C]/60 text-center font-normal">
               Ships in 5–7 business days

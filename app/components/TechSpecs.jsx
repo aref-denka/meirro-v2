@@ -68,6 +68,7 @@ export default function TechSpecs() {
     <section
       ref={ref}
       id="specs-table"
+      aria-label="Full technical specifications for Meirro Pro 32-inch 6K monitor"
       className="relative bg-white py-28 md:py-40 px-6 overflow-hidden"
     >
       {/* Blueprint grid overlay */}
