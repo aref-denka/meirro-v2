@@ -1,85 +1,113 @@
 'use client';
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+
+const stats = [
+  { value: '218',  unit: 'ppi',  label: 'Pixel density'      },
+  { value: '99%',  unit: 'P3',   label: 'DCI-P3 colour'      },
+  { value: '120',  unit: 'Hz',   label: 'ProMotion adaptive'  },
+  { value: 'ΔE<1', unit: '',     label: 'Factory calibrated'  },
+];
+
+const containerVariants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function ThePanel() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end end'],
-  });
-
-  const screenScale   = useTransform(scrollYProgress, [0.05, 0.55], [0.62, 1.0]);
-  const screenRadius  = useTransform(scrollYProgress, [0.05, 0.55], [16, 0]);
-  const screenOpacity = useTransform(scrollYProgress, [0, 0.08], [0, 1]);
-  const wallpaperOp   = useTransform(scrollYProgress, [0.10, 0.45], [0, 1]);
-  const textOpacity   = useTransform(scrollYProgress, [0.55, 0.72], [0, 1]);
-  const textY         = useTransform(scrollYProgress, [0.55, 0.72], [30, 0]);
-  const overlayOp     = useTransform(scrollYProgress, [0.55, 0.75], [0, 0.65]);
-
   return (
-    <section ref={ref} id="design" className="relative" style={{ height: '300vh' }} aria-label="32-inch 6K Retina panel — colour accuracy and display technology">
-      {/* Light background before screen fills */}
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center bg-[#F7F7F9]">
+    <section
+      id="design"
+      aria-label="32-inch 6K Retina panel — colour accuracy and display technology"
+      className="relative bg-white py-24 md:py-36 px-6 overflow-hidden"
+    >
+      {/* Subtle violet bloom */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 45% at 50% 0%, rgba(124,92,252,0.06) 0%, transparent 65%)',
+        }}
+      />
 
-        {/* Violet aurora (appears as screen fills) */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse 80% 60% at 30% 60%, #7C5CFC 0%, transparent 50%), radial-gradient(ellipse 70% 60% at 70% 40%, #C44BF7 0%, transparent 50%), radial-gradient(ellipse 50% 50% at 50% 10%, #3B82F6 0%, transparent 50%)',
-            opacity: wallpaperOp,
-          }}
-        />
+      <div className="relative max-w-[1100px] mx-auto">
 
-        {/* Screen panel scales to fill viewport */}
+        {/* Header */}
         <motion.div
-          className="absolute inset-0 overflow-hidden"
-          style={{
-            scale: screenScale,
-            borderRadius: screenRadius,
-            opacity: screenOpacity,
-          }}
+          className="mb-14 md:mb-20 max-w-2xl"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div
-            className="absolute inset-0"
-            style={{
-              background: 'radial-gradient(ellipse 80% 60% at 30% 60%, #5B21B6 0%, transparent 50%), radial-gradient(ellipse 70% 60% at 70% 40%, #7C3AED 0%, transparent 50%), radial-gradient(ellipse 50% 50% at 50% 10%, #1D4ED8 0%, transparent 50%), #04040A',
-              opacity: wallpaperOp,
-            }}
-          />
-          {/* Scan lines */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 6px)',
-              pointerEvents: 'none',
-            }}
-          />
-        </motion.div>
-
-        {/* Dark overlay + text once screen is full */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'rgba(0,0,0,0.55)', opacity: overlayOp }}
-        />
-
-        <motion.div
-          className="relative z-10 text-center px-6 max-w-3xl"
-          style={{ opacity: textOpacity, y: textY }}
-        >
-          <p className="text-[11px] font-semibold tracking-[3px] uppercase text-white/40 mb-5">
+          <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/50 mb-5">
             The Panel
           </p>
           <h2
-            className="font-black tracking-[-0.05em] leading-[0.94] text-white mb-6"
-            style={{ fontSize: 'clamp(48px, 8vw, 100px)' }}
+            className="font-black tracking-[-0.05em] leading-[0.94] text-[#0A0A0C] mb-6"
+            style={{ fontSize: 'clamp(40px, 5.5vw, 70px)' }}
           >
             32-Inch 6K Retina.<br />Colour beyond reproach.
           </h2>
-          <p className="text-white/80 font-normal leading-relaxed mx-auto" style={{ fontSize: 'clamp(15px, 1.8vw, 19px)', maxWidth: 520 }}>
-            218 pixels per inch across 32 inches of IPS. 99% DCI-P3. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
+          <p
+            className="text-[#0A0A0C]/65 font-normal leading-relaxed"
+            style={{ fontSize: 'clamp(15px, 1.6vw, 18px)', maxWidth: 520 }}
+          >
+            218 pixels per inch across 32 inches of IPS. 99% DCI-P3,
+            factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
             What you see is exactly what was intended.
           </p>
+        </motion.div>
+
+        {/* Animated divider */}
+        <motion.div
+          className="h-px bg-black/10 mb-14 md:mb-20 origin-left"
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        />
+
+        {/* Stat grid */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/[0.06] rounded-2xl overflow-hidden"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {stats.map(({ value, unit, label }) => (
+            <motion.div
+              key={value}
+              variants={itemVariants}
+              className="flex flex-col justify-between bg-white px-8 py-10 cursor-default"
+              style={{ minHeight: 'clamp(140px, 18vw, 200px)' }}
+            >
+              <p className="text-[11px] font-semibold tracking-[2px] uppercase text-[#0A0A0C]/40">
+                {label}
+              </p>
+              <div className="flex items-baseline gap-1.5 leading-none mt-6">
+                <span
+                  className="font-black tracking-[-0.04em] text-[#0A0A0C]"
+                  style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}
+                >
+                  {value}
+                </span>
+                {unit && (
+                  <span
+                    className="font-light text-[#0A0A0C]/50"
+                    style={{ fontSize: 'clamp(16px, 2vw, 26px)' }}
+                  >
+                    {unit}
+                  </span>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
       </div>
