@@ -2,113 +2,129 @@
 import { motion } from 'framer-motion';
 
 const stats = [
-  { value: '218',  unit: 'ppi',  label: 'Pixel density'      },
-  { value: '99%',  unit: 'P3',   label: 'DCI-P3 colour'      },
-  { value: '120',  unit: 'Hz',   label: 'ProMotion adaptive'  },
-  { value: 'ΔE<1', unit: '',     label: 'Factory calibrated'  },
+  { value: '218',  unit: 'ppi',  label: 'Pixel density'     },
+  { value: '99%',  unit: 'P3',   label: 'DCI-P3 colour'     },
+  { value: '120',  unit: 'Hz',   label: 'ProMotion'         },
+  { value: 'ΔE<1', unit: '',     label: 'Factory calibrated' },
 ];
-
-const containerVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
-};
 
 export default function ThePanel() {
   return (
     <section
-      id="design"
+      id="display-quality"
       aria-label="32-inch 6K Retina panel — colour accuracy and display technology"
-      className="relative bg-white py-24 md:py-36 px-6 overflow-hidden"
+      className="relative bg-white py-28 md:py-44 px-6 overflow-hidden"
     >
-      {/* Subtle violet bloom */}
+      {/* Very faint violet bloom at top */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute top-0 left-0 right-0 pointer-events-none"
         style={{
+          height: '60%',
           background:
-            'radial-gradient(ellipse 55% 45% at 50% 0%, rgba(124,92,252,0.06) 0%, transparent 65%)',
+            'radial-gradient(ellipse 60% 55% at 50% 0%, rgba(124,92,252,0.07) 0%, transparent 70%)',
         }}
       />
 
-      <div className="relative max-w-[1100px] mx-auto">
+      <div className="relative max-w-[900px] mx-auto text-center">
 
-        {/* Header */}
-        <motion.div
-          className="mb-14 md:mb-20 max-w-2xl"
-          initial={{ opacity: 0, y: 24 }}
+        {/* Eyebrow */}
+        <motion.p
+          className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-6"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          The Panel
+        </motion.p>
+
+        {/* Headline */}
+        <motion.h2
+          className="font-black tracking-[-0.05em] leading-[0.93] text-[#0A0A0C]"
+          style={{ fontSize: 'clamp(44px, 7vw, 92px)' }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
         >
-          <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/50 mb-5">
-            The Panel
-          </p>
-          <h2
-            className="font-black tracking-[-0.05em] leading-[0.94] text-[#0A0A0C] mb-6"
-            style={{ fontSize: 'clamp(40px, 5.5vw, 70px)' }}
-          >
-            32-Inch 6K Retina.<br />Colour beyond reproach.
-          </h2>
-          <p
-            className="text-[#0A0A0C]/65 font-normal leading-relaxed"
-            style={{ fontSize: 'clamp(15px, 1.6vw, 18px)', maxWidth: 520 }}
-          >
-            218 pixels per inch across 32 inches of IPS. 99% DCI-P3,
-            factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
-            What you see is exactly what was intended.
-          </p>
-        </motion.div>
+          32-Inch 6K Retina.<br />Colour beyond reproach.
+        </motion.h2>
 
-        {/* Animated divider */}
+        {/* Body */}
+        <motion.p
+          className="mt-7 text-[#0A0A0C]/60 font-normal leading-relaxed mx-auto"
+          style={{ fontSize: 'clamp(15px, 1.7vw, 18px)', maxWidth: 480 }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
+        >
+          218 pixels per inch across 32 inches of IPS.
+          99% DCI-P3, factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
+        </motion.p>
+
+        {/* Violet accent line — grows in from center */}
         <motion.div
-          className="h-px bg-black/10 mb-14 md:mb-20 origin-left"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
+          className="mx-auto mt-14 mb-14"
+          style={{
+            height: 3,
+            width: '100%',
+            borderRadius: 99,
+            background: 'linear-gradient(90deg, transparent 0%, #7C5CFC 30%, #C44BF7 70%, transparent 100%)',
+            originX: '50%',
+            boxShadow: '0 0 18px rgba(124,92,252,0.35)',
+          }}
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.24 }}
         />
 
-        {/* Stat grid */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-px bg-black/[0.06] rounded-2xl overflow-hidden"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          {stats.map(({ value, unit, label }) => (
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {stats.map(({ value, unit, label }, i) => (
             <motion.div
               key={value}
-              variants={itemVariants}
-              className="flex flex-col justify-between bg-white px-8 py-10 cursor-default"
-              style={{ minHeight: 'clamp(140px, 18vw, 200px)' }}
+              className="flex flex-col items-center py-10 px-4"
+              style={{
+                borderRight: i < stats.length - 1 ? '1px solid rgba(0,0,0,0.07)' : 'none',
+              }}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.1 + i * 0.09,
+              }}
             >
-              <p className="text-[11px] font-semibold tracking-[2px] uppercase text-[#0A0A0C]/40">
-                {label}
-              </p>
-              <div className="flex items-baseline gap-1.5 leading-none mt-6">
+              {/* Number */}
+              <div className="flex items-baseline gap-1 leading-none mb-3">
                 <span
-                  className="font-black tracking-[-0.04em] text-[#0A0A0C]"
-                  style={{ fontSize: 'clamp(40px, 5vw, 64px)' }}
+                  className="font-black tracking-[-0.04em] bg-clip-text text-transparent"
+                  style={{
+                    fontSize: 'clamp(38px, 5.5vw, 68px)',
+                    backgroundImage: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)',
+                  }}
                 >
                   {value}
                 </span>
                 {unit && (
                   <span
-                    className="font-light text-[#0A0A0C]/50"
-                    style={{ fontSize: 'clamp(16px, 2vw, 26px)' }}
+                    className="font-light text-[#0A0A0C]/40"
+                    style={{ fontSize: 'clamp(15px, 2vw, 24px)' }}
                   >
                     {unit}
                   </span>
                 )}
               </div>
+              {/* Label */}
+              <p className="text-[11px] font-semibold tracking-[1.5px] uppercase text-[#0A0A0C]/40">
+                {label}
+              </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
       </div>
     </section>
