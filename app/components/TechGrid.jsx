@@ -37,7 +37,7 @@ const cards = [
     eyebrow: 'Starting From',
     value: '$1,499',
     unit: '',
-    detail: 'Stand included\nShips in 5–7 business days',
+    detail: 'Stand + calibration included\nComparable 6K panels: from $3,299',
     accent: 'rgba(124,92,252,0.04)',
     span: 'col-span-1 md:col-span-2',
     tall: false,
