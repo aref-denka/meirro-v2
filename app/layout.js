@@ -1,4 +1,5 @@
 import './globals.css';
+import ScrollBar from './components/ScrollBar';
 
 const SITE_URL = 'https://aref-denka.github.io/meirro-v2';
 
@@ -119,7 +120,10 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ScrollBar />
+      </body>
     </html>
   );
 }

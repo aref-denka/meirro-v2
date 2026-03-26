@@ -97,7 +97,6 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #F7F7F9; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(124,92,252,0.4); }
+::-webkit-scrollbar { width: 0px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: transparent; }
