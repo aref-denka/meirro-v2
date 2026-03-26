@@ -4,6 +4,7 @@ import ThePanel  from './components/ThePanel';
 import TheStand  from './components/TheStand';
 import TechGrid  from './components/TechGrid';
 import TechSpecs from './components/TechSpecs';
+import Reviews   from './components/Reviews';
 import Footer    from './components/Footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <TheStand />
         <TechGrid />
         <TechSpecs />
+        <Reviews />
       </main>
       <Footer />
     </>

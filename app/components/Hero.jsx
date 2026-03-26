@@ -338,7 +338,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            32 inches · 6K Retina
+            6K Retina · 32 inches
           </motion.p>
         </motion.div>
 

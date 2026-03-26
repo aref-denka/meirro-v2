@@ -121,8 +121,12 @@ export default function ThePanel() {
                     {value}
                   </p>
                   <p
-                    className="font-normal text-white/42 mt-1"
-                    style={{ fontSize: 'clamp(9px, 0.9vw, 11px)', letterSpacing: '0.02em' }}
+                    className="font-normal mt-1 bg-clip-text text-transparent"
+                    style={{
+                      fontSize: 'clamp(9px, 0.9vw, 11px)',
+                      letterSpacing: '0.02em',
+                      backgroundImage: 'linear-gradient(90deg, #FF6B6B 0%, #FFD93D 22%, #6BCB77 44%, #4D96FF 66%, #A78BFA 83%, #E879F9 100%)',
+                    }}
                   >
                     {label}
                   </p>
