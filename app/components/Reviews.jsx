@@ -115,8 +115,8 @@ function ReviewCard({ review }) {
       className="flex-shrink-0 w-[320px] md:w-[360px] rounded-2xl p-6"
       style={{
         background: 'rgba(255,255,255,0.07)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         border: '1px solid rgba(255,255,255,0.1)',
       }}
     >
@@ -134,27 +134,25 @@ function ReviewCard({ review }) {
 
 function MarqueeStrip({ items, direction = 'left', speed = 40 }) {
   const doubled = [...items, ...items];
-  const totalCards = items.length;
-  const totalWidth = totalCards * 380;
-  const duration = totalWidth / speed;
+  const duration = (items.length * 380) / speed;
 
   return (
     <div className="overflow-hidden w-full">
-      <motion.div
+      <div
         className="flex gap-4"
-        style={{ width: 'max-content' }}
-        animate={{ x: direction === 'left' ? [-totalWidth, 0] : [0, -totalWidth] }}
-        transition={{
-          repeat: Infinity,
-          repeatType: 'loop',
-          duration,
-          ease: 'linear',
+        style={{
+          width: 'max-content',
+          willChange: 'transform',
+          animationName: direction === 'left' ? 'marquee-right' : 'marquee-left',
+          animationDuration: `${duration}s`,
+          animationTimingFunction: 'linear',
+          animationIterationCount: 'infinite',
         }}
       >
         {doubled.map((review, i) => (
           <ReviewCard key={`${review.name}-${i}`} review={review} />
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

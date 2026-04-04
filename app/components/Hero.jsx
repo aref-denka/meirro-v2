@@ -257,7 +257,7 @@ function MonitorShape({ rotateY, scale }) {
       style={{ width: 'clamp(280px, 55vw, 680px)', perspective: 1200 }}
     >
       <motion.div
-        style={{ rotateY, scale, transformStyle: 'preserve-3d', position: 'relative' }}
+        style={{ rotateY, scale, transformStyle: 'preserve-3d', position: 'relative', willChange: 'transform' }}
       >
         <MonitorFront />
         <MonitorBack />

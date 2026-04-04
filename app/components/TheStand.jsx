@@ -2,19 +2,8 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function TheStand() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  const imageY    = useTransform(scrollYProgress, [0, 1], ['6%', '-6%']);
-  const textX     = useTransform(scrollYProgress, [0.1, 0.5], [-32, 0]);
-  const textOp    = useTransform(scrollYProgress, [0.1, 0.45], [0, 1]);
-  const lineScale = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
-
-  const StandVisual = () => (
+function StandVisual() {
+  return (
     <div className="relative w-full h-full flex items-center justify-center">
       <div
         className="relative"
@@ -32,18 +21,13 @@ export default function TheStand() {
             boxShadow: '0 40px 100px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.9), inset 0 -1px 0 rgba(0,0,0,0.06)',
           }}
         >
-          {/* Brushed metal lines */}
-          {Array.from({ length: 28 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute left-0 right-0"
-              style={{
-                top: `${(i / 28) * 100}%`,
-                height: 1,
-                background: `rgba(255,255,255,${0.4 + (i % 3) * 0.15})`,
-              }}
-            />
-          ))}
+          {/* Brushed metal lines — CSS gradient instead of 28 DOM nodes */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage: 'repeating-linear-gradient(0deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 16px)',
+            }}
+          />
 
           {/* Vertical highlight streak */}
           <div
@@ -101,6 +85,19 @@ export default function TheStand() {
       </div>
     </div>
   );
+}
+
+export default function TheStand() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+
+  const imageY    = useTransform(scrollYProgress, [0, 1], ['6%', '-6%']);
+  const textX     = useTransform(scrollYProgress, [0.1, 0.5], [-32, 0]);
+  const textOp    = useTransform(scrollYProgress, [0.1, 0.45], [0, 1]);
+  const lineScale = useTransform(scrollYProgress, [0.15, 0.5], [0, 1]);
 
   return (
     <section
@@ -125,7 +122,7 @@ export default function TheStand() {
         {/* Visual */}
         <motion.div
           className="order-2 md:order-1 h-[clamp(360px,50vh,600px)]"
-          style={{ y: imageY }}
+          style={{ y: imageY, willChange: 'transform' }}
         >
           <StandVisual />
         </motion.div>
@@ -133,7 +130,7 @@ export default function TheStand() {
         {/* Text */}
         <motion.div
           className="order-1 md:order-2"
-          style={{ opacity: textOp, x: textX }}
+          style={{ opacity: textOp, x: textX, willChange: 'transform, opacity' }}
         >
           <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/50 mb-6">
             The Stand
@@ -149,7 +146,7 @@ export default function TheStand() {
           {/* Animated rule */}
           <motion.div
             className="h-px bg-black/10 mb-8 origin-left"
-            style={{ scaleX: lineScale }}
+            style={{ scaleX: lineScale, willChange: 'transform' }}
           />
 
           <div className="space-y-6">
