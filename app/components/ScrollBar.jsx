@@ -48,7 +48,7 @@ export default function ScrollBar() {
 
   return (
     <div
-      className="fixed right-3 top-1/2 -translate-y-1/2 z-[200] flex flex-col items-center select-none"
+      className="hidden md:flex fixed right-3 top-1/2 -translate-y-1/2 z-[200] flex-col items-center select-none"
       style={{ height: '60vh' }}
     >
       {/* Track — clickable/draggable */}

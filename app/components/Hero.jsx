@@ -319,7 +319,7 @@ export default function Hero() {
 
         {/* Front title — fades out as flip begins */}
         <motion.div
-          className="absolute top-[5%] left-0 right-0 text-center z-10 px-6 pointer-events-none"
+          className="absolute top-[10%] md:top-[5%] left-0 right-0 text-center z-10 px-6 pointer-events-none"
           style={{ opacity: titleOpacity, y: titleY }}
         >
           <motion.h1

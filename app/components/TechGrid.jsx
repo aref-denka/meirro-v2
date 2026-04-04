@@ -89,7 +89,7 @@ export default function TechGrid() {
 
         {/* Bento grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-3"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -99,7 +99,7 @@ export default function TechGrid() {
             <motion.div
               key={card.id}
               variants={cardVariants}
-              className={`glow-card relative rounded-2xl overflow-hidden cursor-default ${card.span} ${card.tall ? 'row-span-2' : ''}`}
+              className={`glow-card relative rounded-2xl overflow-hidden cursor-default ${card.span} ${card.tall ? 'sm:row-span-2' : ''}`}
               style={{
                 background: `${card.accent}, rgba(255,255,255,0.85)`,
                 border: '1px solid rgba(0,0,0,0.07)',

@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="blueprint-grid absolute inset-0 opacity-[0.5]" />
 
       {/* Order CTA band */}
-      <div className="relative border-b border-black/[0.06]">
+      <div id="order" className="relative border-b border-black/[0.06]">
         <div className="max-w-[1100px] mx-auto px-6 py-20 md:py-28 flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
           <div>
             <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/50 mb-4">
@@ -48,17 +48,19 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4 shrink-0">
             <motion.a
-              href="#"
+              href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
+              target="_blank"
+              rel="noopener"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white text-[15px]"
               style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
               whileHover={{ scale: 1.03, opacity: 0.92 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
             >
-              Order — from $1,499
+              Buy with ClickClack — from $1,499
             </motion.a>
             <p className="text-[12px] text-[#0A0A0C]/60 text-center font-normal">
-              Ships in 5–7 business days
+              Opens ClickClack's secure checkout · Ships in 5–7 business days
             </p>
           </div>
         </div>
