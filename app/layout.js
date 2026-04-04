@@ -1,5 +1,7 @@
 import './globals.css';
+import Script from 'next/script';
 import ScrollBar from './components/ScrollBar';
+import CookieBanner from './components/CookieBanner';
 
 const SITE_URL = 'https://aref-denka.github.io/meirro-v2';
 
@@ -123,6 +125,22 @@ export default function RootLayout({ children }) {
       <body>
         {children}
         <ScrollBar />
+        <CookieBanner />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0JJV6VCRZW"
+          strategy="afterInteractive"
+        />
+        <Script id="ga-init" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+          gtag('config', 'G-0JJV6VCRZW', { send_page_view: false });
+          if (localStorage.getItem('meirro-cookies') === 'accepted') {
+            gtag('consent', 'update', { analytics_storage: 'granted', ad_storage: 'granted' });
+            gtag('event', 'page_view');
+          }
+        `}</Script>
       </body>
     </html>
   );
