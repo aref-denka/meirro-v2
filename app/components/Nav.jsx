@@ -2,7 +2,13 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const links = ['Display', 'Design', 'Technology', 'Specs'];
+const links = [
+  { label: 'Display',    href: '#display'        },
+  { label: 'Design',     href: '#design'         },
+  { label: 'Technology', href: '#technology'     },
+  { label: 'Specs',      href: '#specs'          },
+  { label: 'Testing',    href: '/testing-guide'  },
+];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,13 +39,13 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
-          {links.map((item) => (
+          {links.map(({ label, href }) => (
             <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+              key={label}
+              href={href}
               className="text-[13px] text-[#0A0A0C]/60 hover:text-[#0A0A0C]/90 transition-colors duration-200"
             >
-              {item}
+              {label}
             </a>
           ))}
         </div>
@@ -97,14 +103,14 @@ export default function Nav() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            {links.map((item) => (
+            {links.map(({ label, href }) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={label}
+                href={href}
                 onClick={() => setMobileOpen(false)}
                 className="text-[16px] text-[#0A0A0C]/70 font-normal"
               >
-                {item}
+                {label}
               </a>
             ))}
             <a
