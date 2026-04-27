@@ -88,6 +88,8 @@ export default function TestingGuide() {
         setShowFs(false);
         setFsColorIdx(0);
         setOverlayVisible(true);
+        setShowFsUnif(false);
+        setUnifOverlay(true);
       }
     };
     document.addEventListener('fullscreenchange', onFsChange);
@@ -112,6 +114,62 @@ export default function TestingGuide() {
   };
 
   useEffect(() => () => clearTimeout(overlayTimer.current), []);
+  // ─────────────────────────────────────────────────────────────
+
+  // ── Fullscreen uniformity slider ─────────────────────────────
+  const [showFsUnif, setShowFsUnif]   = useState(false);
+  const [fsUnifPos, setFsUnifPos]     = useState(50);
+  const [unifOverlay, setUnifOverlay] = useState(true);
+  const fsUnifRef        = useRef(null);
+  const isDraggingFsUnif = useRef(false);
+  const unifOverlayTimer = useRef(null);
+
+  const launchFsUnif = () => {
+    setFsUnifPos(50);
+    setUnifOverlay(true);
+    setShowFsUnif(true);
+  };
+
+  const exitFsUnif = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else setShowFsUnif(false);
+  };
+
+  useEffect(() => {
+    if (showFsUnif && fsUnifRef.current && !document.fullscreenElement) {
+      fsUnifRef.current.requestFullscreen().catch(() => {});
+    }
+  }, [showFsUnif]);
+
+  const handleFsUnifMouseMove = (e) => {
+    if (isDraggingFsUnif.current) {
+      setFsUnifPos(Math.min(100, Math.max(0, (e.clientX / window.innerWidth) * 100)));
+    }
+    setUnifOverlay(true);
+    clearTimeout(unifOverlayTimer.current);
+    unifOverlayTimer.current = setTimeout(() => setUnifOverlay(false), 2500);
+  };
+
+  useEffect(() => {
+    const onMove = (e) => {
+      if (!isDraggingFsUnif.current) return;
+      const clientX = e.clientX ?? e.touches?.[0]?.clientX;
+      setFsUnifPos(Math.min(100, Math.max(0, (clientX / window.innerWidth) * 100)));
+    };
+    const onUp = () => { isDraggingFsUnif.current = false; };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+    window.addEventListener('touchmove', onMove, { passive: false });
+    window.addEventListener('touchend', onUp);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('touchend', onUp);
+    };
+  }, []);
+
+  useEffect(() => () => clearTimeout(unifOverlayTimer.current), []);
   // ─────────────────────────────────────────────────────────────
 
   useEffect(() => {
@@ -236,7 +294,7 @@ export default function TestingGuide() {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className={`group relative text-left text-[13px] px-3 py-2 rounded-lg transition-all duration-200 ${
+                className={`relative text-left text-[13px] px-3 py-2 rounded-lg transition-all duration-200 ${
                   active === id
                     ? 'text-white bg-white/[0.06]'
                     : 'text-white/45 hover:text-white/75 hover:bg-white/[0.03]'
@@ -553,6 +611,26 @@ export default function TestingGuide() {
                 </p>
               </div>
 
+              {/* Launch fullscreen uniformity test */}
+              <button
+                onClick={launchFsUnif}
+                className="mt-5 group w-full flex items-center gap-3 px-6 py-4 rounded-2xl border border-white/[0.10] transition-all duration-300 hover:border-[#7C5CFC]/50 hover:bg-[#7C5CFC]/[0.08]"
+                style={{ background: 'rgba(255,255,255,0.03)' }}
+              >
+                <div
+                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
+                  style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 2h4v2H4v2H2V2zm8 0h4v4h-2V4h-2V2zM2 10h2v2h2v2H2v-4zm10 2h2v2h-4v-2h2v-2h2v2z" fill="white" />
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <p className="text-[14px] font-semibold text-white/90">Launch Fullscreen Uniformity Test</p>
+                  <p className="text-[12px] text-white/40 mt-0.5">Drag the black/white divider across your full panel to inspect for backlight bleed and colour tinting.</p>
+                </div>
+              </button>
+
               {/* 3×3 reference grid */}
               <div className="mt-8 flex flex-col items-start gap-3">
                 <div className="inline-grid grid-cols-3 gap-2">
@@ -860,8 +938,8 @@ export default function TestingGuide() {
         <div
           ref={fsRef}
           onMouseMove={handleFsMouseMove}
-          style={{ background: fsColors[fsColorIdx].hex }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center cursor-none"
+          style={{ background: fsColors[fsColorIdx].hex, cursor: overlayVisible ? 'default' : 'none' }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center"
         >
           {/* Central 5×5 cm zone indicator */}
           <div
@@ -883,7 +961,7 @@ export default function TestingGuide() {
 
           {/* Fade overlay — hides after 2.5 s of inactivity */}
           <div
-            className="absolute inset-0 flex flex-col justify-between transition-opacity duration-500 pointer-events-none"
+            className="absolute inset-0 flex flex-col justify-between transition-opacity duration-500"
             style={{ opacity: overlayVisible ? 1 : 0, pointerEvents: overlayVisible ? 'auto' : 'none' }}
           >
             {/* Top bar */}
@@ -925,6 +1003,90 @@ export default function TestingGuide() {
               {/* Exit */}
               <button
                 onClick={exitFs}
+                className="text-[13px] font-medium text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full"
+                style={{
+                  background: 'rgba(255,255,255,0.12)',
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  backdropFilter: 'blur(12px)',
+                  cursor: 'pointer',
+                }}
+              >
+                Exit — Esc
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── Fullscreen uniformity overlay ───────────────────────── */}
+      {showFsUnif && (
+        <div
+          ref={fsUnifRef}
+          className="fixed inset-0 z-[9999] select-none"
+          style={{ cursor: unifOverlay ? 'default' : 'none' }}
+          onMouseDown={(e) => {
+            isDraggingFsUnif.current = true;
+            setFsUnifPos(Math.min(100, Math.max(0, (e.clientX / window.innerWidth) * 100)));
+          }}
+          onMouseMove={handleFsUnifMouseMove}
+          onTouchStart={(e) => {
+            isDraggingFsUnif.current = true;
+            setFsUnifPos(Math.min(100, Math.max(0, (e.touches[0].clientX / window.innerWidth) * 100)));
+          }}
+          onTouchMove={(e) => {
+            if (!isDraggingFsUnif.current) return;
+            setFsUnifPos(Math.min(100, Math.max(0, (e.touches[0].clientX / window.innerWidth) * 100)));
+          }}
+        >
+          {/* Black panel */}
+          <div className="absolute inset-0" style={{ background: '#000' }} />
+
+          {/* White panel */}
+          <div
+            className="absolute inset-0"
+            style={{ background: '#fff', clipPath: `inset(0 0 0 ${fsUnifPos}%)` }}
+          />
+
+          {/* Drag handle */}
+          <div
+            className="absolute top-0 bottom-0 flex flex-col items-center pointer-events-none"
+            style={{ left: `${fsUnifPos}%`, transform: 'translateX(-50%)' }}
+          >
+            <div className="w-px flex-1" style={{ background: 'rgba(128,128,128,0.75)' }} />
+            <div className="absolute top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-[0_4px_24px_rgba(0,0,0,0.5)]">
+              <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+                <path d="M5 1L1 5l4 4M11 1l4 4-4 4" stroke="#0A0A0C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Fade overlay */}
+          <div
+            className="absolute inset-0 flex flex-col justify-between transition-opacity duration-500"
+            style={{ opacity: unifOverlay ? 1 : 0, pointerEvents: unifOverlay ? 'auto' : 'none' }}
+          >
+            {/* Top */}
+            <div style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.68) 0%, transparent 100%)' }} className="px-8 pt-8 pb-16">
+              <p className="text-white text-[15px] font-semibold tracking-[-0.01em]">Uniformity & Brightness Test</p>
+              <p className="mt-1 text-white/60 text-[13px] max-w-[520px] leading-relaxed">
+                Drag the divider across the full panel. Black: look for backlight bleed around edges (darken the room first). White: look for warm or cool tints in corners. Move the mouse to show controls.
+              </p>
+            </div>
+
+            {/* Bottom */}
+            <div style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.68) 0%, transparent 100%)' }} className="px-8 pb-8 pt-16 flex items-end justify-between flex-wrap gap-4">
+              <div className="flex items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full border border-white/40" style={{ background: 'rgba(255,255,255,0.15)' }} />
+                  <span className="text-white/55 text-[12px] font-medium">A — Backlight Bleed</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-white border border-black/20" />
+                  <span className="text-white/55 text-[12px] font-medium">B — Colour Tinting</span>
+                </div>
+              </div>
+              <button
+                onClick={exitFsUnif}
                 className="text-[13px] font-medium text-white/80 hover:text-white transition-colors px-4 py-2 rounded-full"
                 style={{
                   background: 'rgba(255,255,255,0.12)',
