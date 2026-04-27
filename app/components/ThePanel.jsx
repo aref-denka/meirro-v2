@@ -11,7 +11,7 @@ const chips = [
 export default function ThePanel() {
   return (
     <section
-      id="display-quality"
+      id="design"
       aria-label="32-inch 6K Retina panel — colour accuracy and display technology"
       className="relative bg-[#F7F7F9] py-20 md:py-32 px-6 overflow-hidden"
     >

@@ -10,7 +10,7 @@ export default function ScrollBar() {
   const scrollToFraction = (fraction) => {
     const el = document.documentElement;
     const maxScroll = el.scrollHeight - el.clientHeight;
-    window.scrollTo({ top: fraction * maxScroll });
+    window.scrollTo({ top: fraction * maxScroll, behavior: 'instant' });
   };
 
   const fractionFromEvent = (e) => {
@@ -21,7 +21,14 @@ export default function ScrollBar() {
   useEffect(() => {
     const onScroll = () => {
       const el = document.documentElement;
-      spring.set(el.scrollTop / (el.scrollHeight - el.clientHeight));
+      const fraction = el.scrollTop / (el.scrollHeight - el.clientHeight);
+      // While dragging, jump instantly so the thumb tracks the cursor with no lag.
+      // When scrolling normally, let the spring animate smoothly.
+      if (dragging.current) {
+        spring.jump(fraction);
+      } else {
+        spring.set(fraction);
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -30,7 +37,9 @@ export default function ScrollBar() {
   useEffect(() => {
     const onMouseMove = (e) => {
       if (!dragging.current) return;
-      scrollToFraction(fractionFromEvent(e));
+      const fraction = fractionFromEvent(e);
+      spring.jump(fraction);          // thumb follows cursor live
+      scrollToFraction(fraction);     // page follows thumb live
     };
     const onMouseUp = () => { dragging.current = false; };
     window.addEventListener('mousemove', onMouseMove);
@@ -39,11 +48,13 @@ export default function ScrollBar() {
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, []);
+  }, [spring]);
 
   const handleMouseDown = (e) => {
     dragging.current = true;
-    scrollToFraction(fractionFromEvent(e));
+    const fraction = fractionFromEvent(e);
+    spring.jump(fraction);
+    scrollToFraction(fraction);
   };
 
   return (

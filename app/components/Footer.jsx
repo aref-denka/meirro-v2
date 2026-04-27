@@ -4,15 +4,27 @@ import { motion } from 'framer-motion';
 const cols = [
   {
     heading: 'Product',
-    links: ['The Display', 'The Stand', 'Technical Specs', 'In the Box', 'Compare'],
+    links: [
+      { label: 'The Display',     href: '#display'    },
+      { label: 'Design',          href: '#design'     },
+      { label: 'Technology',      href: '#technology' },
+      { label: 'Technical Specs', href: '#specs'      },
+    ],
   },
   {
     heading: 'Support',
-    links: ['Getting Started', 'Connectivity Guide', 'Calibration', 'Warranty', 'Contact'],
+    links: [
+      { label: 'Warranty',        href: '/legal/warranty' },
+      { label: 'Return Policy',   href: '/legal/returns'  },
+      { label: 'Contact',         href: 'mailto:support@clickclack.io' },
+    ],
   },
   {
-    heading: 'Company',
-    links: ['About', 'Careers', 'Press Kit', 'Blog', 'Legal'],
+    heading: 'Legal',
+    links: [
+      { label: 'Terms of Service', href: '/legal/terms'   },
+      { label: 'Privacy Policy',   href: '/legal/privacy' },
+    ],
   },
 ];
 
@@ -56,6 +68,12 @@ export default function Footer() {
               whileHover={{ scale: 1.03, opacity: 0.92 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
+              onClick={() => window.gtag?.('event', 'begin_checkout', {
+                currency: 'USD',
+                value: 1499,
+                button_location: 'footer',
+                items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+              })}
             >
               Buy with ClickClack — from $1,499
             </motion.a>
@@ -87,12 +105,12 @@ export default function Footer() {
             </p>
             <ul className="space-y-3">
               {col.links.map((link) => (
-                <li key={link}>
+                <li key={link.label}>
                   <a
-                    href="#"
+                    href={link.href}
                     className="text-[13px] text-[#0A0A0C]/70 hover:text-[#0A0A0C] transition-colors duration-200 font-normal"
                   >
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}

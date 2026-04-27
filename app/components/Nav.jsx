@@ -47,11 +47,19 @@ export default function Nav() {
         <div className="flex items-center gap-3">
           {/* Desktop CTA */}
           <a
-            href="#order"
+            href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:inline-flex text-[13px] font-medium text-white px-4 py-1.5 rounded-full transition-opacity duration-200 hover:opacity-80"
             style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
+            onClick={() => window.gtag?.('event', 'begin_checkout', {
+              currency: 'USD',
+              value: 1499,
+              button_location: 'nav',
+              items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+            })}
           >
-            Order
+            Buy with ClickClack
           </a>
 
           {/* Mobile hamburger */}
@@ -100,12 +108,22 @@ export default function Nav() {
               </a>
             ))}
             <a
-              href="#order"
-              onClick={() => setMobileOpen(false)}
+              href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                setMobileOpen(false);
+                window.gtag?.('event', 'begin_checkout', {
+                  currency: 'USD',
+                  value: 1499,
+                  button_location: 'nav_mobile',
+                  items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+                });
+              }}
               className="inline-flex items-center justify-center text-[14px] font-medium text-white px-6 py-3 rounded-full mt-1"
               style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
             >
-              Order — from $1,499
+              Buy with ClickClack — from $1,499
             </a>
           </motion.div>
         )}
