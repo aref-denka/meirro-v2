@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const links = [
   { label: 'Display',    href: '#display'        },
@@ -39,15 +40,25 @@ export default function Nav() {
 
         {/* Desktop links */}
         <div className="hidden md:flex items-center gap-7">
-          {links.map(({ label, href }) => (
-            <a
-              key={label}
-              href={href}
-              className="text-[13px] text-[#0A0A0C]/60 hover:text-[#0A0A0C]/90 transition-colors duration-200"
-            >
-              {label}
-            </a>
-          ))}
+          {links.map(({ label, href }) =>
+            href.startsWith('/') ? (
+              <Link
+                key={label}
+                href={href}
+                className="text-[13px] text-[#0A0A0C]/60 hover:text-[#0A0A0C]/90 transition-colors duration-200"
+              >
+                {label}
+              </Link>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                className="text-[13px] text-[#0A0A0C]/60 hover:text-[#0A0A0C]/90 transition-colors duration-200"
+              >
+                {label}
+              </a>
+            )
+          )}
         </div>
 
         <div className="flex items-center gap-3">
@@ -103,16 +114,27 @@ export default function Nav() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            {links.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setMobileOpen(false)}
-                className="text-[16px] text-[#0A0A0C]/70 font-normal"
-              >
-                {label}
-              </a>
-            ))}
+            {links.map(({ label, href }) =>
+              href.startsWith('/') ? (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-[16px] text-[#0A0A0C]/70 font-normal"
+                >
+                  {label}
+                </Link>
+              ) : (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-[16px] text-[#0A0A0C]/70 font-normal"
+                >
+                  {label}
+                </a>
+              )
+            )}
             <a
               href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
               target="_blank"
