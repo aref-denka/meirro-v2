@@ -197,7 +197,7 @@ export default function TestingGuide() {
         className="sticky top-0 z-50 border-b border-white/[0.07]"
         style={{ background: 'rgba(4,4,10,0.95)', backdropFilter: 'blur(24px) saturate(180%)' }}
       >
-        <div className="flex items-center justify-between px-6 md:px-10" style={{ height: 52 }}>
+        <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 md:px-10" style={{ height: 52 }}>
           <Link href="/" className="text-[17px] font-bold tracking-[-0.04em] text-white">
             Meirro
           </Link>
@@ -224,11 +224,12 @@ export default function TestingGuide() {
       </div>
 
       {/* ── Hero ──────────────────────────────────────────────────── */}
-      <div className="px-6 md:px-10 pt-16 pb-14 md:pt-20 md:pb-16 border-b border-white/[0.06] relative overflow-hidden">
+      <div className="border-b border-white/[0.06] relative overflow-hidden">
         <div
           className="absolute top-0 left-1/4 w-[600px] h-[360px] pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at top, rgba(124,92,252,0.10) 0%, transparent 70%)' }}
         />
+        <div className="max-w-[1280px] mx-auto px-6 md:px-10 pt-16 pb-14 md:pt-20 md:pb-16 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -259,6 +260,7 @@ export default function TestingGuide() {
             ))}
           </div>
         </motion.div>
+        </div>
       </div>
 
       {/* ── Mobile section tabs ───────────────────────────────────── */}
@@ -279,7 +281,7 @@ export default function TestingGuide() {
       </div>
 
       {/* ── Two-column layout ─────────────────────────────────────── */}
-      <div className="flex">
+      <div className="max-w-[1280px] mx-auto flex w-full">
 
         {/* Sticky sidebar */}
         <aside
@@ -316,7 +318,7 @@ export default function TestingGuide() {
 
         {/* Scrollable content */}
         <main className="flex-1 min-w-0">
-          <div className="max-w-[700px] px-8 md:px-12 py-14 space-y-20">
+          <div className="max-w-[720px] mx-auto px-8 md:px-12 py-14 space-y-20">
 
             {/* ── 01 Preparation ───────────────────────────────────── */}
             <motion.section
@@ -1104,7 +1106,7 @@ export default function TestingGuide() {
 
       {/* ── Footer strip ──────────────────────────────────────────── */}
       <div className="border-t border-white/[0.06]">
-        <div className="max-w-[960px] mx-auto px-8 md:px-12 py-6 flex items-center justify-between gap-4 flex-wrap">
+        <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between gap-4 flex-wrap">
           <p className="text-[11px] text-white/25">© 2026 Meirro Technologies. All rights reserved.</p>
           <Link href="/" className="text-[11px] text-white/40 hover:text-white/70 transition-colors duration-200">
             ← Back to meirro.web.app
