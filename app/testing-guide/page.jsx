@@ -10,6 +10,7 @@ const sections = [
   { id: 'uniformity',     label: 'Uniformity'     },
   { id: 'color-accuracy', label: 'Color Accuracy' },
   { id: 'hardware',       label: 'Hardware'       },
+  { id: 'hw-calibration', label: 'Calibration & QC' },
 ];
 
 const fsColors = [
@@ -18,6 +19,17 @@ const fsColors = [
   { hex: '#FF0000', label: 'Red'   },
   { hex: '#00FF00', label: 'Green' },
   { hex: '#0000FF', label: 'Blue'  },
+];
+
+const refPatches = [
+  { hex: '#FF0000', label: 'Red'     },
+  { hex: '#00FF00', label: 'Green'   },
+  { hex: '#0000FF', label: 'Blue'    },
+  { hex: '#00FFFF', label: 'Cyan'    },
+  { hex: '#FF00FF', label: 'Magenta' },
+  { hex: '#FFFF00', label: 'Yellow'  },
+  { hex: '#FFFFFF', label: 'White'   },
+  { hex: '#000000', label: 'Black'   },
 ];
 
 const fadeUp = {
@@ -90,6 +102,8 @@ export default function TestingGuide() {
         setOverlayVisible(true);
         setShowFsUnif(false);
         setUnifOverlay(true);
+        setShowFsRef(false);
+        setRefOverlay(true);
       }
     };
     document.addEventListener('fullscreenchange', onFsChange);
@@ -170,6 +184,41 @@ export default function TestingGuide() {
   }, []);
 
   useEffect(() => () => clearTimeout(unifOverlayTimer.current), []);
+  // ─────────────────────────────────────────────────────────────
+
+  // ── Fullscreen reference patches ─────────────────────────────
+  const [showFsRef, setShowFsRef]   = useState(false);
+  const [fsRefIdx, setFsRefIdx]     = useState(0);
+  const [refOverlay, setRefOverlay] = useState(true);
+  const fsRefRef        = useRef(null);
+  const refOverlayTimer = useRef(null);
+
+  const launchFsRef = () => { setFsRefIdx(0); setRefOverlay(true); setShowFsRef(true); };
+  const exitFsRef   = () => { if (document.fullscreenElement) document.exitFullscreen(); else setShowFsRef(false); };
+
+  useEffect(() => {
+    if (showFsRef && fsRefRef.current && !document.fullscreenElement) {
+      fsRefRef.current.requestFullscreen().catch(() => {});
+    }
+  }, [showFsRef]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!showFsRef) return;
+      if (e.key === 'ArrowRight') setFsRefIdx(i => (i + 1) % refPatches.length);
+      if (e.key === 'ArrowLeft')  setFsRefIdx(i => (i - 1 + refPatches.length) % refPatches.length);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [showFsRef]);
+
+  const handleFsRefMouseMove = () => {
+    setRefOverlay(true);
+    clearTimeout(refOverlayTimer.current);
+    refOverlayTimer.current = setTimeout(() => setRefOverlay(false), 2500);
+  };
+
+  useEffect(() => () => clearTimeout(refOverlayTimer.current), []);
   // ─────────────────────────────────────────────────────────────
 
   useEffect(() => {
@@ -930,6 +979,256 @@ export default function TestingGuide() {
               </div>
             </motion.section>
 
+            <hr className="border-white/[0.06]" />
+
+            {/* ── 06 Hardware Calibration & QC ─────────────────────── */}
+            <motion.section
+              id="hw-calibration"
+              className="scroll-mt-[72px]"
+              variants={fadeUp} initial="hidden"
+              whileInView="visible" viewport={{ once: true, margin: '-80px' }}
+            >
+              <span className="text-[11px] font-semibold tracking-[3px] uppercase" style={{ color: '#7C5CFC' }}>
+                06 — Hardware Calibration
+              </span>
+              <h2
+                className="font-black tracking-[-0.035em] text-white mt-2"
+                style={{ fontSize: 'clamp(24px, 3.5vw, 36px)' }}
+              >
+                Hardware Calibration
+              </h2>
+              <p className="mt-4 text-white/50 leading-relaxed text-[15px]">
+                Verify your display's performance or build a custom ICC profile using a hardware colorimeter.
+                Complete the environment checklist before taking any measurements.
+              </p>
+
+              {/* ── Bento grid ───────────────────────────────────── */}
+              <div className="mt-8 grid gap-4">
+
+                {/* Row 1 — Steps 1 & 2 */}
+                <div className="grid sm:grid-cols-2 gap-4">
+
+                  {/* Step 1 — Environment Setup */}
+                  <div
+                    className="p-6 rounded-2xl border border-white/[0.07]"
+                    style={{ background: 'rgba(255,255,255,0.025)' }}
+                  >
+                    <div className="flex items-center gap-3 mb-1">
+                      <span
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold shrink-0"
+                        style={{ background: 'rgba(124,92,252,0.2)', color: '#A78BFA' }}
+                      >
+                        1
+                      </span>
+                      <p className="text-[14px] font-semibold text-white/85">Environment Setup</p>
+                    </div>
+                    <p className="text-[11px] font-semibold tracking-[2px] uppercase text-white/30 mb-4 pl-10">
+                      Complete all before proceeding
+                    </p>
+                    <div className="space-y-2">
+                      {[
+                        { id: 'calib-warmup',   label: 'Monitor has been powered on for at least 30 minutes to stabilize the backlight' },
+                        { id: 'calib-lighting', label: 'Room lighting is completely dark or strictly controlled' },
+                        { id: 'calib-osd',      label: 'Monitor is set to Factory Default settings via the OSD menu' },
+                        { id: 'calib-hw',       label: 'Connect hardware calibrator (e.g., Calibrite, Datacolor) flush against the center of the panel' },
+                      ].map(({ id, label }) => {
+                        const on = !!checked[id];
+                        return (
+                          <button
+                            key={id}
+                            onClick={() => toggle(id)}
+                            className={`w-full text-left flex items-start gap-3 p-3.5 rounded-xl border transition-all duration-300 ${
+                              on
+                                ? 'border-green-500/40 bg-green-500/[0.07]'
+                                : 'border-white/[0.07] bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/[0.12]'
+                            }`}
+                          >
+                            <div className={`shrink-0 w-5 h-5 mt-0.5 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                              on ? 'border-green-500 bg-green-500' : 'border-white/25'
+                            }`}>
+                              {on && (
+                                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                                  <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              )}
+                            </div>
+                            <p className={`text-[13px] font-medium leading-snug transition-colors duration-200 ${
+                              on ? 'text-green-400' : 'text-white/60'
+                            }`}>
+                              {label}
+                            </p>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Step 2 — Target Specifications */}
+                  <div
+                    className="p-6 rounded-2xl border border-white/[0.07]"
+                    style={{ background: 'rgba(255,255,255,0.025)' }}
+                  >
+                    <div className="flex items-center gap-3 mb-5">
+                      <span
+                        className="w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold shrink-0"
+                        style={{ background: 'rgba(124,92,252,0.2)', color: '#A78BFA' }}
+                      >
+                        2
+                      </span>
+                      <p className="text-[14px] font-semibold text-white/85">Target Specifications</p>
+                      <span className="ml-auto text-[10px] font-semibold tracking-[2px] uppercase px-2 py-1 rounded-full border border-white/[0.10] text-white/30 shrink-0">
+                        Pass Criteria
+                      </span>
+                    </div>
+
+                    {/* Metric cards */}
+                    <div className="space-y-2.5">
+
+                      {/* Peak Luminance */}
+                      <div
+                        className="p-4 rounded-xl border border-white/[0.07]"
+                        style={{ background: 'rgba(255,255,255,0.02)' }}
+                      >
+                        <p className="text-[10px] font-semibold tracking-[2.5px] uppercase text-white/35 mb-1.5">
+                          Peak Luminance
+                        </p>
+                        <div className="flex items-baseline gap-2">
+                          <span
+                            className="font-black tracking-[-0.04em] leading-none"
+                            style={{
+                              fontSize: 38,
+                              background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                            }}
+                          >
+                            500
+                          </span>
+                          <span className="text-[15px] font-semibold text-white/40 mb-0.5">nits</span>
+                        </div>
+                      </div>
+
+                      {/* Color Gamut — DCI-P3 + sRGB side by side */}
+                      <div className="grid grid-cols-2 gap-2.5">
+                        {[
+                          { label: 'DCI-P3', sub: 'Color Gamut', value: '99%' },
+                          { label: 'sRGB',   sub: 'Color Gamut', value: '99%' },
+                        ].map(({ label, value }) => (
+                          <div
+                            key={label}
+                            className="p-4 rounded-xl border border-white/[0.07]"
+                            style={{ background: 'rgba(255,255,255,0.02)' }}
+                          >
+                            <p className="text-[10px] font-semibold tracking-[2.5px] uppercase text-white/35 mb-1.5">
+                              {label}
+                            </p>
+                            <span
+                              className="font-black tracking-[-0.04em] leading-none"
+                              style={{
+                                fontSize: 34,
+                                background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                              }}
+                            >
+                              {value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Color Accuracy */}
+                      <div
+                        className="p-4 rounded-xl border border-white/[0.07]"
+                        style={{ background: 'rgba(255,255,255,0.02)' }}
+                      >
+                        <p className="text-[10px] font-semibold tracking-[2.5px] uppercase text-white/35 mb-1.5">
+                          Color Accuracy
+                        </p>
+                        <div className="flex items-baseline gap-2">
+                          <span
+                            className="font-black tracking-[-0.04em] leading-none"
+                            style={{
+                              fontSize: 38,
+                              background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)',
+                              WebkitBackgroundClip: 'text',
+                              WebkitTextFillColor: 'transparent',
+                            }}
+                          >
+                            ≤ 2.0
+                          </span>
+                          <span className="text-[15px] font-semibold text-white/40 mb-0.5">ΔE avg</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Failure / reject note */}
+                    <div
+                      className="mt-4 flex items-start gap-3 p-4 rounded-xl border border-red-500/20"
+                      style={{ background: 'rgba(239,68,68,0.06)' }}
+                    >
+                      <div
+                        className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 text-[11px] font-bold"
+                        style={{ background: 'rgba(239,68,68,0.2)', color: '#F87171' }}
+                      >
+                        !
+                      </div>
+                      <p className="text-[12px] text-white/50 leading-relaxed">
+                        <span className="text-red-400/80 font-semibold">If any metric falls outside these targets, </span>run a full recalibration before using the display for colour-critical work.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 2 — Step 3: Hardware Calibration Routine (full width) */}
+                <div
+                  className="p-6 rounded-2xl border border-white/[0.07]"
+                  style={{ background: 'rgba(255,255,255,0.025)' }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <span
+                      className="w-7 h-7 rounded-lg flex items-center justify-center text-[11px] font-bold shrink-0"
+                      style={{ background: 'rgba(124,92,252,0.2)', color: '#A78BFA' }}
+                    >
+                      3
+                    </span>
+                    <p className="text-[14px] font-semibold text-white/85">Hardware Calibration Routine</p>
+                  </div>
+
+                  {/* Instructions */}
+                  <p className="text-[13px] text-white/50 leading-relaxed mb-5">
+                    Open your calibrator's companion software (DisplayCAL, Calibrite PROFILER, or Datacolor DISPLAY). When prompted to display a specific colour patch, use the button below. Your software will read each patch directly from the screen.
+                  </p>
+
+                  {/* Launch Reference Patches button */}
+                  <button
+                    onClick={launchFsRef}
+                    className="mb-6 group w-full flex items-center gap-3 px-6 py-4 rounded-2xl border border-white/[0.10] transition-all duration-300 hover:border-[#7C5CFC]/50 hover:bg-[#7C5CFC]/[0.08]"
+                    style={{ background: 'rgba(255,255,255,0.03)' }}
+                  >
+                    <div
+                      className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105"
+                      style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
+                    >
+                      <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+                        <rect x="1" y="1" width="6" height="6" rx="1.5" fill="white" fillOpacity="0.9" />
+                        <rect x="10" y="1" width="6" height="6" rx="1.5" fill="white" fillOpacity="0.6" />
+                        <rect x="1" y="10" width="6" height="6" rx="1.5" fill="white" fillOpacity="0.6" />
+                        <rect x="10" y="10" width="6" height="6" rx="1.5" fill="white" fillOpacity="0.3" />
+                      </svg>
+                    </div>
+                    <div className="text-left">
+                      <p className="text-[14px] font-semibold text-white/90">Launch Reference Patches</p>
+                      <p className="text-[12px] text-white/40 mt-0.5">
+                        8 patches at 100% saturation — Red · Green · Blue · Cyan · Magenta · Yellow · White · Black. Use ← → to cycle.
+                      </p>
+                    </div>
+                  </button>
+
+                </div>
+              </div>
+            </motion.section>
+
             <div className="pb-12" />
           </div>
         </main>
@@ -1103,6 +1402,115 @@ export default function TestingGuide() {
           </div>
         </div>
       )}
+
+      {/* ── Fullscreen reference patches overlay ────────────────── */}
+      {showFsRef && (() => {
+        const patch      = refPatches[fsRefIdx];
+        const lightBg    = ['#00FF00', '#00FFFF', '#FFFF00', '#FFFFFF'].includes(patch.hex);
+        const fg         = lightBg ? 'rgba(0,0,0,0.80)' : 'rgba(255,255,255,0.90)';
+        const fgMuted    = lightBg ? 'rgba(0,0,0,0.40)' : 'rgba(255,255,255,0.45)';
+        const gradColor  = lightBg ? 'rgba(255,255,255,0.60)' : 'rgba(0,0,0,0.70)';
+        const borderCol  = lightBg ? 'rgba(0,0,0,0.20)'       : 'rgba(255,255,255,0.20)';
+        return (
+          <div
+            ref={fsRefRef}
+            onMouseMove={handleFsRefMouseMove}
+            className="fixed inset-0 z-[9999]"
+            style={{ background: patch.hex, cursor: refOverlay ? 'default' : 'none' }}
+          >
+            {/* Fade overlay */}
+            <div
+              className="absolute inset-0 flex flex-col justify-between transition-opacity duration-500"
+              style={{ opacity: refOverlay ? 1 : 0, pointerEvents: refOverlay ? 'auto' : 'none' }}
+            >
+              {/* Top bar */}
+              <div
+                className="px-8 pt-8 pb-20"
+                style={{ background: `linear-gradient(to bottom, ${gradColor} 0%, transparent 100%)` }}
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-[15px] font-semibold tracking-[-0.01em]" style={{ color: fg }}>
+                      Reference Colour Patches
+                    </p>
+                    <p className="mt-1 text-[13px] max-w-[480px] leading-relaxed" style={{ color: fgMuted }}>
+                      Advance your calibration software to the matching patch, then use ← → to cycle. Move the mouse to show controls.
+                    </p>
+                  </div>
+                  {/* Patch counter */}
+                  <span
+                    className="shrink-0 text-[13px] font-semibold px-3 py-1.5 rounded-full mt-0.5"
+                    style={{ background: borderCol, color: fg }}
+                  >
+                    {fsRefIdx + 1} / {refPatches.length}
+                  </span>
+                </div>
+              </div>
+
+              {/* Centre label */}
+              <div className="flex flex-col items-center justify-center gap-3 pointer-events-none select-none">
+                <span
+                  className="font-black tracking-[-0.04em]"
+                  style={{ fontSize: 'clamp(48px, 8vw, 96px)', color: fg, lineHeight: 1 }}
+                >
+                  {patch.label}
+                </span>
+                <span className="text-[13px] font-mono tracking-[0.06em] font-medium" style={{ color: fgMuted }}>
+                  {patch.hex.toUpperCase()}
+                </span>
+              </div>
+
+              {/* Bottom bar */}
+              <div
+                className="px-8 pb-8 pt-20 flex items-end justify-between flex-wrap gap-4"
+                style={{ background: `linear-gradient(to top, ${gradColor} 0%, transparent 100%)` }}
+              >
+                {/* Patch strip */}
+                <div className="flex items-center gap-2">
+                  {refPatches.map(({ hex, label }, i) => (
+                    <button
+                      key={hex}
+                      onClick={() => setFsRefIdx(i)}
+                      title={label}
+                      className="transition-transform duration-150 hover:scale-110"
+                      style={{
+                        width: i === fsRefIdx ? 36 : 28,
+                        height: i === fsRefIdx ? 36 : 28,
+                        borderRadius: '50%',
+                        background: hex,
+                        border: i === fsRefIdx
+                          ? `3px solid ${lightBg ? 'rgba(0,0,0,0.6)' : 'rgba(255,255,255,0.9)'}`
+                          : `2px solid ${lightBg ? 'rgba(0,0,0,0.22)' : 'rgba(255,255,255,0.30)'}`,
+                        cursor: 'pointer',
+                        outline: 'none',
+                        transition: 'width 0.15s, height 0.15s',
+                      }}
+                    />
+                  ))}
+                  <span className="text-[12px] ml-2 hidden sm:block" style={{ color: fgMuted }}>
+                    or use ← → keys
+                  </span>
+                </div>
+
+                {/* Exit */}
+                <button
+                  onClick={exitFsRef}
+                  className="text-[13px] font-medium transition-opacity duration-200 hover:opacity-80 px-4 py-2 rounded-full"
+                  style={{
+                    background: borderCol,
+                    border: `1px solid ${borderCol}`,
+                    backdropFilter: 'blur(12px)',
+                    color: fg,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Exit — Esc
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── Footer strip ──────────────────────────────────────────── */}
       <div className="border-t border-white/[0.06]">
