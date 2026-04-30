@@ -466,7 +466,7 @@ export default function QCPortal() {
                 <ol className="space-y-2.5">
                   {[
                     'Zero dead or bright pixels in the central 5×5 cm zone',
-                    'Maximum of 3 sub-pixel defects panel-wide',
+                    'Maximum of 1 sub-pixel defects panel-wide',
                     'Zero backlight bleed visible on black field',
                     'Zero colour tinting visible on white field',
                   ].map((criterion, i) => (
