@@ -52,7 +52,7 @@ function ScreenContent() {
           className="font-normal uppercase text-white/40"
           style={{ fontSize: 'clamp(5px, 0.72vw, 9px)', letterSpacing: '0.14em' }}
         >
-          6016 × 3384
+          6144 × 3456
         </span>
       </div>
 
@@ -230,7 +230,7 @@ function MonitorBack() {
                 color: 'rgba(0,0,0,0.18)',
               }}
             >
-              Thunderbolt 5 × 3
+              USB-C · UHBR20 80 Gbps
             </p>
           </div>
 
@@ -303,7 +303,7 @@ export default function Hero() {
       id="display"
       className="relative"
       style={{ height: '280vh' }}
-      aria-label="Meirro Pro — 32-inch 6K Retina monitor"
+      aria-label="Meirro Pro — 32-inch 6K monitor"
     >
       <div className="sticky top-0 h-screen overflow-hidden relative bg-[#F7F7F9]">
 
@@ -338,7 +338,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            6K Retina · 32 inches
+            6K · 32 inches
           </motion.p>
         </motion.div>
 
@@ -370,7 +370,7 @@ export default function Hero() {
             className="mt-2 text-[#0A0A0C]/55 font-normal"
             style={{ fontSize: 'clamp(13px, 1.4vw, 17px)' }}
           >
-            CNC-machined 6061-T6 · Aerospace grade · Every surface.
+            CNC anodized aluminum alloy · Every surface.
           </p>
         </motion.div>
 

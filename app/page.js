@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main aria-label="Meirro Pro — 32-Inch 6K Retina Monitor product page">
+      <main aria-label="Meirro Pro — 32-Inch 6K Monitor product page">
         <Hero />
         <ThePanel />
         <TheStand />

@@ -68,7 +68,7 @@ function StandVisual() {
             style={{ width: '70%' }}
           >
             <p className="text-[9px] tracking-[2.5px] uppercase text-black/20 font-medium">
-              Meirro Pro · CNC 6061-T6
+              Meirro Pro · CNC Aluminum
             </p>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function TheStand() {
 
           <div className="space-y-6">
             {[
-              { label: 'Material', value: '6061-T6 Aerospace Aluminium' },
+              { label: 'Material', value: 'CNC anodized aluminum alloy' },
               { label: 'Finish',   value: 'Precision anodised, satin' },
               { label: 'Adjust',   value: 'Height · Tilt · Portrait rotation' },
               { label: 'VESA',     value: '100×100 mm adapter included' },

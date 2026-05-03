@@ -2,17 +2,17 @@
 import { motion } from 'framer-motion';
 
 const chips = [
-  { value: '218 ppi', label: 'Pixel density'     },
+  { value: '223 ppi', label: 'Pixel density'     },
   { value: '99% P3',  label: 'DCI-P3 colour'     },
   { value: '60 Hz',   label: 'Refresh rate'        },
-  { value: 'ΔE < 1',  label: 'Factory calibrated' },
+  { value: 'ΔE < 2',  label: 'Factory calibrated' },
 ];
 
 export default function ThePanel() {
   return (
     <section
       id="design"
-      aria-label="32-inch 6K Retina panel — colour accuracy and display technology"
+      aria-label="32-inch 6K Nano IPS Black panel — colour accuracy and display technology"
       className="relative bg-[#F7F7F9] py-20 md:py-32 px-6 overflow-hidden"
     >
       <div className="relative max-w-[1100px] mx-auto">
@@ -81,7 +81,7 @@ export default function ThePanel() {
                 className="font-black tracking-[-0.05em] leading-[0.93] text-white"
                 style={{ fontSize: 'clamp(36px, 6.5vw, 86px)' }}
               >
-                32-Inch 6K Retina.<br />
+                32-Inch 6K.<br />
                 <span
                   className="bg-clip-text text-transparent"
                   style={{ backgroundImage: 'linear-gradient(90deg, #FF6B6B 0%, #FFD93D 22%, #6BCB77 44%, #4D96FF 66%, #A78BFA 83%, #E879F9 100%)' }}
@@ -146,7 +146,7 @@ export default function ThePanel() {
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          218 pixels per inch across 32 inches of IPS. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;1 per unit.
+          223 pixels per inch across 32 inches of Nano IPS Black. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;2 per unit.
         </motion.p>
 
       </div>
