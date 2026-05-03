@@ -630,7 +630,7 @@ export default function TestingGuide() {
                         by: 'by Portrait Displays',
                         badge: 'Professional',
                         desc: 'The industry standard for display manufacturers. Automates the full measurement sequence — just connect your probe and follow the on-screen steps.',
-                        url: 'https://www.portrait.com/calman/',
+                        url: 'https://www.portrait.com/calman-home/',
                       },
                       {
                         name: 'LightSpace CMS',
