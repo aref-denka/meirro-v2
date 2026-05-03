@@ -26,7 +26,6 @@ export default function WarrantyPage() {
           <li>Panel defects: dead pixels exceeding manufacturer thresholds, backlight uniformity failures, colour accuracy degradation beyond ΔE 2</li>
           <li>Structural defects: CNC aluminium enclosure, stand mechanism, port assembly</li>
           <li>Electrical failures: power circuitry, Thunderbolt 5 ports, internal components under normal operating conditions</li>
-          <li>Factory calibration drift (verified by authorised service)</li>
         </ul>
       </Section>
 
