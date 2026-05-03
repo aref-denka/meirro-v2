@@ -9,7 +9,7 @@ const specGroups = [
       { label: 'Panel Type',       value: 'IPS LCD' },
       { label: 'Resolution',       value: '6016 × 3384 (6K)' },
       { label: 'Pixel Density',    value: '218 ppi' },
-      { label: 'Refresh Rate',     value: '1–120 Hz ProMotion' },
+      { label: 'Refresh Rate',     value: '60 Hz' },
       { label: 'Brightness',       value: '1600 nits (peak HDR)' },
       { label: 'Contrast',         value: '1,000,000:1 (dynamic)' },
     ],

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const chips = [
   { value: '218 ppi', label: 'Pixel density'     },
   { value: '99% P3',  label: 'DCI-P3 colour'     },
-  { value: '120 Hz',  label: 'ProMotion'          },
+  { value: '60 Hz',   label: 'Refresh rate'        },
   { value: 'ΔE < 1',  label: 'Factory calibrated' },
 ];
 

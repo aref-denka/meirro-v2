@@ -12,7 +12,7 @@ const reviews = [
     name: 'James T.',
     role: 'Lead Motion Designer, London',
     stars: 5,
-    text: "Scrubbing a timeline at 120Hz is kind of hard to go back from. Everything else feels sticky now. After Effects at 6K is just a different thing altogether.",
+    text: "Scrubbing a timeline at this resolution is kind of hard to go back from. Everything else feels compressed now. After Effects at 6K is just a different thing altogether.",
   },
   {
     name: 'Priya K.',
@@ -42,7 +42,7 @@ const reviews = [
     name: 'Chen W.',
     role: '3D Artist, Shanghai',
     stars: 5,
-    text: "Sculpting at 6K with ProMotion on feels almost physical. My hand kept going to the screen. The mesh looks real in a way that's kind of unsettling at first.",
+    text: "Sculpting at 6K feels almost physical. My hand kept going to the screen. The mesh looks real in a way that's kind of unsettling at first.",
   },
   {
     name: 'Nina B.',
