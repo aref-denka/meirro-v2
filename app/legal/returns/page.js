@@ -48,7 +48,7 @@ export default function ReturnsPage() {
       </Section>
 
       <Section title="Damaged on Arrival">
-        <p>If your Meirro Pro arrives physically damaged, contact <strong>ClickClack support</strong> within <strong>48 hours of delivery</strong> with photos of the damage and packaging. If they are unable to resolve it, escalate to <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order confirmation and evidence. We will arrange a replacement or full refund at no cost to you.</p>
+        <p>If your Meirro Pro arrives physically damaged, contact <strong>ClickClack support</strong> within <strong>7 days of delivery</strong> with photos of the damage and packaging. If they are unable to resolve it, escalate to <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order confirmation and evidence. We will arrange a replacement or full refund at no cost to you.</p>
       </Section>
 
       <Section title="Contact">
