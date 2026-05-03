@@ -16,6 +16,11 @@ export default function WarrantyPage() {
         <p>Meirro Technologies warrants the Meirro Pro monitor against defects in materials and workmanship under normal use for a period of <strong>two (2) years</strong> from the original date of purchase.</p>
       </Section>
 
+      <Section title="Purchases Through ClickClack">
+        <p>The Meirro Pro is currently sold exclusively through <strong>ClickClack</strong> (clickclack.io), our authorised retail partner. Products purchased through ClickClack are covered under the same 2-year limited warranty described in this policy — the channel of purchase does not affect your coverage.</p>
+        <p>If you purchased through ClickClack, please contact <strong>ClickClack support first</strong>. They are equipped to handle warranty enquiries for orders placed on their platform and will be your fastest path to resolution. If ClickClack is unable to resolve your issue, you may escalate directly to Meirro Technologies at <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> — please include your ClickClack order confirmation as proof of purchase when you do.</p>
+      </Section>
+
       <Section title="What Is Covered">
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Panel defects: dead pixels exceeding manufacturer thresholds, backlight uniformity failures, colour accuracy degradation beyond ΔE 2</li>
@@ -48,9 +53,10 @@ export default function WarrantyPage() {
 
       <Section title="How to Make a Warranty Claim">
         <ol className="list-decimal pl-5 space-y-2 mt-2">
-          <li>Email <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order number, a description of the defect, and photographs or video evidence where applicable.</li>
-          <li>Our support team will respond within 3 business days to assess the claim.</li>
-          <li>If the claim is approved, we will provide a pre-paid return shipping label and arrange a repair or replacement at our discretion.</li>
+          <li><strong>Contact ClickClack first.</strong> Reach out to ClickClack support with your order number, a description of the defect, and photographs or video evidence. They handle warranty claims for all orders placed on their platform.</li>
+          <li><strong>Escalate to Meirro if needed.</strong> If ClickClack is unable to resolve your claim, email <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your ClickClack order confirmation as proof of purchase, the defect description, and any supporting media.</li>
+          <li>Our team will respond within 3 business days to assess the claim.</li>
+          <li>If approved, we will provide a pre-paid return shipping label and arrange a repair or replacement at our discretion.</li>
           <li>Replacement units carry the remainder of the original warranty period or 90 days from replacement date, whichever is longer.</li>
         </ol>
       </Section>
