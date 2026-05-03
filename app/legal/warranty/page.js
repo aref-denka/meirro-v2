@@ -48,7 +48,7 @@ export default function WarrantyPage() {
 
       <Section title="How to Make a Warranty Claim">
         <ol className="list-decimal pl-5 space-y-2 mt-2">
-          <li>Email <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a> with your order number, a description of the defect, and photographs or video evidence where applicable.</li>
+          <li>Email <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order number, a description of the defect, and photographs or video evidence where applicable.</li>
           <li>Our support team will respond within 3 business days to assess the claim.</li>
           <li>If the claim is approved, we will provide a pre-paid return shipping label and arrange a repair or replacement at our discretion.</li>
           <li>Replacement units carry the remainder of the original warranty period or 90 days from replacement date, whichever is longer.</li>
@@ -61,7 +61,7 @@ export default function WarrantyPage() {
       </Section>
 
       <Section title="Contact">
-        <p>Warranty support: <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a></p>
+        <p>Warranty support: <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a></p>
       </Section>
     </article>
   );

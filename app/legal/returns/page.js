@@ -29,7 +29,7 @@ export default function ReturnsPage() {
 
       <Section title="How to Initiate a Return">
         <ol className="list-decimal pl-5 space-y-2 mt-2">
-          <li>Email <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a> with your order number and reason for return.</li>
+          <li>Email <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order number and reason for return.</li>
           <li>We will respond within 2 business days with a Return Merchandise Authorisation (RMA) number and return shipping instructions.</li>
           <li>Package the unit securely in its original packaging and ship to the address provided. We recommend using a tracked service.</li>
           <li>Once we receive and inspect the item, your refund will be processed within 5–10 business days.</li>
@@ -47,11 +47,11 @@ export default function ReturnsPage() {
       </Section>
 
       <Section title="Damaged on Arrival">
-        <p>If your Meirro Pro arrives physically damaged, contact us at <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a> within <strong>48 hours of delivery</strong> with photos of the damage and packaging. We will arrange a replacement or full refund at no cost to you.</p>
+        <p>If your Meirro Pro arrives physically damaged, contact us at <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> within <strong>48 hours of delivery</strong> with photos of the damage and packaging. We will arrange a replacement or full refund at no cost to you.</p>
       </Section>
 
       <Section title="Contact">
-        <p>Questions about a return? <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a></p>
+        <p>Questions about a return? <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a></p>
       </Section>
     </article>
   );

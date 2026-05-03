@@ -3,20 +3,11 @@ import { motion } from 'framer-motion';
 
 const cols = [
   {
-    heading: 'Product',
-    links: [
-      { label: 'The Display',     href: '#display'    },
-      { label: 'Design',          href: '#design'     },
-      { label: 'Technology',      href: '#technology' },
-      { label: 'Technical Specs', href: '#specs'      },
-    ],
-  },
-  {
     heading: 'Support',
     links: [
-      { label: 'Warranty',        href: '/legal/warranty' },
-      { label: 'Return Policy',   href: '/legal/returns'  },
-      { label: 'Contact',         href: 'mailto:support@clickclack.io' },
+      { label: 'Warranty',      href: '/legal/warranty' },
+      { label: 'Return Policy', href: '/legal/returns'  },
+      { label: 'Contact',       href: 'mailto:support@meirro.com' },
     ],
   },
   {
@@ -85,7 +76,7 @@ export default function Footer() {
       </div>
 
       {/* Links grid */}
-      <div className="relative max-w-[1100px] mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div className="relative max-w-[1100px] mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-3 gap-10">
 
         {/* Brand column */}
         <div>

@@ -14,7 +14,7 @@ export default function PrivacyPage() {
 
       <Section title="1. Who We Are">
         <p>Meirro Technologies operates meirro.web.app. This Privacy Policy explains how we collect, use, and protect information when you visit our website or make a purchase.</p>
-        <p>Contact: <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a></p>
+        <p>Contact: <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a></p>
       </Section>
 
       <Section title="2. Information We Collect">
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           <li>Right to withdraw consent for analytics at any time</li>
           <li>Right to data portability</li>
         </ul>
-        <p className="mt-3">To exercise any of these rights, email <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a>. We will respond within 30 days.</p>
+        <p className="mt-3">To exercise any of these rights, email <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a>. We will respond within 30 days.</p>
       </Section>
 
       <Section title="8. Children's Privacy">
@@ -75,7 +75,7 @@ export default function PrivacyPage() {
       </Section>
 
       <Section title="10. Contact">
-        <p>For any privacy-related questions or requests: <a href="mailto:support@clickclack.io" className="text-[#7C5CFC] hover:underline">support@clickclack.io</a></p>
+        <p>For any privacy-related questions or requests: <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a></p>
       </Section>
     </article>
   );
