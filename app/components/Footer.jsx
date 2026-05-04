@@ -7,7 +7,7 @@ const cols = [
     links: [
       { label: 'Warranty',      href: '/legal/warranty' },
       { label: 'Return Policy', href: '/legal/returns'  },
-      { label: 'Contact',       href: 'mailto:support@meirro.com' },
+      { label: 'Contact',       href: '/contact' },
     ],
   },
   {

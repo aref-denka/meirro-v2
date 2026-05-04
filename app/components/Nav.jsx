@@ -29,13 +29,13 @@ export default function Nav() {
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       {/* Main bar */}
-      <div className="flex items-center justify-between px-6 md:px-10" style={{ height: 52 }}>
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10" style={{ height: 52 }}>
         {/* Logo */}
         <span className="text-[17px] font-bold tracking-[-0.04em] text-[#0A0A0C]">
           Meirro
         </span>
 
-        {/* Desktop links */}
+        {/* Desktop links — centered */}
         <div className="hidden md:flex items-center gap-7">
           {links.map(({ label, href }) =>
             href.startsWith('/') ? (
@@ -58,7 +58,7 @@ export default function Nav() {
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 justify-end">
           {/* Desktop CTA */}
           <a
             href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
