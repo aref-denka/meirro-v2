@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
 const links = [
-  { label: 'Specs',   href: '#specs'         },
-  { label: 'Testing', href: '/testing-guide' },
+  { label: 'Specs',    href: '#specs'         },
+  { label: 'Testing',  href: '/testing-guide' },
+  { label: 'About Us', href: '/about_us'      },
 ];
 
 export default function Nav() {
