@@ -1,118 +1,64 @@
 'use client';
 import { motion } from 'framer-motion';
 
-const reviews = [
+const creators = [
   {
-    name: 'Saoirse M.',
-    role: 'Commercial Photographer, Dublin',
-    stars: 5,
-    text: "Honestly didn't expect much from the factory calibration claim but it's legit. Pulled my first RAW file up and it matched my print dead on. Haven't touched a profile since.",
+    name: 'Oliur (UltraLinx)',
+    location: 'United Kingdom',
+    quote:
+      'It delivers 85% of the Pro Display XDR experience at less than a third of the price. For people who want 6K resolution and that premium aesthetic without selling a kidney, this thing is brilliant.',
+    link: 'https://www.youtube.com/watch?v=Y30aZsxhJy8&t=9s&pp=ygUFb2xpdXI%3D',
   },
   {
-    name: 'James T.',
-    role: 'Lead Motion Designer, London',
-    stars: 5,
-    text: "Scrubbing a timeline at this resolution is kind of hard to go back from. Everything else feels compressed now. After Effects at 6K is just a different thing altogether.",
+    name: 'Sam Cambetis',
+    location: 'Australia',
+    quote:
+      'The picture quality is stunning... this is exactly what people were talking about when they said they wanted a standalone Surface Studio monitor. Both the monitor and stand feel very solid and sturdy.',
+    link: '#',
   },
   {
-    name: 'Priya K.',
-    role: 'Senior UX Designer, Bangalore',
-    stars: 4.5,
-    text: "The sharpness took some getting used to. I started catching rendering issues I'd been shipping for months without realising. Bit embarrassing honestly but glad I can see them now.",
+    name: 'Matt KC',
+    location: 'USA',
+    quote:
+      "From a design standpoint, I'm already sold. It's fully metal, the ports are nicely laid out, and the 6K resolution is super sharp. It's a stellar monitor that you just can't beat for the price.",
+    link: 'https://www.youtube.com/watch?v=EYMI7MsnT1o&pp=ygUHbWF0dCBrYw%3D%3D',
   },
   {
-    name: 'Luca F.',
-    role: 'Freelance Colourist, Milan',
-    stars: 5,
-    text: "I pulled out the spectrophotometer on day one just to check. ΔE under 1, exactly as advertised. Every grade since has gone out with way more confidence.",
+    name: 'Sam Beckman',
+    location: 'United Kingdom',
+    quote:
+      "If you want 6K resolution and professional-grade color accuracy but only want to pay a fair price, this is exactly the right address. It's a price-performance counterweight to Apple.",
+    link: 'https://www.youtube.com/watch?v=Hx_MDHdFNRE&t=39s&pp=ygULc2FtIGJlY2ttYW4%3D',
   },
   {
-    name: 'Tom R.',
-    role: 'Software Engineer, Berlin',
-    stars: 5,
-    text: "One cable. That's it. MacBook, four drives, two USB peripherals, and the display all through a single Thunderbolt 5 port. My desk looks like a different room.",
+    name: 'Underserial',
+    location: 'Germany',
+    quote:
+      "Step into the future of visual excellence where studio-grade clarity meets everyday accessibility. It's the perfect blend of premium craftsmanship and high-resolution brilliance.",
+    link: 'https://www.youtube.com/watch?v=25p0SSGbaGE',
   },
   {
-    name: 'Amara O.',
-    role: 'Documentary Filmmaker, Lagos',
-    stars: 4,
-    text: "Cut an entire feature on this. The HDR headroom meant I wasn't guessing what it would look like in a cinema. What you see is genuinely what you get.",
-  },
-  {
-    name: 'Chen W.',
-    role: '3D Artist, Shanghai',
-    stars: 5,
-    text: "Sculpting at 6K feels almost physical. My hand kept going to the screen. The mesh looks real in a way that's kind of unsettling at first.",
-  },
-  {
-    name: 'Nina B.',
-    role: 'Art Director, New York',
-    stars: 5,
-    text: "I flip it to portrait for long copy reviews and back for layout work throughout the day. The stand is so well balanced that it takes about two seconds each way.",
-  },
-  {
-    name: 'Rafael S.',
-    role: 'Game Developer, São Paulo',
-    stars: 5,
-    text: "Being able to preview HDR output on the same screen I'm building in has changed how I approach environment lighting completely. No more guessing at the end of a sprint.",
-  },
-  {
-    name: 'Yuki H.',
-    role: 'Product Designer, Tokyo',
-    stars: 4.5,
-    text: "I was ready to turn True Tone off immediately like I do on everything else. Six weeks in and I still haven't. My eyes feel fine after long days in a way they usually don't.",
-  },
-  {
-    name: 'Marcus V.',
-    role: 'Architect, Amsterdam',
-    stars: 5,
-    text: "I'm catching geometry issues in context now instead of having to zoom in to hunt for them. It just makes the whole review process faster without really trying.",
-  },
-  {
-    name: 'Elif A.',
-    role: 'Music Video Director, Istanbul',
-    stars: 5,
-    text: "The 10 Gigabit port was the detail that sold me. Studio NAS, Thunderbolt 5 daisy chain, and accurate colour all from one piece of kit. It replaced three things on my desk.",
+    name: 'TSP Hungary',
+    location: 'Hungary',
+    quote: '',
+    link: '#',
   },
 ];
 
-// Split into two rows for the dual-strip marquee
-const row1 = reviews.slice(0, 6);
-const row2 = reviews.slice(6, 12);
+const row1 = creators.slice(0, 3);
+const row2 = creators.slice(3, 6);
 
-function StarRow({ count = 5 }) {
-  return (
-    <div className="flex gap-[3px] mb-4">
-      {Array.from({ length: 5 }).map((_, i) => {
-        const filled = i < Math.floor(count);
-        const half = !filled && i < count;
-        const gradId = `half-${i}`;
-        return (
-          <svg key={i} width="12" height="12" viewBox="0 0 12 12" fill="none">
-            {half && (
-              <defs>
-                <linearGradient id={gradId} x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="50%" stopColor="white" stopOpacity="0.9" />
-                  <stop offset="50%" stopColor="white" stopOpacity="0.2" />
-                </linearGradient>
-              </defs>
-            )}
-            <path
-              d="M6 1l1.29 2.61L10.5 4.02l-2.25 2.19.53 3.09L6 7.77 3.22 9.3l.53-3.09L1.5 4.02l3.21-.41L6 1z"
-              fill={half ? `url(#${gradId})` : 'white'}
-              fillOpacity={filled ? '0.9' : half ? '1' : '0.2'}
-            />
-          </svg>
-        );
-      })}
-    </div>
-  );
-}
+function CreatorCard({ creator }) {
+  const initials = creator.name
+    .split(/[\s(]/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('');
 
-function ReviewCard({ review }) {
   return (
     <div
-      className="flex-shrink-0 w-[320px] md:w-[360px] rounded-2xl p-6"
+      className="flex-shrink-0 w-[320px] md:w-[360px] flex flex-col rounded-2xl p-6 gap-5"
       style={{
         background: 'rgba(255,255,255,0.07)',
         backdropFilter: 'blur(12px)',
@@ -120,20 +66,48 @@ function ReviewCard({ review }) {
         border: '1px solid rgba(255,255,255,0.1)',
       }}
     >
-      <StarRow count={review.stars} />
-      <p className="text-[14px] text-white/80 leading-relaxed font-normal mb-5">
-        &ldquo;{review.text}&rdquo;
-      </p>
-      <div>
-        <p className="text-[13px] font-semibold text-white tracking-[-0.01em]">{review.name}</p>
-        <p className="text-[11px] text-white/40 font-normal mt-0.5">{review.role}</p>
+      {/* Avatar */}
+      <div
+        className="w-12 h-12 rounded-full flex items-center justify-center text-[14px] font-bold text-white/60 flex-shrink-0"
+        style={{ background: 'rgba(124,92,252,0.25)', border: '1px solid rgba(124,92,252,0.3)' }}
+      >
+        {initials}
+      </div>
+
+      {/* Quote */}
+      {creator.quote ? (
+        <p className="text-[14px] text-white/80 leading-relaxed font-normal flex-1">
+          &ldquo;{creator.quote}&rdquo;
+        </p>
+      ) : (
+        <p className="text-[14px] text-white/30 leading-relaxed font-normal italic flex-1">
+          Review coming soon.
+        </p>
+      )}
+
+      {/* Name + location + link */}
+      <div className="flex items-end justify-between gap-3 flex-wrap">
+        <div>
+          <p className="text-[13px] font-semibold text-white tracking-[-0.01em]">{creator.name}</p>
+          <p className="text-[11px] text-white/40 font-normal mt-0.5">{creator.location}</p>
+        </div>
+        <a
+          href={creator.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[11px] font-medium text-white/50 hover:text-white/90 transition-colors duration-200 whitespace-nowrap"
+          style={{ letterSpacing: '0.02em' }}
+        >
+          Watch review →
+        </a>
       </div>
     </div>
   );
 }
 
 function MarqueeStrip({ items, direction = 'left', speed = 40 }) {
-  const doubled = [...items, ...items];
+  // Repeat enough times to fill wide screens smoothly
+  const repeated = [...items, ...items, ...items, ...items];
   const duration = (items.length * 380) / speed;
 
   return (
@@ -149,8 +123,8 @@ function MarqueeStrip({ items, direction = 'left', speed = 40 }) {
           animationIterationCount: 'infinite',
         }}
       >
-        {doubled.map((review, i) => (
-          <ReviewCard key={`${review.name}-${i}`} review={review} />
+        {repeated.map((creator, i) => (
+          <CreatorCard key={`${creator.name}-${i}`} creator={creator} />
         ))}
       </div>
     </div>
@@ -161,7 +135,7 @@ export default function Reviews() {
   return (
     <section
       id="reviews"
-      aria-label="Customer reviews for Meirro Pro 32-inch 6K monitor"
+      aria-label="Creator reviews for Meirro Pro 32-inch 6K monitor"
       className="relative py-28 md:py-40 overflow-hidden"
       style={{ background: '#04040A' }}
     >
@@ -185,7 +159,7 @@ export default function Reviews() {
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
-          Reviews
+          Creator Reviews
         </motion.p>
         <motion.h2
           className="font-black tracking-[-0.05em] leading-[0.94] text-white"
@@ -195,14 +169,14 @@ export default function Reviews() {
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
         >
-          Trusted by the<br />people who notice.
+          Reviewed by the<br />people who notice.
         </motion.h2>
       </div>
 
       {/* Dual marquee strips */}
       <div className="relative flex flex-col gap-4">
-        <MarqueeStrip items={row1} direction="left"  speed={38} />
-        <MarqueeStrip items={row2} direction="right" speed={32} />
+        <MarqueeStrip items={row1} direction="left"  speed={18} />
+        <MarqueeStrip items={row2} direction="right" speed={14} />
       </div>
 
       {/* Edge fade masks */}
