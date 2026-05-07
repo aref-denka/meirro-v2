@@ -91,6 +91,13 @@ export default function AboutPage() {
             </p>
           </Section>
 
+          <Section title="Our Address:">
+            <p>
+              330 Changebridge Rd Suite 101-20<br />
+              Pine Brook, NJ 07058
+            </p>
+          </Section>
+
           <Section title="Get in Touch">
             <p>
               Questions, partnerships, or just want to talk displays — reach us at{' '}
