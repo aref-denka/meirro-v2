@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const cards = [
@@ -40,6 +41,46 @@ const cards = [
     detail: 'Stand + calibration included\nComparable 6K panels: from $3,299',
     accent: 'rgba(124,92,252,0.04)',
     span: 'col-span-1 md:col-span-2',
+    tall: false,
+  },
+  {
+    id: 'gamut',
+    eyebrow: 'DCI-P3',
+    value: '99%',
+    unit: '',
+    detail: '10-bit · 1.07B colours\nWide-gamut professional',
+    accent: 'rgba(196,75,247,0.05)',
+    span: 'col-span-1',
+    tall: false,
+  },
+  {
+    id: 'calibration',
+    eyebrow: 'Factory Calibrated',
+    value: 'ΔE<2',
+    unit: '',
+    detail: 'Per-unit calibration\nReport in every box',
+    accent: 'rgba(124,92,252,0.05)',
+    span: 'col-span-1',
+    tall: false,
+  },
+  {
+    id: 'connectivity',
+    eyebrow: 'Thunderbolt 5',
+    value: 'TB5',
+    unit: '',
+    detail: 'UHBR20 · 80 Gbps\nUSB4 · TB4 compatible',
+    accent: 'rgba(196,75,247,0.06)',
+    span: 'col-span-1',
+    tall: false,
+  },
+  {
+    id: 'power',
+    eyebrow: 'USB-PD',
+    value: '100W',
+    unit: '',
+    detail: 'Single-cable host charging\nDP 2.1 Alt Mode',
+    accent: 'rgba(124,92,252,0.04)',
+    span: 'col-span-1',
     tall: false,
   },
 ];
@@ -152,6 +193,23 @@ export default function TechGrid() {
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Link to full specs */}
+        <motion.div
+          className="mt-8 flex justify-end"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <Link
+            href="/specs"
+            className="group inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-[2px] uppercase text-[#0A0A0C]/55 hover:text-[#0A0A0C] transition-colors duration-200"
+          >
+            All Specs
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">→</span>
+          </Link>
         </motion.div>
 
       </div>

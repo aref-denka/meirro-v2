@@ -5,33 +5,68 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 /* ── Stand — shared between front and back ─────────────────── */
 function Stand() {
   return (
-    <>
-      <div className="relative mx-auto mt-0" style={{ width: '14%', height: 0 }}>
+    <div className="relative mx-auto mt-0 flex flex-col items-center" style={{ width: '60%' }}>
+      {/* Pillar */}
+      <div
+        className="relative overflow-hidden"
+        style={{
+          width: 'clamp(36px, 7.5vw, 90px)',
+          height: 'clamp(42px, 5.4vw, 76px)',
+          background: 'linear-gradient(135deg, #ededf0 0%, #d8d9dc 50%, #c4c5c9 100%)',
+          borderRadius: '3px 3px 0 0',
+          border: '1px solid rgba(0,0,0,0.07)',
+          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.95), inset -1px 0 0 rgba(0,0,0,0.05)',
+        }}
+      >
+        {/* Brushed sheen */}
         <div
-          className="absolute left-1/2 -translate-x-1/2"
+          className="absolute inset-0 pointer-events-none"
           style={{
-            width: '100%',
-            height: 'clamp(32px, 4vw, 56px)',
-            background: 'linear-gradient(160deg, #dcdce0, #c8c8cc)',
-            clipPath: 'polygon(20% 0%, 80% 0%, 95% 100%, 5% 100%)',
-            borderLeft: '1px solid rgba(255,255,255,0.6)',
-            borderRight: '1px solid rgba(0,0,0,0.08)',
+            backgroundImage:
+              'repeating-linear-gradient(0deg, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 1px, transparent 1px, transparent 14px)',
+          }}
+        />
+        {/* Right edge highlight */}
+        <div
+          className="absolute top-0 bottom-0"
+          style={{
+            left: '76%',
+            width: '3%',
+            background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent)',
+          }}
+        />
+        {/* Cable cutout (oblong) — lower half of pillar */}
+        <div
+          className="absolute left-1/2"
+          style={{
+            top: '62%',
+            transform: 'translate(-50%, -50%)',
+            width: '52%',
+            height: '32%',
+            borderRadius: 9999,
+            background:
+              'radial-gradient(ellipse at 50% 30%, #1c1c20 0%, #0a0a0c 70%, #050506 100%)',
+            boxShadow:
+              'inset 0 3px 6px rgba(0,0,0,0.75), 0 1px 0 rgba(255,255,255,0.45)',
           }}
         />
       </div>
+
+      {/* Base */}
       <div
-        className="relative mx-auto"
+        className="relative"
         style={{
-          marginTop: 'clamp(32px, 4vw, 56px)',
-          width: '38%',
-          height: 'clamp(8px, 1vw, 12px)',
-          background: 'linear-gradient(160deg, #dcdce0, #c8c8cc)',
-          borderRadius: 6,
-          border: '1px solid rgba(0,0,0,0.08)',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.1)',
+          width: 'clamp(100px, 18vw, 200px)',
+          height: 'clamp(9px, 1.2vw, 16px)',
+          background: 'linear-gradient(180deg, #dadbde 0%, #b8b9bd 100%)',
+          borderRadius: '3px 3px 10px 10px',
+          border: '1px solid rgba(0,0,0,0.07)',
+          boxShadow:
+            '0 6px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.08)',
+          marginTop: -1,
         }}
       />
-    </>
+    </div>
   );
 }
 
@@ -85,7 +120,13 @@ function ScreenContent() {
 /* ── Front face ─────────────────────────────────────────────── */
 function MonitorFront() {
   return (
-    <div style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}>
+    <div
+      style={{
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        transform: 'translateZ(9px)',
+      }}
+    >
       <div
         className="relative rounded-[10px] overflow-hidden"
         style={{
@@ -125,19 +166,18 @@ function MonitorFront() {
         {/* Bezel shimmer */}
         <div className="shimmer-sweep absolute inset-0 pointer-events-none rounded-[10px]" />
       </div>
-      <Stand />
     </div>
   );
 }
 
-/* ── Back face: Full Aluminium ──────────────────────────────── */
+/* ── Back face: Full Aluminium with cheese-grater vents ─────── */
 function MonitorBack() {
   return (
     <div
       style={{
         backfaceVisibility: 'hidden',
         WebkitBackfaceVisibility: 'hidden',
-        transform: 'rotateY(180deg)',
+        transform: 'rotateY(180deg) translateZ(9px)',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -147,91 +187,106 @@ function MonitorBack() {
       <div
         className="relative rounded-[10px] overflow-hidden"
         style={{
-          background: 'linear-gradient(155deg, #e4e4e8 0%, #d2d2d6 35%, #c8c8cc 70%, #d0d0d4 100%)',
+          background: 'linear-gradient(160deg, #ededf0 0%, #d8d9dc 40%, #cccdd0 75%, #d4d5d8 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
           padding: '9px 9px 10px',
           boxShadow: '0 40px 120px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
-        {/* Back panel */}
+        {/* Back chassis area */}
         <div
           className="relative overflow-hidden"
           style={{
             borderRadius: 4,
             aspectRatio: '16/10',
-            background: 'linear-gradient(155deg, #dcdce0 0%, #c8c8cc 50%, #c4c4c8 100%)',
+            background: 'linear-gradient(165deg, #e4e5e8 0%, #ceced2 50%, #c4c5c8 100%)',
           }}
         >
-          {/* Brushed-metal horizontal lines */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background:
-                'repeating-linear-gradient(0deg, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 1px, transparent 1px, transparent 4px)',
-            }}
-          />
-
-          {/* Vertical highlight streaks */}
-          <div
-            className="absolute top-0 bottom-0"
-            style={{
-              left: '28%', width: '3%',
-              background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.48), transparent)',
-            }}
-          />
-          <div
-            className="absolute top-0 bottom-0"
-            style={{
-              left: '63%', width: '1.5%',
-              background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent)',
-            }}
-          />
-
-          {/* Centre branding block — wordmark + ports only */}
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center"
-            style={{ gap: 'clamp(6px, 0.9vw, 12px)' }}
+          {/* Top vent band — hex-packed cheese grater */}
+          <svg
+            className="absolute top-0 left-0 right-0 pointer-events-none"
+            width="100%"
+            style={{ height: '33.33%' }}
+            xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Wordmark */}
-            <p
-              className="font-semibold uppercase"
-              style={{
-                fontSize: 'clamp(6px, 0.85vw, 11px)',
-                letterSpacing: '0.3em',
-                color: 'rgba(0,0,0,0.22)',
-              }}
-            >
-              Meirro
-            </p>
+            <defs>
+              <pattern id="hero-back-vents-top" width="14" height="24" patternUnits="userSpaceOnUse">
+                <circle cx="7"  cy="6"  r="3.2" fill="rgba(0,0,0,0.6)" />
+                <circle cx="0"  cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
+                <circle cx="14" cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-back-vents-top)" />
+          </svg>
 
-            {/* Port row */}
-            <div
-              className="flex items-center"
-              style={{ gap: 'clamp(3px, 0.45vw, 6px)' }}
-            >
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  style={{
-                    width: 'clamp(9px, 1.5vw, 18px)',
-                    height: 'clamp(5px, 0.85vw, 10px)',
-                    borderRadius: 2,
-                    background: 'rgba(0,0,0,0.13)',
-                    border: '1px solid rgba(0,0,0,0.08)',
-                  }}
-                />
-              ))}
-            </div>
-            <p
-              className="font-medium uppercase"
+          {/* Bottom vent band — hex-packed cheese grater */}
+          <svg
+            className="absolute bottom-0 left-0 right-0 pointer-events-none"
+            width="100%"
+            style={{ height: '33.33%' }}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <pattern id="hero-back-vents-bot" width="14" height="24" patternUnits="userSpaceOnUse">
+                <circle cx="7"  cy="6"  r="3.2" fill="rgba(0,0,0,0.6)" />
+                <circle cx="0"  cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
+                <circle cx="14" cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#hero-back-vents-bot)" />
+          </svg>
+
+          {/* MEIRRO wordmark — left of centre */}
+          <p
+            className="absolute font-bold uppercase"
+            style={{
+              top: '50%',
+              left: '8%',
+              transform: 'translateY(-50%)',
+              fontSize: 'clamp(8px, 1.3vw, 18px)',
+              letterSpacing: '0.18em',
+              color: 'rgba(0,0,0,0.7)',
+            }}
+          >
+            Meirro
+          </p>
+
+          {/* Port row — right of centre */}
+          <div
+            className="absolute flex items-center"
+            style={{
+              top: '50%',
+              right: '8%',
+              transform: 'translateY(-50%)',
+              gap: 'clamp(3px, 0.55vw, 7px)',
+            }}
+          >
+            {/* Lightning bolt — power input indicator */}
+            <svg
+              viewBox="0 0 9 12"
               style={{
-                fontSize: 'clamp(4px, 0.52vw, 6px)',
-                letterSpacing: '0.15em',
-                color: 'rgba(0,0,0,0.18)',
+                width:  'clamp(6px, 0.85vw, 10px)',
+                height: 'clamp(8px, 1.15vw, 14px)',
+                marginRight: 'clamp(1px, 0.25vw, 4px)',
               }}
             >
-              USB-C · UHBR20 80 Gbps
-            </p>
+              <path
+                d="M5.4 0.3 L0.7 6.4 H3.2 L2.4 11.4 L8 4.6 H5.2 L6 0.3 Z"
+                fill="rgba(0,0,0,0.55)"
+              />
+            </svg>
+            {[0, 1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                style={{
+                  width:  'clamp(8px, 1.3vw, 17px)',
+                  height: 'clamp(3px, 0.5vw,  6px)',
+                  borderRadius: 2,
+                  background: 'rgba(0,0,0,0.55)',
+                  border: '1px solid rgba(0,0,0,0.2)',
+                }}
+              />
+            ))}
           </div>
 
           {/* Bezel shimmer on back too */}
@@ -244,8 +299,71 @@ function MonitorBack() {
           style={{ width: '28%', height: 2, background: 'rgba(0,0,0,0.07)', borderRadius: 1 }}
         />
       </div>
-      <Stand />
     </div>
+  );
+}
+
+/* ── Edge panels — give the screen body visible thickness ───── */
+function MonitorEdges() {
+  const sideGradient =
+    'linear-gradient(180deg, #dadbde 0%, #c4c5c9 50%, #b6b7bb 100%)';
+  const topBottomGradient =
+    'linear-gradient(90deg, #dadbde 0%, #c4c5c9 50%, #b6b7bb 100%)';
+  return (
+    <>
+      {/* Right edge — rotateY(-90deg) so its outward normal is +x */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          right: '-9px',
+          width: '18px',
+          height: '100%',
+          background: sideGradient,
+          transform: 'rotateY(-90deg)',
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Left edge — rotateY(+90deg) so its outward normal is -x */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '-9px',
+          width: '18px',
+          height: '100%',
+          background: sideGradient,
+          transform: 'rotateY(90deg)',
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Top edge — rotateX(+90deg) so its outward normal is -y */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-9px',
+          left: 0,
+          width: '100%',
+          height: '18px',
+          background: topBottomGradient,
+          transform: 'rotateX(90deg)',
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Bottom edge — rotateX(-90deg) so its outward normal is +y */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-9px',
+          left: 0,
+          width: '100%',
+          height: '18px',
+          background: topBottomGradient,
+          transform: 'rotateX(-90deg)',
+          pointerEvents: 'none',
+        }}
+      />
+    </>
   );
 }
 
@@ -257,10 +375,20 @@ function MonitorShape({ rotateY, scale }) {
       style={{ width: 'clamp(280px, 55vw, 680px)', perspective: 1200 }}
     >
       <motion.div
-        style={{ rotateY, scale, transformStyle: 'preserve-3d', position: 'relative', willChange: 'transform' }}
+        style={{ scale, transformOrigin: 'top center', willChange: 'transform' }}
       >
-        <MonitorFront />
-        <MonitorBack />
+        <motion.div
+          style={{ rotateY, transformStyle: 'preserve-3d', position: 'relative', willChange: 'transform' }}
+        >
+          {/* Case 3D box — width × case-height. Stand sits below it. */}
+          <div className="relative" style={{ transformStyle: 'preserve-3d' }}>
+            <MonitorFront />
+            <MonitorBack />
+            <MonitorEdges />
+          </div>
+          {/* Stand — rotates with the flip */}
+          <Stand />
+        </motion.div>
       </motion.div>
 
       {/* Ambient glow — outside the flip, stays still */}
@@ -287,15 +415,26 @@ export default function Hero() {
 
   // Full 180° flip over the middle portion of the scroll
   const rotateY      = useTransform(scrollYProgress, [0.08, 0.72], [0, 180]);
-  const scale        = useTransform(scrollYProgress, [0, 0.5],      [0.88, 1.0]);
+  // Scale grows during intro, holds during the flip, then shrinks (anchored
+  // from the top edge in MonitorShape) so the text below has room to breathe.
+  const scale        = useTransform(
+    scrollYProgress,
+    [0, 0.5, 0.72, 0.95],
+    [0.88, 1.0, 1.0, 0.5],
+  );
+  // After the flip, lift the monitor upward so the text stack below
+  // has clear vertical separation from it.
+  const monitorY     = useTransform(scrollYProgress, [0.72, 0.95], ['0vh', '-30vh']);
 
   // Front title fades out as the flip begins
   const titleOpacity = useTransform(scrollYProgress, [0, 0.18],     [1, 0]);
   const titleY       = useTransform(scrollYProgress, [0, 0.18],     [0, -28]);
 
-  // "Full Aluminium" label fades in once the back is fully revealed
-  const backTextOp   = useTransform(scrollYProgress, [0.68, 0.88],  [0, 1]);
-  const backTextY    = useTransform(scrollYProgress, [0.68, 0.88],  [24, 0]);
+  // Text fades in just as the flip ends so it's fully opaque by the time
+  // it slides into the readable center of the viewport (rather than peaking
+  // when it's already on its way out the top).
+  const backTextOp   = useTransform(scrollYProgress, [0.66, 0.74],  [0, 1]);
+  const backTextY    = useTransform(scrollYProgress, [0.66, 0.74],  [24, 0]);
 
   return (
     <section
@@ -338,7 +477,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            6K · 32 inches
+            Precision for professionals.
           </motion.p>
         </motion.div>
 
@@ -349,29 +488,51 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <MonitorShape rotateY={rotateY} scale={scale} />
+          <motion.div style={{ y: monitorY, willChange: 'transform' }}>
+            <MonitorShape rotateY={rotateY} scale={scale} />
+          </motion.div>
         </motion.div>
 
-        {/* Back label — "Full Aluminium." appears after flip */}
+        {/* Back labels — appear after flip, stacked */}
         <motion.div
-          className="absolute bottom-[12%] left-0 right-0 text-center z-10 px-6 pointer-events-none"
-          style={{ opacity: backTextOp, y: backTextY }}
+          className="absolute bottom-[2%] left-0 right-0 text-center z-10 px-6 pointer-events-none flex flex-col items-center"
+          style={{ opacity: backTextOp, y: backTextY, gap: 'clamp(24px, 3.4vw, 44px)' }}
         >
-          <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-3">
-            The Case
-          </p>
-          <p
-            className="font-black tracking-[-0.05em] leading-none text-[#0A0A0C]"
-            style={{ fontSize: 'clamp(28px, 4vw, 54px)' }}
-          >
-            Full Aluminium.
-          </p>
-          <p
-            className="mt-2 text-[#0A0A0C]/55 font-normal"
-            style={{ fontSize: 'clamp(13px, 1.4vw, 17px)' }}
-          >
-            CNC anodized aluminum alloy · Every surface.
-          </p>
+          {[
+            {
+              eyebrow: 'The Case',
+              title:   'Full Aluminium.',
+              detail:  'CNC anodized aluminum alloy · Every surface.',
+            },
+            {
+              eyebrow: 'The Glass',
+              title:   'Anti-Reflective Glossy.',
+              detail:  'Fully-laminated glossy AR coating · Deep blacks, zero glare.',
+            },
+            {
+              eyebrow: 'The Ports',
+              title:   'Thunderbolt 5 Compatible.',
+              detail:  '80 Gbps · 60 Hz HDR · HDCP 2.2.',
+            },
+          ].map(({ eyebrow, title, detail }) => (
+            <div key={eyebrow}>
+              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-3">
+                {eyebrow}
+              </p>
+              <p
+                className="font-black tracking-[-0.05em] leading-none text-[#0A0A0C]"
+                style={{ fontSize: 'clamp(28px, 4vw, 54px)' }}
+              >
+                {title}
+              </p>
+              <p
+                className="mt-2 text-[#0A0A0C]/55 font-normal"
+                style={{ fontSize: 'clamp(13px, 1.4vw, 17px)' }}
+              >
+                {detail}
+              </p>
+            </div>
+          ))}
         </motion.div>
 
         {/* Scroll hint */}

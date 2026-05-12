@@ -84,7 +84,7 @@ export default function Footer() {
             Meirro
           </span>
           <p className="text-[13px] text-[#0A0A0C]/75 font-normal leading-relaxed">
-            Precision display engineering for professionals who demand more.
+            Precision for professionals.
           </p>
         </div>
 
