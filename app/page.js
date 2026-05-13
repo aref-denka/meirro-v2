@@ -1,9 +1,10 @@
-import Nav       from './components/Nav';
-import Hero      from './components/Hero';
-import ThePanel  from './components/ThePanel';
-import TheStand  from './components/TheStand';
-import TechGrid  from './components/TechGrid';
-import Footer    from './components/Footer';
+import Nav              from './components/Nav';
+import Hero             from './components/Hero';
+import FeatureCallouts  from './components/FeatureCallouts';
+import ThePanel         from './components/ThePanel';
+import TheStand         from './components/TheStand';
+import TechGrid         from './components/TechGrid';
+import Footer           from './components/Footer';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Nav />
       <main aria-label="Meirro Pro — 32-Inch 6K Monitor product page">
         <Hero />
+        <FeatureCallouts />
         <ThePanel />
         <TheStand />
         <TechGrid />

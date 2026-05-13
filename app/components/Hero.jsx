@@ -190,7 +190,7 @@ function MonitorBack() {
           background: 'linear-gradient(160deg, #ededf0 0%, #d8d9dc 40%, #cccdd0 75%, #d4d5d8 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
           padding: '9px 9px 10px',
-          boxShadow: '0 40px 120px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.7)',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
         {/* Back chassis area */}
@@ -368,7 +368,7 @@ function MonitorEdges() {
 }
 
 /* ── Flip container ─────────────────────────────────────────── */
-function MonitorShape({ rotateY, scale }) {
+function MonitorShape({ rotateY, scale, glowOpacity }) {
   return (
     <motion.div
       className="relative mx-auto select-none"
@@ -391,14 +391,15 @@ function MonitorShape({ rotateY, scale }) {
         </motion.div>
       </motion.div>
 
-      {/* Ambient glow — outside the flip, stays still */}
-      <div
+      {/* Ambient glow — outside the flip, fades with the section bloom */}
+      <motion.div
         className="absolute -bottom-16 left-1/2 -translate-x-1/2 pointer-events-none"
         style={{
           width: '70%',
           height: 80,
           background: 'radial-gradient(ellipse, rgba(124,92,252,0.18) 0%, transparent 70%)',
           filter: 'blur(20px)',
+          opacity: glowOpacity,
         }}
       />
     </motion.div>
@@ -413,43 +414,46 @@ export default function Hero() {
     offset: ['start start', 'end start'],
   });
 
-  // Full 180° flip over the middle portion of the scroll
-  const rotateY      = useTransform(scrollYProgress, [0.08, 0.72], [0, 180]);
-  // Scale grows during intro, holds during the flip, then shrinks (anchored
-  // from the top edge in MonitorShape) so the text below has room to breathe.
+  // Full 180° flip across the middle of the scroll
+  const rotateY      = useTransform(scrollYProgress, [0.12, 0.72], [0, 180]);
+  // Gentle grow during intro, hold through the flip, then a small shrink on
+  // the back-face hold so the stand has clearance on shorter viewports.
   const scale        = useTransform(
     scrollYProgress,
-    [0, 0.5, 0.72, 0.95],
-    [0.88, 1.0, 1.0, 0.5],
+    [0, 0.5, 0.72, 0.86],
+    [0.88, 1.0, 1.0, 0.84],
   );
-  // After the flip, lift the monitor upward so the text stack below
-  // has clear vertical separation from it.
-  const monitorY     = useTransform(scrollYProgress, [0.72, 0.95], ['0vh', '-30vh']);
 
   // Front title fades out as the flip begins
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.18],     [1, 0]);
-  const titleY       = useTransform(scrollYProgress, [0, 0.18],     [0, -28]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.22], [1, 0]);
+  const titleY       = useTransform(scrollYProgress, [0, 0.22], [0, -28]);
 
-  // Text fades in just as the flip ends so it's fully opaque by the time
-  // it slides into the readable center of the viewport (rather than peaking
-  // when it's already on its way out the top).
-  const backTextOp   = useTransform(scrollYProgress, [0.66, 0.74],  [0, 1]);
-  const backTextY    = useTransform(scrollYProgress, [0.66, 0.74],  [24, 0]);
+  // After the back face has been on screen long enough to read, glide the
+  // whole monitor up and fade it out so the next section flows in without
+  // a dead grey gap.
+  const monitorY       = useTransform(scrollYProgress, [0.78, 1.0], ['0vh', '-18vh']);
+  const monitorOpacity = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
+
+  // Violet/grey ambient bloom fades out by the time the flip lands on the
+  // back face — so the seam into the next white section reads as seamless.
+  const bloomOpacity   = useTransform(scrollYProgress, [0.45, 0.72], [1, 0]);
 
   return (
     <section
       ref={containerRef}
       id="display"
       className="relative"
-      style={{ height: '280vh' }}
+      style={{ height: '320vh' }}
       aria-label="Meirro Pro — 32-inch 6K monitor"
     >
       <div className="sticky top-0 h-screen overflow-hidden relative bg-[#F7F7F9]">
 
-        {/* Ambient violet bloom */}
-        <div
+        {/* Ambient violet bloom — fades out before the back face arrives so
+            the seam into the next white section stays seamless. */}
+        <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
+            opacity: bloomOpacity,
             background:
               'radial-gradient(ellipse 70% 60% at 20% 40%, rgba(124,92,252,0.06) 0%, transparent 55%), ' +
               'radial-gradient(ellipse 60% 50% at 80% 60%, rgba(196,75,247,0.04) 0%, transparent 55%)',
@@ -483,56 +487,14 @@ export default function Hero() {
 
         {/* Monitor — absolutely positioned so it never overlaps the title */}
         <motion.div
-          className="absolute top-[33%] w-full px-6 z-10"
+          className="absolute top-[36%] w-full px-6 z-10"
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <motion.div style={{ y: monitorY, willChange: 'transform' }}>
-            <MonitorShape rotateY={rotateY} scale={scale} />
+          <motion.div style={{ y: monitorY, opacity: monitorOpacity, willChange: 'transform, opacity' }}>
+            <MonitorShape rotateY={rotateY} scale={scale} glowOpacity={bloomOpacity} />
           </motion.div>
-        </motion.div>
-
-        {/* Back labels — appear after flip, stacked */}
-        <motion.div
-          className="absolute bottom-[2%] left-0 right-0 text-center z-10 px-6 pointer-events-none flex flex-col items-center"
-          style={{ opacity: backTextOp, y: backTextY, gap: 'clamp(24px, 3.4vw, 44px)' }}
-        >
-          {[
-            {
-              eyebrow: 'The Case',
-              title:   'Full Aluminium.',
-              detail:  'CNC anodized aluminum alloy · Every surface.',
-            },
-            {
-              eyebrow: 'The Glass',
-              title:   'Anti-Reflective Glossy.',
-              detail:  'Fully-laminated glossy AR coating · Deep blacks, zero glare.',
-            },
-            {
-              eyebrow: 'The Ports',
-              title:   'Thunderbolt 5 Compatible.',
-              detail:  '80 Gbps · 60 Hz HDR · HDCP 2.2.',
-            },
-          ].map(({ eyebrow, title, detail }) => (
-            <div key={eyebrow}>
-              <p className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-3">
-                {eyebrow}
-              </p>
-              <p
-                className="font-black tracking-[-0.05em] leading-none text-[#0A0A0C]"
-                style={{ fontSize: 'clamp(28px, 4vw, 54px)' }}
-              >
-                {title}
-              </p>
-              <p
-                className="mt-2 text-[#0A0A0C]/55 font-normal"
-                style={{ fontSize: 'clamp(13px, 1.4vw, 17px)' }}
-              >
-                {detail}
-              </p>
-            </div>
-          ))}
         </motion.div>
 
         {/* Scroll hint */}
