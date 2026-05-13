@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Specs | Meirro Pro 32" 6K Monitor',
   description:
-    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 223 ppi, 99% DCI-P3, factory ΔE < 2, UHBR20 USB-C, and a CNC anodized aluminum body.',
+    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 99% DCI-P3, factory ΔE < 2, UHBR20 USB-C, and a CNC anodized aluminum body.',
 };
 
 const specGroups = [
@@ -13,13 +13,13 @@ const specGroups = [
       { label: 'Panel Type',        value: 'Nano IPS Black' },
       { label: 'Size',              value: '32.0" diagonal' },
       { label: 'Aspect Ratio',      value: '16:9' },
-      { label: 'Active Area',       value: '708.5 × 398.5 mm' },
+      { label: 'Active Area',       value: '696.73 × 391.91 mm' },
       { label: 'Resolution',        value: '6144 × 3456 (6K)' },
-      { label: 'Pixel Density',     value: '223 ppi' },
-      { label: 'Pixel Pitch',       value: '0.114 mm' },
+      { label: 'Pixel Density',     value: '224 ppi' },
+      { label: 'Pixel Pitch',       value: '0.1134 mm' },
       { label: 'Refresh Rate',      value: '60 Hz' },
-      { label: 'Response Time',     value: 'GTG 8 ms' },
-      { label: 'Brightness',        value: '500 nits typical (SDR)' },
+      { label: 'Response Time',     value: 'GTG 14 ms' },
+      { label: 'Brightness',        value: '450 nits typical (SDR) · 750 nits peak' },
       { label: 'Contrast',          value: '2,000:1 native' },
       { label: 'Viewing Angle',     value: '178° H · 178° V' },
       { label: 'Surface',           value: 'Fully laminated anti-reflective glass' },
@@ -43,7 +43,7 @@ const specGroups = [
     specs: [
       { label: 'USB-C Upstream',    value: '× 1 · UHBR20 · 80 Gbps' },
       { label: 'USB-C Downstream',  value: '× 4 · USB 2.0 · 480 Mbps' },
-      { label: 'USB Power Delivery', value: 'Up to 100 W host charging' },
+      { label: 'USB Power Delivery', value: 'Up to 96 W host charging' },
       { label: 'Protocols',         value: 'Thunderbolt 4 · Thunderbolt 5 · USB4' },
       { label: 'Alt Mode',          value: 'DisplayPort 2.1 (Alt Mode)' },
       { label: 'Cable',             value: 'USB-C / Thunderbolt 4 cable (2 m) included' },
@@ -55,7 +55,7 @@ const specGroups = [
       { label: 'Input',             value: '100–240 V AC, 50/60 Hz' },
       { label: 'Power Cord',        value: 'Detachable IEC C13' },
       { label: 'Typical Draw',      value: '~55 W (SDR, 200 nits)' },
-      { label: 'Maximum Draw',      value: '~210 W (including 100 W host charging)' },
+      { label: 'Maximum Draw',      value: '~210 W (including 96 W host charging)' },
       { label: 'Standby',           value: '< 0.5 W' },
     ],
   },
@@ -76,7 +76,7 @@ const specGroups = [
       { label: 'Operating Temp',    value: '0° to 35° C' },
       { label: 'Storage Temp',      value: '-20° to 60° C' },
       { label: 'Humidity',          value: '10–90% non-condensing' },
-      { label: 'Altitude',          value: 'Up to 5,000 m operating' },
+      { label: 'Altitude',          value: 'Up to 3,048 m operating · 12,192 m storage' },
     ],
   },
   {

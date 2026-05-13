@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 
 const chips = [
-  { value: '223 ppi', label: 'Pixel density'     },
+  { value: '224 ppi', label: 'Pixel density'     },
   { value: '99% P3',  label: 'DCI-P3 colour'     },
   { value: '60 Hz',   label: 'Refresh rate'        },
   { value: 'ΔE < 2',  label: 'Factory calibrated' },
@@ -146,7 +146,7 @@ export default function ThePanel() {
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          223 pixels per inch across 32 inches of Nano IPS Black. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;2 per unit.
+          224 pixels per inch across 32 inches of Nano IPS Black. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;2 per unit.
         </motion.p>
 
       </div>

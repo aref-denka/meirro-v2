@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: 'About Us | Meirro',
-  description: 'Meirro was built to fill the gap Apple left. The story of who we are and why we built the Pro Display 6K.',
+  description: 'Meirro was built to fill the gap left in the professional 32″ 6K display market. The story of who we are and why we built the Pro Display 6K.',
 };
 
 export default function AboutPage() {
@@ -30,19 +30,20 @@ export default function AboutPage() {
             About Us
           </p>
           <h1 className="text-[32px] md:text-[40px] font-black tracking-[-0.04em] text-[#0A0A0C] mb-12">
-            We built the monitor Apple stopped making.
+            We built the monitor the industry stopped making.
           </h1>
 
           <Section title="The Gap">
             <p>
-              In 2026, Apple discontinued the 32″ 6K Pro Display XDR and replaced it with a 27″ 5K
-              Studio Display XDR. For the creative professionals who had been waiting years for a
-              refresh — colorists, editors, photographers, developers running big Macs — that
-              wasn&apos;t an upgrade. It was a retreat.
+              Most premium displays come loaded with things you didn&apos;t ask for — speakers
+              nobody trusts for real listening, webcams nobody uses on real calls, smart software,
+              glossy plastics. You pay for all of it whether you want it or not.
             </p>
             <p>
-              There is now no first-party 32″ 6K option from Apple at any price. We thought that
-              was unacceptable. So we built one.
+              What&apos;s missing is the opposite. A pure display, built around the picture and
+              nothing else. 32″ of true 6K, factory-calibrated color, a full-aluminum body — at a
+              price an everyday person passionate about art and good visuals can actually afford.
+              That&apos;s the gap. So we built one.
             </p>
           </Section>
 
@@ -56,7 +57,7 @@ export default function AboutPage() {
             <p>
               We&apos;re not a display conglomerate. We&apos;re a small team with a specific point of
               view: that professional-grade hardware should be treated like the professional tool it
-              is, not as a consumer product with a spec sheet and a warranty card.
+              is, not as a commercial product with a spec sheet.
             </p>
           </Section>
 

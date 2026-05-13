@@ -27,7 +27,7 @@ const creators = [
     name: 'Sam Beckman',
     location: 'United Kingdom',
     quote:
-      "If you want 6K resolution and professional-grade color accuracy but only want to pay a fair price, this is exactly the right address. It's a price-performance counterweight to Apple.",
+      "If you want 6K resolution and professional-grade color accuracy but only want to pay a fair price, this is exactly the right address. It's a price-performance counterweight to the industry standard.",
     link: 'https://www.youtube.com/watch?v=Hx_MDHdFNRE&t=39s&pp=ygULc2FtIGJlY2ttYW4%3D',
   },
   {

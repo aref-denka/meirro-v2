@@ -15,7 +15,7 @@ const callouts = [
   {
     eyebrow: 'The Ports',
     title:   'Thunderbolt 5 Compatible.',
-    detail:  '80 Gbps · 60 Hz HDR · HDCP 2.2.',
+    detail:  '80 Gbps · 96 W power delivery.',
   },
 ];
 
