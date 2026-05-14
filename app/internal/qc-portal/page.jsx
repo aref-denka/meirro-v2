@@ -80,7 +80,7 @@ const step2Items = [
 
 const step3Items = [
   { id: 'lum',    label: 'Peak Luminance ≥ 500 nits — pass confirmed' },
-  { id: 'dcip3',  label: 'DCI-P3 coverage ≥ 99% — pass confirmed' },
+  { id: 'dcip3',  label: 'DCI-P3 coverage ≥ 98% — pass confirmed' },
   { id: 'srgb',   label: 'sRGB coverage ≥ 99% — pass confirmed' },
   { id: 'deltae', label: 'Delta E avg ≤ 2.0 — pass confirmed' },
 ];
@@ -96,7 +96,7 @@ const specs = [
   },
   {
     label: 'DCI-P3',
-    value: '99%',
+    value: '98%',
     unit: 'gamut',
     how: 'Run the colour gamut test in your calibration software. It displays a sequence of colour patches and automatically calculates what percentage of the DCI-P3 colour space the screen can reproduce.',
   },

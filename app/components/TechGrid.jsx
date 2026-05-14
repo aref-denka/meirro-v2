@@ -46,7 +46,7 @@ const cards = [
   {
     id: 'gamut',
     eyebrow: 'DCI-P3',
-    value: '99%',
+    value: '98%',
     unit: '',
     detail: '10-bit · 1.07B colours\nWide-gamut professional',
     accent: 'rgba(196,75,247,0.05)',

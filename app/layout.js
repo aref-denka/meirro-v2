@@ -103,7 +103,7 @@ const jsonLd = {
     { '@type': 'PropertyValue', name: 'Resolution',      value: '6K — 6144 × 3456 pixels' },
     { '@type': 'PropertyValue', name: 'Pixel Density',   value: '224 ppi' },
     { '@type': 'PropertyValue', name: 'Refresh Rate',    value: '60 Hz' },
-    { '@type': 'PropertyValue', name: 'Colour Gamut',    value: '99% DCI-P3' },
+    { '@type': 'PropertyValue', name: 'Colour Gamut',    value: '98% DCI-P3' },
     { '@type': 'PropertyValue', name: 'Delta E',         value: 'ΔE < 1 factory calibrated' },
     { '@type': 'PropertyValue', name: 'Material',        value: 'CNC 6061-T6 Aluminium' },
     { '@type': 'PropertyValue', name: 'Connectivity',    value: 'Thunderbolt 5 × 3' },

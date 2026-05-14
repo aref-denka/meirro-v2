@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Specs | Meirro Pro 32" 6K Monitor',
   description:
-    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 99% DCI-P3, factory ΔE < 2, UHBR20 USB-C, and a CNC anodized aluminum body.',
+    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, UHBR20 USB-C, and a CNC anodized aluminum body.',
 };
 
 const specGroups = [
@@ -22,7 +22,7 @@ const specGroups = [
       { label: 'Brightness',        value: '450 nits typical (SDR) · 750 nits peak' },
       { label: 'Contrast',          value: '2,000:1 native' },
       { label: 'Viewing Angle',     value: '178° H · 178° V' },
-      { label: 'Surface',           value: 'Fully laminated anti-reflective glass' },
+      { label: 'Surface',           value: 'Anti-glare glossy' },
       { label: 'Backlight',         value: 'Edge-lit LED' },
     ],
   },
@@ -31,7 +31,7 @@ const specGroups = [
     specs: [
       { label: 'Colour Space',      value: 'sRGB · DCI-P3' },
       { label: 'sRGB Coverage',     value: '99%' },
-      { label: 'DCI-P3 Coverage',   value: '99%' },
+      { label: 'DCI-P3 Coverage',   value: '98%' },
       { label: 'Bit Depth',         value: '10-bit (1.07 billion colours)' },
       { label: 'Calibration',       value: 'Factory, per-unit' },
       { label: 'Delta E',           value: 'ΔE < 2 average' },
@@ -63,7 +63,8 @@ const specGroups = [
     category: 'Physical',
     specs: [
       { label: 'Size',              value: '32.0" diagonal' },
-      { label: 'Weight (panel)',    value: '8.92 kg' },
+      { label: 'Weight (panel)',    value: '3.83 kg' },
+      { label: 'Weight (monitor)',  value: '8.92 kg' },
       { label: 'Body Material',     value: 'CNC anodized aluminum alloy' },
       { label: 'Stand',             value: 'Included · CNC anodized aluminum alloy' },
       { label: 'Stand Tilt',        value: '-5° to +25°' },
