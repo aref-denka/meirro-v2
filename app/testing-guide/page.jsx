@@ -78,7 +78,7 @@ const step2Items = [
 ];
 
 const step3Items = [
-  { id: 'lum',    label: 'Peak Luminance ≥ 500 nits — pass confirmed' },
+  { id: 'lum',    label: 'SDR Luminance ≥ 400 nits — pass confirmed' },
   { id: 'dcip3',  label: 'DCI-P3 coverage ≥ 98% — pass confirmed' },
   { id: 'srgb',   label: 'sRGB coverage ≥ 99% — pass confirmed' },
   { id: 'deltae', label: 'Delta E avg ≤ 2.0 — pass confirmed' },
