@@ -159,16 +159,17 @@ export default function TheStand() {
             className="font-black tracking-[-0.05em] leading-[1.05] text-[#0A0A0C] mb-6"
             style={{ fontSize: 'clamp(40px, 5.5vw, 72px)' }}
           >
-            Cut from billet.<br />Display<br />and stand.
+            Aluminum,<br />all the way<br />down
           </h2>
 
           <p
             className="text-[#0A0A0C]/60 font-normal leading-relaxed mb-8 max-w-md"
             style={{ fontSize: 'clamp(14px, 1.4vw, 16px)' }}
           >
-            One material runs through the entire product — the same anodized
-            aluminum alloy is machined into the chassis, the back, and the
-            stand. No plastics on any visible surface, no painted shortcuts.
+            A display is a tool, and tools earn trust through their materials.
+            The chassis and stand are CNC machined from aluminum alloy,
+            anodised, and finished to a satin grain — no plastic facades, no
+            cosmetic fillers. Precision for professionals, from the billet up.
           </p>
 
           {/* Animated rule */}
@@ -179,8 +180,8 @@ export default function TheStand() {
 
           <div className="space-y-6">
             {[
-              { label: 'Chassis', value: 'CNC anodized aluminum alloy · monocoque' },
-              { label: 'Stand',   value: 'CNC anodized aluminum alloy · solid billet' },
+              { label: 'Chassis', value: 'CNC aluminum alloy' },
+              { label: 'Stand',   value: 'CNC aluminum alloy · solid billet' },
               { label: 'Finish',  value: 'Precision anodised, satin' },
               { label: 'Adjust',  value: 'Height · Tilt · Portrait rotation' },
               { label: 'VESA',    value: '100×100 mm adapter included' },
