@@ -10,7 +10,7 @@ const callouts = [
   {
     eyebrow: 'The Glass',
     title:   'Anti-Glare Glossy.',
-    detail:  'Fully-laminated anti-glare coating. Deep blacks, zero glare.',
+    detail:  'Fully-laminated anti-glare coating. Deep blacks, minimum glare.',
   },
   {
     eyebrow: 'The Ports',
