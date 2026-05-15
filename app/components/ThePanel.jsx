@@ -137,18 +137,6 @@ export default function ThePanel() {
           </div>
         </motion.div>
 
-        {/* Brief body text below the panel */}
-        <motion.p
-          className="mt-7 text-[#0A0A0C]/55 font-normal leading-relaxed max-w-xl"
-          style={{ fontSize: 'clamp(14px, 1.5vw, 17px)' }}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.8 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-        >
-          224 pixels per inch across 32 inches of Nano IPS Black. Factory-calibrated to ΔE&nbsp;&lt;&nbsp;2 per unit.
-        </motion.p>
-
       </div>
     </section>
   );

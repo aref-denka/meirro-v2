@@ -29,9 +29,10 @@ const specGroups = [
   {
     category: 'Colour',
     specs: [
-      { label: 'Colour Space',      value: 'sRGB · DCI-P3' },
+      { label: 'Colour Space',      value: 'sRGB · DCI-P3 · Adobe RGB' },
       { label: 'sRGB Coverage',     value: '99%' },
       { label: 'DCI-P3 Coverage',   value: '98%' },
+      { label: 'Adobe RGB Coverage', value: '99%' },
       { label: 'Bit Depth',         value: '10-bit (1.07 billion colours)' },
       { label: 'Calibration',       value: 'Factory, per-unit' },
       { label: 'Delta E',           value: 'ΔE < 2 average' },

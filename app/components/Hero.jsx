@@ -2,18 +2,32 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-/* ── Stand — shared between front and back ─────────────────── */
+/* ── Stand — shared between front and back ───────────────────
+   The pillar has a semicircular "neck" that overlaps the case
+   bottom. translateZ(-10px) puts it just behind the case faces
+   in 3D space — when the back is facing the viewer, the pillar
+   sits in front of the back panel (visible neck attachment).
+   When the front is facing, it tucks behind the front face. */
 function Stand() {
   return (
-    <div className="relative mx-auto mt-0 flex flex-col items-center" style={{ width: '60%' }}>
-      {/* Pillar */}
+    <div
+      className="relative mx-auto flex flex-col items-center"
+      style={{
+        width: '60%',
+        marginTop: 'calc(-1 * clamp(90px, 17vw, 210px))',
+        transform: 'translateZ(-10px)',
+      }}
+    >
+      {/* Pillar — rounded-top neck that attaches to the back of the case.
+          The overlap is sized so the top reaches the vertical centre of the
+          back panel (case height ≈ 34vw, so ~17vw of overlap = half). */}
       <div
         className="relative overflow-hidden"
         style={{
-          width: 'clamp(36px, 7.5vw, 90px)',
-          height: 'clamp(42px, 5.4vw, 76px)',
+          width: 'clamp(80px, 14vw, 170px)',
+          height: 'clamp(140px, 22vw, 280px)',
           background: 'linear-gradient(135deg, #ededf0 0%, #d8d9dc 50%, #c4c5c9 100%)',
-          borderRadius: '3px 3px 0 0',
+          borderRadius: '9999px 9999px 0 0',
           border: '1px solid rgba(0,0,0,0.07)',
           boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.95), inset -1px 0 0 rgba(0,0,0,0.05)',
         }}
@@ -26,24 +40,15 @@ function Stand() {
               'repeating-linear-gradient(0deg, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 1px, transparent 1px, transparent 14px)',
           }}
         />
-        {/* Right edge highlight */}
-        <div
-          className="absolute top-0 bottom-0"
-          style={{
-            left: '76%',
-            width: '3%',
-            background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent)',
-          }}
-        />
-        {/* Cable cutout (oblong) — lower half of pillar */}
+        {/* Cable cutout — anchored to bottom of pillar (the visible neck below the case) */}
         <div
           className="absolute left-1/2"
           style={{
-            top: '62%',
-            transform: 'translate(-50%, -50%)',
-            width: '52%',
-            height: '32%',
-            borderRadius: 9999,
+            bottom: 'clamp(10px, 1.2vw, 18px)',
+            transform: 'translateX(-50%)',
+            width: 'clamp(28px, 5vw, 60px)',
+            height: 'clamp(22px, 3vw, 38px)',
+            borderRadius: 6,
             background:
               'radial-gradient(ellipse at 50% 30%, #1c1c20 0%, #0a0a0c 70%, #050506 100%)',
             boxShadow:
@@ -202,40 +207,6 @@ function MonitorBack() {
             background: 'linear-gradient(165deg, #e4e5e8 0%, #ceced2 50%, #c4c5c8 100%)',
           }}
         >
-          {/* Top vent band — hex-packed cheese grater */}
-          <svg
-            className="absolute top-0 left-0 right-0 pointer-events-none"
-            width="100%"
-            style={{ height: '33.33%' }}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern id="hero-back-vents-top" width="14" height="24" patternUnits="userSpaceOnUse">
-                <circle cx="7"  cy="6"  r="3.2" fill="rgba(0,0,0,0.6)" />
-                <circle cx="0"  cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
-                <circle cx="14" cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hero-back-vents-top)" />
-          </svg>
-
-          {/* Bottom vent band — hex-packed cheese grater */}
-          <svg
-            className="absolute bottom-0 left-0 right-0 pointer-events-none"
-            width="100%"
-            style={{ height: '33.33%' }}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <pattern id="hero-back-vents-bot" width="14" height="24" patternUnits="userSpaceOnUse">
-                <circle cx="7"  cy="6"  r="3.2" fill="rgba(0,0,0,0.6)" />
-                <circle cx="0"  cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
-                <circle cx="14" cy="18" r="3.2" fill="rgba(0,0,0,0.6)" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hero-back-vents-bot)" />
-          </svg>
-
           {/* MEIRRO wordmark — left of centre */}
           <p
             className="absolute font-bold uppercase"

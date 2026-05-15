@@ -10,12 +10,17 @@ const callouts = [
   {
     eyebrow: 'The Glass',
     title:   'Anti-Glare Glossy.',
-    detail:  'Fully-laminated anti-glare coating. Deep blacks, minimum glare.',
+    detail:  'Fully-laminated anti-glare coating. Deep blacks, minimum glare.',
   },
   {
     eyebrow: 'The Ports',
     title:   'Thunderbolt 5 Compatible.',
     detail:  '80 Gbps · 96 W power delivery.',
+  },
+  {
+    eyebrow: 'The Colour',
+    title:   '99% AdobeRGB · 98% P3.',
+    detail:  'Wide gamut coverage.',
   },
 ];
 
@@ -44,7 +49,7 @@ export default function FeatureCallouts() {
               {title}
             </p>
             <p
-              className="mt-3 text-[#0A0A0C]/55 font-normal leading-relaxed mx-auto max-w-md"
+              className="mt-3 text-[#0A0A0C]/55 font-normal leading-relaxed mx-auto md:whitespace-nowrap"
               style={{ fontSize: 'clamp(13px, 1.4vw, 17px)' }}
             >
               {detail}
