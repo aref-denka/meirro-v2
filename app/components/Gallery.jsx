@@ -1,49 +1,41 @@
 'use client';
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 /* Each tile owns its aspect ratio. All tiles share a single height
    (clamped), and `aspect-ratio` auto-computes the width — so adding a
    new tile with any ratio just slots in without breaking the rhythm. */
 const tiles = [
   {
-    id: 'hero',     index: '01', aspect: '4 / 5',
-    aurora:
-      'radial-gradient(ellipse 70% 60% at 30% 40%, rgba(124,92,252,0.60) 0%, transparent 60%), ' +
-      'radial-gradient(ellipse 60% 55% at 75% 70%, rgba(196,75,247,0.45) 0%, transparent 55%), ' +
-      'linear-gradient(135deg, #060614 0%, #1A1024 100%)',
+    id: 'front-45', index: '01', aspect: '4 / 5',
+    src: '/gallery/front-45.png',
+    alt: 'Meirro Pro — three-quarter front view',
   },
   {
-    id: 'glass',    index: '02', aspect: '16 / 9',
-    aurora:
-      'radial-gradient(ellipse 80% 70% at 50% 30%, rgba(167,139,250,0.5) 0%, transparent 60%), ' +
-      'linear-gradient(160deg, #04040A 0%, #0F0820 100%)',
+    id: 'ar-glass', index: '02', aspect: '16 / 9',
+    src: '/gallery/ar-glass.png',
+    alt: 'Meirro Pro — anti-glare glass detail',
   },
   {
     id: 'ports',    index: '03', aspect: '1 / 1',
-    aurora:
-      'radial-gradient(ellipse 65% 55% at 70% 60%, rgba(124,92,252,0.55) 0%, transparent 55%), ' +
-      'linear-gradient(140deg, #060614 0%, #160E2A 100%)',
+    src: '/gallery/ports.png',
+    alt: 'Meirro Pro — rear I/O ports',
   },
   {
-    id: 'stand',    index: '04', aspect: '3 / 4',
-    aurora:
-      'radial-gradient(ellipse 60% 60% at 40% 50%, rgba(232,121,249,0.42) 0%, transparent 55%), ' +
-      'radial-gradient(ellipse 55% 50% at 80% 30%, rgba(124,92,252,0.5) 0%, transparent 55%), ' +
-      'linear-gradient(150deg, #050510 0%, #1C0F2C 100%)',
+    id: 'back',     index: '04', aspect: '3 / 4',
+    src: '/gallery/back.png',
+    alt: 'Meirro Pro — back view with stand',
   },
   {
-    id: 'profile',  index: '05', aspect: '5 / 3',
-    aurora:
-      'radial-gradient(ellipse 75% 60% at 50% 50%, rgba(196,75,247,0.45) 0%, transparent 60%), ' +
-      'linear-gradient(135deg, #04040A 0%, #120A22 100%)',
+    id: 'side',     index: '05', aspect: '5 / 3',
+    src: '/gallery/side-view.png',
+    alt: 'Meirro Pro — side profile',
   },
   {
-    id: 'desk',     index: '06', aspect: '4 / 3',
-    aurora:
-      'radial-gradient(ellipse 70% 55% at 30% 30%, rgba(124,92,252,0.42) 0%, transparent 60%), ' +
-      'radial-gradient(ellipse 60% 50% at 75% 70%, rgba(232,121,249,0.4) 0%, transparent 55%), ' +
-      'linear-gradient(140deg, #06061A 0%, #150D2E 100%)',
+    id: 'front',    index: '06', aspect: '4 / 3',
+    src: '/gallery/front-base.png',
+    alt: 'Meirro Pro — front view with base',
   },
 ];
 
@@ -292,22 +284,17 @@ export default function Gallery() {
                     '0 30px 70px rgba(0,0,0,0.45), 0 4px 14px rgba(0,0,0,0.25)',
                 }}
               >
-                {/* Aurora — swap for <img> later */}
-                <div
-                  className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
-                  style={{ background: tile.aurora }}
-                  aria-hidden="true"
-                />
-
-                {/* Scan lines */}
-                <div
-                  className="absolute inset-0 pointer-events-none opacity-35"
-                  style={{
-                    background:
-                      'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 6px)',
-                  }}
-                  aria-hidden="true"
-                />
+                {/* Image — fills tile, subtle hover zoom */}
+                <div className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]">
+                  <Image
+                    src={tile.src}
+                    alt={tile.alt}
+                    fill
+                    sizes="(max-width: 768px) 78vw, 720px"
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                    draggable={false}
+                  />
+                </div>
 
                 {/* Top sheen */}
                 <div
