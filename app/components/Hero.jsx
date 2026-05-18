@@ -2,12 +2,72 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-/* ── Stand — shared between front and back ───────────────────
-   The pillar has a semicircular "neck" that overlaps the case
-   bottom. translateZ(-10px) puts it just behind the case faces
-   in 3D space — when the back is facing the viewer, the pillar
-   sits in front of the back panel (visible neck attachment).
-   When the front is facing, it tucks behind the front face. */
+/* ── Stand — flat aluminium plate with a real cable cutout, on a wide base.
+   Each face is an inline SVG using fill-rule="evenodd" so the cable hole
+   is a genuine geometric cutout (CSS mask-image proved unreliable). Plate
+   thickness PLATE_T and base depth BASE_T are tuned to match the side
+   view in the reference renders: plate is thin (a slab), base is deeper
+   (a heavier footprint).
+   translateZ(-10px) on the outer container keeps the stand just behind
+   the monitor's back face in 3D space. */
+
+// Path for a plate face:
+//   Outer outline: rounded rectangle, radius 11 at top, radius 3 at bottom.
+//   Inner cutout: rounded rectangle, radius 9, sized 52×50 sitting at y 175–225.
+// Two subpaths + fillRule="evenodd" → fill between them, hole inside.
+// viewBox 100×260 matches the plate's 11.5vw × 30vw aspect ratio.
+const PLATE_PATH =
+  'M 12 1 L 88 1 A 11 11 0 0 1 99 12 L 99 257 A 3 3 0 0 1 96 260 L 4 260 ' +
+  'A 3 3 0 0 1 1 257 L 1 12 A 11 11 0 0 1 12 1 Z ' +
+  'M 33 175 L 67 175 A 9 9 0 0 1 76 184 L 76 216 A 9 9 0 0 1 67 225 L 33 225 ' +
+  'A 9 9 0 0 1 24 216 L 24 184 A 9 9 0 0 1 33 175 Z';
+
+const PLATE_T = 9;             // plate thickness (px) — thin slab
+const BASE_T  = 60;             // base depth (px) — long horizontal footprint in side view
+
+const plateEdgeBgY = 'linear-gradient(180deg, #d4d5d8 0%, #b8b9bc 50%, #a4a5a8 100%)';
+const plateEdgeBgX = 'linear-gradient(90deg, #d4d5d8 0%, #b8b9bc 50%, #a4a5a8 100%)';
+
+const baseFaceBg = 'linear-gradient(180deg, #ebecef 0%, #c8c9cc 55%, #b0b1b4 100%)';
+const baseEdgeBg = 'linear-gradient(180deg, #d4d5d8 0%, #b4b5b8 100%)';
+const baseTopBg  = 'linear-gradient(90deg, #dadbde 0%, #c4c5c8 50%, #b2b3b6 100%)';
+
+function PlateFaceSVG({ gradientId }) {
+  return (
+    <svg
+      viewBox="0 0 100 260"
+      preserveAspectRatio="none"
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f3f4f6" />
+          <stop offset="45%" stopColor="#e6e7ea" />
+          <stop offset="100%" stopColor="#d4d5d8" />
+        </linearGradient>
+        <linearGradient id={`${gradientId}-sheen`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="rgba(255,255,255,0.35)" />
+          <stop offset="14%" stopColor="rgba(255,255,255,0)" />
+          <stop offset="86%" stopColor="rgba(0,0,0,0)" />
+          <stop offset="100%" stopColor="rgba(0,0,0,0.1)" />
+        </linearGradient>
+      </defs>
+      <path
+        d={PLATE_PATH}
+        fillRule="evenodd"
+        fill={`url(#${gradientId})`}
+        stroke="rgba(0,0,0,0.12)"
+        strokeWidth="0.7"
+      />
+      <path
+        d={PLATE_PATH}
+        fillRule="evenodd"
+        fill={`url(#${gradientId}-sheen)`}
+      />
+    </svg>
+  );
+}
+
 function Stand() {
   return (
     <div
@@ -15,62 +75,180 @@ function Stand() {
       style={{
         width: '60%',
         marginTop: 'calc(-1 * clamp(90px, 17vw, 210px))',
-        transform: 'translateZ(-10px)',
+        transform: 'translateZ(-20px)',
+        transformStyle: 'preserve-3d',
       }}
     >
-      {/* Pillar — rounded-top neck that attaches to the back of the case.
-          The overlap is sized so the top reaches the vertical centre of the
-          back panel (case height ≈ 34vw, so ~17vw of overlap = half). */}
+      {/* Plate — 3D box with a real see-through cutout on both faces */}
       <div
-        className="relative overflow-hidden"
+        className="relative"
         style={{
-          width: 'clamp(80px, 14vw, 170px)',
-          height: 'clamp(140px, 22vw, 280px)',
-          background: 'linear-gradient(135deg, #ededf0 0%, #d8d9dc 50%, #c4c5c9 100%)',
-          borderRadius: '9999px 9999px 0 0',
-          border: '1px solid rgba(0,0,0,0.07)',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.95), inset -1px 0 0 rgba(0,0,0,0.05)',
+          width: 'clamp(58px, 11.5vw, 135px)',
+          height: 'clamp(180px, 30vw, 360px)',
+          transformStyle: 'preserve-3d',
         }}
       >
-        {/* Brushed sheen */}
+        {/* Front face */}
         <div
-          className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage:
-              'repeating-linear-gradient(0deg, rgba(255,255,255,0.4) 0px, rgba(255,255,255,0.4) 1px, transparent 1px, transparent 14px)',
+            position: 'absolute',
+            inset: 0,
+            transform: `translateZ(${PLATE_T / 2}px)`,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        >
+          <PlateFaceSVG gradientId="plateGradF" />
+        </div>
+
+        {/* Back face — mirrored */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            transform: `rotateY(180deg) translateZ(${PLATE_T / 2}px)`,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        >
+          <PlateFaceSVG gradientId="plateGradB" />
+        </div>
+
+        {/* Right edge */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: `-${PLATE_T / 2}px`,
+            width: `${PLATE_T}px`,
+            height: '100%',
+            background: plateEdgeBgY,
+            transform: 'rotateY(-90deg)',
+            pointerEvents: 'none',
           }}
         />
-        {/* Cable cutout — anchored to bottom of pillar (the visible neck below the case) */}
+        {/* Left edge */}
         <div
-          className="absolute left-1/2"
           style={{
-            bottom: 'clamp(10px, 1.2vw, 18px)',
-            transform: 'translateX(-50%)',
-            width: 'clamp(28px, 5vw, 60px)',
-            height: 'clamp(22px, 3vw, 38px)',
-            borderRadius: 6,
-            background:
-              'radial-gradient(ellipse at 50% 30%, #1c1c20 0%, #0a0a0c 70%, #050506 100%)',
-            boxShadow:
-              'inset 0 3px 6px rgba(0,0,0,0.75), 0 1px 0 rgba(255,255,255,0.45)',
+            position: 'absolute',
+            top: 0,
+            left: `-${PLATE_T / 2}px`,
+            width: `${PLATE_T}px`,
+            height: '100%',
+            background: plateEdgeBgY,
+            transform: 'rotateY(90deg)',
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Top edge */}
+        <div
+          style={{
+            position: 'absolute',
+            top: `-${PLATE_T / 2}px`,
+            left: 0,
+            width: '100%',
+            height: `${PLATE_T}px`,
+            background: plateEdgeBgX,
+            transform: 'rotateX(90deg)',
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Bottom edge */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: `-${PLATE_T / 2}px`,
+            left: 0,
+            width: '100%',
+            height: `${PLATE_T}px`,
+            background: plateEdgeBgX,
+            transform: 'rotateX(-90deg)',
+            pointerEvents: 'none',
           }}
         />
       </div>
 
-      {/* Base */}
+      {/* Base — 3D slab, wider than the plate and noticeably deeper */}
       <div
         className="relative"
         style={{
-          width: 'clamp(100px, 18vw, 200px)',
-          height: 'clamp(9px, 1.2vw, 16px)',
-          background: 'linear-gradient(180deg, #dadbde 0%, #b8b9bd 100%)',
-          borderRadius: '3px 3px 10px 10px',
-          border: '1px solid rgba(0,0,0,0.07)',
-          boxShadow:
-            '0 6px 24px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.08)',
+          width: 'clamp(115px, 20vw, 240px)',
+          height: 'clamp(7px, 1vw, 12px)',
+          transformStyle: 'preserve-3d',
           marginTop: -1,
         }}
-      />
+      >
+        {/* Front face */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: baseFaceBg,
+            borderRadius: '2px 2px 7px 7px',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow:
+              '0 8px 28px rgba(0,0,0,0.16), ' +
+              'inset 0 1px 0 rgba(255,255,255,0.95), ' +
+              'inset 0 -1px 0 rgba(0,0,0,0.1)',
+            transform: `translateZ(${BASE_T / 2}px)`,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        />
+        {/* Back face */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: baseFaceBg,
+            borderRadius: '2px 2px 7px 7px',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7)',
+            transform: `rotateY(180deg) translateZ(${BASE_T / 2}px)`,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+          }}
+        />
+        {/* Top face */}
+        <div
+          style={{
+            position: 'absolute',
+            top: `-${BASE_T / 2}px`,
+            left: 0,
+            width: '100%',
+            height: `${BASE_T}px`,
+            background: baseTopBg,
+            transform: 'rotateX(90deg)',
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Right edge */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: `-${BASE_T / 2}px`,
+            width: `${BASE_T}px`,
+            height: '100%',
+            background: baseEdgeBg,
+            transform: 'rotateY(-90deg)',
+            pointerEvents: 'none',
+          }}
+        />
+        {/* Left edge */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: `-${BASE_T / 2}px`,
+            width: `${BASE_T}px`,
+            height: '100%',
+            background: baseEdgeBg,
+            transform: 'rotateY(90deg)',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
     </div>
   );
 }
@@ -135,9 +313,9 @@ function MonitorFront() {
       <div
         className="relative rounded-[10px] overflow-hidden"
         style={{
-          background: 'linear-gradient(160deg, #e8e8ea 0%, #d0d0d4 100%)',
+          background: 'linear-gradient(160deg, #efeff2 0%, #d4d5d8 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
-          padding: '9px 9px 10px',
+          padding: 'clamp(3px, 0.7vw, 7px)',
           boxShadow: '0 40px 120px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
@@ -166,8 +344,6 @@ function MonitorFront() {
           <ScreenContent />
         </div>
 
-        {/* Camera dot */}
-        <div className="absolute top-[4px] left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-zinc-400/60" />
         {/* Bezel shimmer */}
         <div className="shimmer-sweep absolute inset-0 pointer-events-none rounded-[10px]" />
       </div>
@@ -192,9 +368,9 @@ function MonitorBack() {
       <div
         className="relative rounded-[10px] overflow-hidden"
         style={{
-          background: 'linear-gradient(160deg, #ededf0 0%, #d8d9dc 40%, #cccdd0 75%, #d4d5d8 100%)',
+          background: 'linear-gradient(160deg, #f3f4f6 0%, #e0e1e4 40%, #d4d5d8 75%, #dadbde 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
-          padding: '9px 9px 10px',
+          padding: 'clamp(3px, 0.7vw, 7px)',
           boxShadow: '0 12px 40px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
@@ -204,7 +380,7 @@ function MonitorBack() {
           style={{
             borderRadius: 4,
             aspectRatio: '16/10',
-            background: 'linear-gradient(165deg, #e4e5e8 0%, #ceced2 50%, #c4c5c8 100%)',
+            background: 'linear-gradient(165deg, #ebecef 0%, #d4d5d8 50%, #cccdd0 100%)',
           }}
         >
           {/* MEIRRO wordmark — left of centre */}
@@ -221,6 +397,31 @@ function MonitorBack() {
           >
             Meirro
           </p>
+
+          {/* Apple-style IEC C5 / 三孔梅花 plum-blossom AC inlet
+              — three overlapping circular lobes with round pin holes,
+              the shape Apple uses on the MacBook power-brick socket. */}
+          <svg
+            viewBox="0 0 22 20"
+            className="absolute"
+            style={{
+              top: '50%',
+              left: '26%',
+              transform: 'translateY(-50%)',
+              width: 'clamp(11px, 1.9vw, 21px)',
+              height: 'clamp(10px, 1.7vw, 19px)',
+              overflow: 'visible',
+            }}
+          >
+            {/* Three overlapping lobes form the cloverleaf recess */}
+            <circle cx="7"  cy="6.5"  r="4.5" fill="rgba(20,20,22,0.92)" />
+            <circle cx="15" cy="6.5"  r="4.5" fill="rgba(20,20,22,0.92)" />
+            <circle cx="11" cy="13.5" r="4.5" fill="rgba(20,20,22,0.92)" />
+            {/* Round pin holes — live, neutral, earth */}
+            <circle cx="7"  cy="6.5"  r="1.1" fill="rgba(0,0,0,0.98)" />
+            <circle cx="15" cy="6.5"  r="1.1" fill="rgba(0,0,0,0.98)" />
+            <circle cx="11" cy="13.5" r="1.1" fill="rgba(0,0,0,0.98)" />
+          </svg>
 
           {/* Port row — right of centre */}
           <div
@@ -264,11 +465,6 @@ function MonitorBack() {
           <div className="shimmer-sweep absolute inset-0 pointer-events-none" />
         </div>
 
-        {/* Top machining mark */}
-        <div
-          className="absolute top-[5px] left-1/2 -translate-x-1/2"
-          style={{ width: '28%', height: 2, background: 'rgba(0,0,0,0.07)', borderRadius: 1 }}
-        />
       </div>
     </div>
   );
@@ -277,9 +473,9 @@ function MonitorBack() {
 /* ── Edge panels — give the screen body visible thickness ───── */
 function MonitorEdges() {
   const sideGradient =
-    'linear-gradient(180deg, #dadbde 0%, #c4c5c9 50%, #b6b7bb 100%)';
+    'linear-gradient(180deg, #e2e3e6 0%, #c8c9cc 50%, #b8b9bc 100%)';
   const topBottomGradient =
-    'linear-gradient(90deg, #dadbde 0%, #c4c5c9 50%, #b6b7bb 100%)';
+    'linear-gradient(90deg, #e2e3e6 0%, #c8c9cc 50%, #b8b9bc 100%)';
   return (
     <>
       {/* Right edge — rotateY(-90deg) so its outward normal is +x */}
