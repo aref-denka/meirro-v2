@@ -22,8 +22,8 @@ const PLATE_PATH =
   'M 33 175 L 67 175 A 9 9 0 0 1 76 184 L 76 216 A 9 9 0 0 1 67 225 L 33 225 ' +
   'A 9 9 0 0 1 24 216 L 24 184 A 9 9 0 0 1 33 175 Z';
 
-const PLATE_T = 9;             // plate thickness (px) — thin slab
-const BASE_T  = 60;             // base depth (px) — long horizontal footprint in side view
+const PLATE_T = 15;             // plate thickness (px) — rectangular column in side view
+const BASE_T  = 100;            // base depth (px) — long horizontal footprint in side view
 
 const plateEdgeBgY = 'linear-gradient(180deg, #d4d5d8 0%, #b8b9bc 50%, #a4a5a8 100%)';
 const plateEdgeBgX = 'linear-gradient(90deg, #d4d5d8 0%, #b8b9bc 50%, #a4a5a8 100%)';
@@ -75,7 +75,7 @@ function Stand() {
       style={{
         width: '60%',
         marginTop: 'calc(-1 * clamp(90px, 17vw, 210px))',
-        transform: 'translateZ(-20px)',
+        transform: 'translateZ(-35px)',
         transformStyle: 'preserve-3d',
       }}
     >
@@ -315,7 +315,7 @@ function MonitorFront() {
         style={{
           background: 'linear-gradient(160deg, #efeff2 0%, #d4d5d8 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
-          padding: 'clamp(3px, 0.7vw, 7px)',
+          padding: 'clamp(2px, 0.45vw, 5px)',
           boxShadow: '0 40px 120px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
@@ -370,7 +370,7 @@ function MonitorBack() {
         style={{
           background: 'linear-gradient(160deg, #f3f4f6 0%, #e0e1e4 40%, #d4d5d8 75%, #dadbde 100%)',
           border: '1px solid rgba(0,0,0,0.1)',
-          padding: 'clamp(3px, 0.7vw, 7px)',
+          padding: 'clamp(2px, 0.45vw, 5px)',
           boxShadow: '0 12px 40px rgba(0,0,0,0.05), 0 0 0 1px rgba(255,255,255,0.7)',
         }}
       >
@@ -534,6 +534,34 @@ function MonitorEdges() {
   );
 }
 
+/* ── Hinge — circular pivot bridging the case back to the stand plate.
+   Rendered as a flat disc with its face along the +X axis (rotateY(90)
+   internally), so it appears as a full circle only at the side view
+   during the flip — fills the visible z-gap between case back and
+   plate front. */
+function MonitorHinge() {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width:  'clamp(18px, 2.8vw, 30px)',
+        height: 'clamp(18px, 2.8vw, 30px)',
+        borderRadius: '50%',
+        background:
+          'radial-gradient(circle at 35% 35%, #ebecef 0%, #c8c9cc 55%, #a4a5a8 100%)',
+        border: '1px solid rgba(0,0,0,0.16)',
+        boxShadow:
+          'inset -2px -2px 4px rgba(0,0,0,0.12), ' +
+          'inset 2px 2px 4px rgba(255,255,255,0.5)',
+        transform: 'translate(-50%, -50%) translateZ(-18px) rotateY(90deg)',
+        pointerEvents: 'none',
+      }}
+    />
+  );
+}
+
 /* ── Flip container ─────────────────────────────────────────── */
 function MonitorShape({ rotateY, scale, glowOpacity }) {
   return (
@@ -552,6 +580,7 @@ function MonitorShape({ rotateY, scale, glowOpacity }) {
             <MonitorFront />
             <MonitorBack />
             <MonitorEdges />
+            <MonitorHinge />
           </div>
           {/* Stand — rotates with the flip */}
           <Stand />
