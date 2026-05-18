@@ -4,6 +4,7 @@ import FeatureCallouts  from './components/FeatureCallouts';
 import ThePanel         from './components/ThePanel';
 import TheStand         from './components/TheStand';
 import TechGrid         from './components/TechGrid';
+import Gallery          from './components/Gallery';
 import Footer           from './components/Footer';
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <ThePanel />
         <TheStand />
         <TechGrid />
+        <Gallery />
       </main>
       <Footer />
     </>

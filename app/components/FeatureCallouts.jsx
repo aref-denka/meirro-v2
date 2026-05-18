@@ -14,13 +14,8 @@ const callouts = [
   },
   {
     eyebrow: 'The Ports',
-    title:   'Thunderbolt 5 Compatible.',
-    detail:  '80 Gbps · 96 W power delivery.',
-  },
-  {
-    eyebrow: 'The Colour',
-    title:   '99% AdobeRGB · 98% P3.',
-    detail:  'Wide gamut coverage.',
+    title:   'One Cable.',
+    detail:  '80 Gbps · 96 W · DisplayPort 2.1.',
   },
 ];
 
