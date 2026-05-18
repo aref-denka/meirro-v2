@@ -45,11 +45,11 @@ export default function TheStand() {
         }}
       />
 
-      <div className="relative w-full max-w-[1200px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="relative w-full max-w-[1700px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-12 items-center">
 
         {/* Visual */}
         <motion.div
-          className="order-2 md:order-1 h-[clamp(360px,50vh,600px)]"
+          className="order-2 md:order-1 h-[clamp(560px,90vh,1000px)]"
           style={{ y: imageY, willChange: 'transform' }}
         >
           <StandVisual />
