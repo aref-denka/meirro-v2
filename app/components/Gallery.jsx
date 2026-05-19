@@ -208,32 +208,12 @@ export default function Gallery() {
     <section
       id="gallery"
       aria-label="Meirro Pro gallery"
-      className="relative bg-[#04040A] text-white py-24 md:py-36 overflow-hidden"
+      className="relative bg-[#F7F7F9] text-[#0A0A0C] py-24 md:py-36 overflow-hidden"
     >
-      {/* Aurora bloom */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 40% at 50% 25%, rgba(124,92,252,0.18) 0%, transparent 65%), ' +
-            'radial-gradient(ellipse 50% 35% at 85% 80%, rgba(196,75,247,0.10) 0%, transparent 60%)',
-        }}
-      />
-
-      {/* Grain */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.04] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            'url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>")',
-        }}
-        aria-hidden="true"
-      />
-
       {/* Eyebrow */}
       <div className="relative max-w-[1100px] mx-auto px-6">
         <motion.p
-          className="text-[11px] font-semibold tracking-[3px] uppercase text-white/50 mb-12 md:mb-16"
+          className="text-[11px] font-semibold tracking-[3px] uppercase text-[#0A0A0C]/45 mb-12 md:mb-16"
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
@@ -279,9 +259,9 @@ export default function Gallery() {
                 style={{
                   height: 'clamp(380px, 58vh, 580px)',
                   aspectRatio: tile.aspect,
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  border: '1px solid rgba(0,0,0,0.08)',
                   boxShadow:
-                    '0 30px 70px rgba(0,0,0,0.45), 0 4px 14px rgba(0,0,0,0.25)',
+                    '0 20px 50px rgba(0,0,0,0.10), 0 4px 14px rgba(0,0,0,0.06)',
                 }}
               >
                 {/* Image — fills tile, subtle hover zoom */}
@@ -291,29 +271,22 @@ export default function Gallery() {
                     alt={tile.alt}
                     fill
                     sizes="(max-width: 768px) 78vw, 720px"
-                    style={{ objectFit: 'contain', objectPosition: 'center' }}
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
                     draggable={false}
                   />
                 </div>
-
-                {/* Top sheen */}
-                <div
-                  className="absolute inset-x-0 top-0 h-px"
-                  style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }}
-                  aria-hidden="true"
-                />
 
                 {/* Index chip */}
                 <div
                   className="absolute top-5 left-5 px-2.5 py-1 rounded-full"
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
+                    background: 'rgba(255,255,255,0.7)',
                     backdropFilter: 'blur(14px)',
                     WebkitBackdropFilter: 'blur(14px)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    border: '1px solid rgba(0,0,0,0.08)',
                   }}
                 >
-                  <span className="text-[10px] font-semibold tracking-[2px] uppercase text-white/70 tabular-nums">
+                  <span className="text-[10px] font-semibold tracking-[2px] uppercase text-[#0A0A0C]/65 tabular-nums">
                     {tile.index} / {String(N).padStart(2, '0')}
                   </span>
                 </div>
@@ -325,12 +298,12 @@ export default function Gallery() {
         {/* Edge fades */}
         <div
           className="absolute inset-y-0 left-0 w-16 md:w-32 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, rgba(4,4,10,1) 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(90deg, rgba(247,247,249,1) 0%, transparent 100%)' }}
           aria-hidden="true"
         />
         <div
           className="absolute inset-y-0 right-0 w-16 md:w-32 pointer-events-none"
-          style={{ background: 'linear-gradient(270deg, rgba(4,4,10,1) 0%, transparent 100%)' }}
+          style={{ background: 'linear-gradient(270deg, rgba(247,247,249,1) 0%, transparent 100%)' }}
           aria-hidden="true"
         />
       </div>
@@ -338,11 +311,11 @@ export default function Gallery() {
       {/* Footer row — counter + dots */}
       <div className="relative max-w-[1100px] mx-auto px-6 mt-10 md:mt-12 flex items-center justify-between gap-6">
         <span
-          className="font-semibold tracking-[2px] tabular-nums text-white/75"
+          className="font-semibold tracking-[2px] tabular-nums text-[#0A0A0C]/75"
           style={{ fontSize: '11px' }}
         >
           {String(displayedActive + 1).padStart(2, '0')}
-          <span className="text-white/30"> / {String(N).padStart(2, '0')}</span>
+          <span className="text-[#0A0A0C]/30"> / {String(N).padStart(2, '0')}</span>
         </span>
 
         <div className="flex items-center gap-2">
@@ -358,8 +331,8 @@ export default function Gallery() {
                 height: 6,
                 borderRadius: 999,
                 background: i === displayedActive
-                  ? 'rgba(167,139,250,0.95)'
-                  : 'rgba(255,255,255,0.22)',
+                  ? '#7C5CFC'
+                  : 'rgba(10,10,12,0.18)',
                 transition: 'width 360ms cubic-bezier(0.22,1,0.36,1), background 240ms ease',
               }}
             />
