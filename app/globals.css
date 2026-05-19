@@ -14,6 +14,17 @@ html {
   scroll-behavior: smooth;
   background: #F7F7F9;
   overflow-x: clip;
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 52px;
+}
+
+main > section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-snap-type: none; }
 }
 
 body {
