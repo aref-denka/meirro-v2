@@ -9,32 +9,32 @@ import Image from 'next/image';
 const tiles = [
   {
     id: 'front-45', index: '01', aspect: '4 / 5',
-    src: '/gallery/front-45.png',
+    src: '/gallery/front-45.webp',
     alt: 'Meirro Pro — three-quarter front view',
   },
   {
     id: 'ar-glass', index: '02', aspect: '16 / 9',
-    src: '/gallery/ar-glass.png',
+    src: '/gallery/ar-glass.webp',
     alt: 'Meirro Pro — anti-glare glass detail',
   },
   {
     id: 'ports',    index: '03', aspect: '1 / 1',
-    src: '/gallery/ports.png',
+    src: '/gallery/ports.webp',
     alt: 'Meirro Pro — rear I/O ports',
   },
   {
     id: 'back',     index: '04', aspect: '3 / 4',
-    src: '/gallery/back.png',
+    src: '/gallery/back.webp',
     alt: 'Meirro Pro — back view with stand',
   },
   {
     id: 'side',     index: '05', aspect: '5 / 3',
-    src: '/gallery/side-view.png',
+    src: '/gallery/side-view.webp',
     alt: 'Meirro Pro — side profile',
   },
   {
     id: 'front',    index: '06', aspect: '4 / 3',
-    src: '/gallery/front-base.png',
+    src: '/gallery/front-base.webp',
     alt: 'Meirro Pro — front view with base',
   },
 ];

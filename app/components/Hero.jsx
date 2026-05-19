@@ -1,6 +1,6 @@
 'use client';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 
 /* ── Hero Section ──────────────────────────────────────────────
    Two stacked screens:
@@ -12,14 +12,24 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 export default function Hero() {
   // Parallax for the huge spec numerals on Screen 2 — they drift apart
   // (6K further left, 32" further right) as the user scrolls through the
-  // section, so they read as a moving background layer behind the monitor.
+  // section. Skipped for users with reduced-motion preference: numerals
+  // stay pinned at their flex-edge positions.
   const screen2Ref = useRef(null);
+  const reduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: screen2Ref,
     offset: ['start end', 'end start'],
   });
-  const x6K = useTransform(scrollYProgress, [0, 1], ['10vw',  '-32vw']);
-  const x32 = useTransform(scrollYProgress, [0, 1], ['-10vw', '32vw']);
+  const x6K = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? ['0vw', '0vw'] : ['10vw',  '-32vw'],
+  );
+  const x32 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduceMotion ? ['0vw', '0vw'] : ['-10vw', '32vw'],
+  );
 
   return (
     <section
@@ -66,12 +76,12 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Screen 2 — huge spec numerals flanking the combo render */}
-      <div ref={screen2Ref} className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background numerals — sit behind the monitor, drift apart on scroll */}
+      {/* Screen 2 — spec numerals + combo render */}
+      <div ref={screen2Ref} className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+        {/* Background numerals — desktop only, drift apart on scroll behind the monitor */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 flex items-center justify-between pointer-events-none select-none px-[2vw]"
+          className="hidden md:flex absolute inset-0 items-center justify-between pointer-events-none select-none px-[2vw]"
         >
           <motion.span
             className="font-black tracking-[-0.08em] leading-none"
@@ -106,11 +116,32 @@ export default function Hero() {
           </motion.span>
         </div>
 
-        {/* Monitor — foreground, covers the middle of the numerals */}
+        {/* Inline spec callout — mobile only, sits above the image */}
+        <motion.div
+          className="flex md:hidden items-stretch gap-5 mb-5 font-black tracking-[-0.06em] leading-none text-[#0A0A0C]"
+          style={{ fontSize: 'clamp(36px, 11vw, 72px)' }}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span>6K</span>
+          <span aria-hidden="true" className="w-px self-stretch bg-[#0A0A0C]/20 my-[0.12em]" />
+          <span>
+            32
+            <span style={{ fontSize: '0.55em', verticalAlign: 'super', lineHeight: 1 }}>&quot;</span>
+          </span>
+        </motion.div>
+
+        {/* Monitor — foreground, covers the middle of the numerals on desktop */}
         <motion.img
-          src="/hero/combo.png"
+          src="/hero/combo.webp"
           alt="Meirro Pro — front and back view"
-          className="relative z-10 block w-full h-auto max-w-6xl max-h-[80vh] object-contain select-none px-6"
+          width={1672}
+          height={941}
+          decoding="async"
+          loading="lazy"
+          className="relative z-10 block w-full h-auto max-w-6xl max-h-[60vh] md:max-h-[80vh] object-contain select-none px-6"
           draggable={false}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

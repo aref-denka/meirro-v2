@@ -6,8 +6,12 @@ function StandVisual() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       <img
-        src="/back.png"
+        src="/back.webp"
         alt="Meirro Pro — back view showing the CNC aluminium stand"
+        width={2048}
+        height={1365}
+        decoding="async"
+        loading="lazy"
         className="block max-w-full max-h-full w-auto h-auto object-contain select-none"
         draggable="false"
       />
