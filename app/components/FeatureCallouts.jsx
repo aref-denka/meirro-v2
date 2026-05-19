@@ -22,6 +22,7 @@ const callouts = [
 export default function FeatureCallouts() {
   return (
     <section
+      id="build"
       aria-label="Meirro Pro — case, glass, and ports highlights"
       className="relative bg-[#F7F7F9] py-20 md:py-28 px-6"
     >
