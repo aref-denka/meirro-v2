@@ -1,5 +1,6 @@
 'use client';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 /* ── Hero Section ──────────────────────────────────────────────
    Two stacked screens:
@@ -9,6 +10,17 @@ import { motion } from 'framer-motion';
    the product reveal.
 */
 export default function Hero() {
+  // Parallax for the huge spec numerals on Screen 2 — they drift apart
+  // (6K further left, 32" further right) as the user scrolls through the
+  // section, so they read as a moving background layer behind the monitor.
+  const screen2Ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: screen2Ref,
+    offset: ['start end', 'end start'],
+  });
+  const x6K = useTransform(scrollYProgress, [0, 1], ['10vw',  '-32vw']);
+  const x32 = useTransform(scrollYProgress, [0, 1], ['-10vw', '32vw']);
+
   return (
     <section
       id="display"
@@ -54,12 +66,51 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Screen 2 — combo render (front + back) */}
-      <div className="relative h-screen flex items-center justify-center px-6">
+      {/* Screen 2 — huge spec numerals flanking the combo render */}
+      <div ref={screen2Ref} className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background numerals — sit behind the monitor, drift apart on scroll */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 flex items-center justify-between pointer-events-none select-none px-[2vw]"
+        >
+          <motion.span
+            className="font-black tracking-[-0.08em] leading-none"
+            style={{
+              fontSize: 'clamp(160px, 32vw, 480px)',
+              color: 'rgba(10,10,12,0.22)',
+              x: x6K,
+              willChange: 'transform',
+            }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            6K
+          </motion.span>
+          <motion.span
+            className="font-black tracking-[-0.08em] leading-none"
+            style={{
+              fontSize: 'clamp(160px, 32vw, 480px)',
+              color: 'rgba(10,10,12,0.22)',
+              x: x32,
+              willChange: 'transform',
+            }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            32
+            <span style={{ fontSize: '0.55em', verticalAlign: 'super', lineHeight: 1 }}>&quot;</span>
+          </motion.span>
+        </div>
+
+        {/* Monitor — foreground, covers the middle of the numerals */}
         <motion.img
           src="/hero/combo.png"
           alt="Meirro Pro — front and back view"
-          className="block w-full h-auto max-w-6xl max-h-[80vh] object-contain select-none"
+          className="relative z-10 block w-full h-auto max-w-6xl max-h-[80vh] object-contain select-none px-6"
           draggable={false}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
