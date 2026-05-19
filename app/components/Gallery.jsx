@@ -48,6 +48,48 @@ export default function Gallery() {
   const setWidthRef     = useRef(0);
   const teleportLockRef = useRef(false);
   const [active, setActive] = useState(N); // start aimed at first tile of middle copy
+  const [tileBgs, setTileBgs] = useState({});
+
+  // Sample each render's corner pixels to use as the tile background, so
+  // letterbox bars from object-contain blend into the image. Runs once on
+  // mount; results cached by tile.id and reused across the 3 looped copies.
+  useEffect(() => {
+    let cancelled = false;
+    tiles.forEach((tile) => {
+      const img = new window.Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        if (cancelled) return;
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0);
+          const w = canvas.width, h = canvas.height;
+          const pts = [
+            ctx.getImageData(2, 2, 1, 1).data,
+            ctx.getImageData(w - 3, 2, 1, 1).data,
+            ctx.getImageData(2, h - 3, 1, 1).data,
+            ctx.getImageData(w - 3, h - 3, 1, 1).data,
+          ];
+          const sum = pts.reduce(
+            (a, p) => [a[0] + p[0], a[1] + p[1], a[2] + p[2]],
+            [0, 0, 0],
+          );
+          const rgb = sum.map((v) => Math.round(v / pts.length));
+          setTileBgs((prev) => ({
+            ...prev,
+            [tile.id]: `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
+          }));
+        } catch {
+          /* tainted canvas — leave tile bg unset */
+        }
+      };
+      img.src = tile.src;
+    });
+    return () => { cancelled = true; };
+  }, []);
 
   const getInset = (el) =>
     parseFloat(getComputedStyle(el).paddingLeft) || 24;
@@ -262,6 +304,8 @@ export default function Gallery() {
                   border: '1px solid rgba(0,0,0,0.08)',
                   boxShadow:
                     '0 20px 50px rgba(0,0,0,0.10), 0 4px 14px rgba(0,0,0,0.06)',
+                  background: tileBgs[tile.id] || 'transparent',
+                  transition: 'background-color 300ms ease',
                 }}
               >
                 {/* Image — fills tile, subtle hover zoom */}
@@ -271,7 +315,7 @@ export default function Gallery() {
                     alt={tile.alt}
                     fill
                     sizes="(max-width: 768px) 78vw, 720px"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
                     draggable={false}
                   />
                 </div>

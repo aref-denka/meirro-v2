@@ -9,7 +9,7 @@ function StandVisual() {
         src="/back.webp"
         alt="Meirro Pro — back view showing the CNC aluminium stand"
         width={2048}
-        height={1365}
+        height={1888}
         decoding="async"
         loading="lazy"
         className="block max-w-full max-h-full w-auto h-auto object-contain select-none"
