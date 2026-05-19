@@ -2,6 +2,7 @@ import './globals.css';
 import Script from 'next/script';
 import ScrollBar from './components/ScrollBar';
 import CookieBanner from './components/CookieBanner';
+import ScrollDeviceDetector from './components/ScrollDeviceDetector';
 
 const SITE_URL = 'https://aref-denka.github.io/meirro-v2';
 
@@ -123,6 +124,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <ScrollDeviceDetector />
         {children}
         <ScrollBar />
         <CookieBanner />

@@ -14,17 +14,20 @@ html {
   scroll-behavior: smooth;
   background: #F7F7F9;
   overflow-x: clip;
-  scroll-snap-type: y proximity;
   scroll-padding-top: 52px;
 }
 
-main > section {
+/* Scroll-snap only when the user is on a trackpad (set by ScrollDeviceDetector).
+   Mouse-wheel scrolling stays free — proximity snap fights discrete wheel clicks. */
+html[data-scroll-device="trackpad"] {
+  scroll-snap-type: y proximity;
+}
+html[data-scroll-device="trackpad"] main > section {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-snap-type: none; }
+  html { scroll-snap-type: none !important; }
 }
 
 body {
