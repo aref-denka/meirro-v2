@@ -14,23 +14,6 @@ html {
   scroll-behavior: smooth;
   background: #F7F7F9;
   overflow-x: clip;
-  scroll-padding-top: 52px;
-}
-
-/* Scroll-snap only for trackpad scrolling DOWN. Mouse wheels and upward
-   scrolling stay free — directional gating means the snap catches on the way
-   down but doesn't fight you when scrolling back up. Set by
-   ScrollDeviceDetector via data-scroll-device / data-scroll-dir. */
-html[data-scroll-device="trackpad"][data-scroll-dir="down"] {
-  scroll-snap-type: y proximity;
-}
-html[data-scroll-device="trackpad"][data-scroll-dir="down"] main > section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-snap-type: none !important; }
 }
 
 body {
