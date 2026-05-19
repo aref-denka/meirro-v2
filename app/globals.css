@@ -17,12 +17,14 @@ html {
   scroll-padding-top: 52px;
 }
 
-/* Scroll-snap only when the user is on a trackpad (set by ScrollDeviceDetector).
-   Mouse-wheel scrolling stays free — proximity snap fights discrete wheel clicks. */
-html[data-scroll-device="trackpad"] {
+/* Scroll-snap only for trackpad scrolling DOWN. Mouse wheels and upward
+   scrolling stay free — directional gating means the snap catches on the way
+   down but doesn't fight you when scrolling back up. Set by
+   ScrollDeviceDetector via data-scroll-device / data-scroll-dir. */
+html[data-scroll-device="trackpad"][data-scroll-dir="down"] {
   scroll-snap-type: y proximity;
 }
-html[data-scroll-device="trackpad"] main > section {
+html[data-scroll-device="trackpad"][data-scroll-dir="down"] main > section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
