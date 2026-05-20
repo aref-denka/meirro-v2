@@ -23,12 +23,12 @@ export default function Hero() {
   const x6K = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? ['0vw', '0vw'] : ['10vw',  '-32vw'],
+    reduceMotion ? ['0vw', '0vw'] : ['7vw',  '-38vw'],
   );
   const x32 = useTransform(
     scrollYProgress,
     [0, 1],
-    reduceMotion ? ['0vw', '0vw'] : ['-10vw', '32vw'],
+    reduceMotion ? ['0vw', '0vw'] : ['-7vw', '38vw'],
   );
 
   return (
@@ -81,7 +81,7 @@ export default function Hero() {
         {/* Background numerals — desktop only, drift apart on scroll behind the monitor */}
         <div
           aria-hidden="true"
-          className="hidden md:flex absolute inset-0 mx-auto max-w-[1400px] items-center justify-between pointer-events-none select-none px-[2vw]"
+          className="hidden md:flex absolute inset-0 mx-auto max-w-[1400px] items-center justify-between pointer-events-none select-none px-[2vw] -translate-y-[6vh]"
         >
           <motion.span
             className="font-black tracking-[-0.08em] leading-none"
@@ -141,7 +141,7 @@ export default function Hero() {
           height={1427}
           decoding="async"
           loading="lazy"
-          className="relative z-10 block w-full h-auto max-w-6xl max-h-[60vh] md:max-h-[80vh] object-contain select-none px-6"
+          className="relative z-10 block w-full h-auto max-w-7xl max-h-[68vh] md:max-h-[92vh] object-contain select-none px-6"
           draggable={false}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
