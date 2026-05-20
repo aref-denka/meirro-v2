@@ -81,7 +81,7 @@ export default function Hero() {
         {/* Background numerals — desktop only, drift apart on scroll behind the monitor */}
         <div
           aria-hidden="true"
-          className="hidden md:flex absolute inset-0 items-center justify-between pointer-events-none select-none px-[2vw]"
+          className="hidden md:flex absolute inset-0 mx-auto max-w-[1400px] items-center justify-between pointer-events-none select-none px-[2vw]"
         >
           <motion.span
             className="font-black tracking-[-0.08em] leading-none"
@@ -137,8 +137,8 @@ export default function Hero() {
         <motion.img
           src="/hero/combo.webp"
           alt="Meirro Pro — front and back view"
-          width={1672}
-          height={941}
+          width={2000}
+          height={1427}
           decoding="async"
           loading="lazy"
           className="relative z-10 block w-full h-auto max-w-6xl max-h-[60vh] md:max-h-[80vh] object-contain select-none px-6"
