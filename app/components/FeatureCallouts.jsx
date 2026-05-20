@@ -15,7 +15,7 @@ const callouts = [
   {
     eyebrow: 'The Ports',
     title:   'One Cable.',
-    detail:  '80 Gbps · 96 W · DisplayPort 2.1.',
+    detail:  '80 Gbps · 96 W · DisplayPort 2.1 · DisplayPort Alternate Mode.',
   },
 ];
 
