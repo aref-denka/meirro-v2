@@ -8,48 +8,48 @@ import Image from 'next/image';
    new tile with any ratio just slots in without breaking the rhythm. */
 const tiles = [
   {
-    id: 'real-front', index: '01', aspect: '3 / 2',
-    src: '/gallery/real-front.webp',
-    alt: 'Meirro Pro — photographed front, display on',
-    bg: '#FFFFFF',
-  },
-  {
-    id: 'real-3q', index: '02', aspect: '3 / 2',
-    src: '/gallery/real-3q.webp',
-    alt: 'Meirro Pro — photographed three-quarter front, display on',
-    bg: '#FFFFFF',
-  },
-  {
-    id: 'ar-glass', index: '03', aspect: '16 / 9',
+    id: 'ar-glass', index: '01', aspect: '16 / 9',
     src: '/gallery/ar-glass.webp',
     alt: 'Meirro Pro — anti-glare glass detail',
   },
   {
-    id: 'front-45', index: '04', aspect: '4 / 5',
+    id: 'front-45', index: '02', aspect: '4 / 5',
     src: '/gallery/front-45.webp',
     alt: 'Meirro Pro — three-quarter front view',
   },
   {
-    id: 'side',     index: '05', aspect: '5 / 3',
+    id: 'side',     index: '03', aspect: '5 / 3',
     src: '/gallery/side-view.webp',
     alt: 'Meirro Pro — side profile',
   },
   {
-    id: 'real-back', index: '06', aspect: '3 / 2',
+    id: 'real-back', index: '04', aspect: '3 / 2',
     src: '/gallery/real-back.webp',
     alt: 'Meirro Pro — photographed back with MEIRRO mark',
     bg: '#FFFFFF',
   },
   {
-    id: 'real-side', index: '07', aspect: '3 / 2',
+    id: 'real-side', index: '05', aspect: '3 / 2',
     src: '/gallery/real-side.webp',
     alt: 'Meirro Pro — photographed side profile',
     bg: '#FFFFFF',
   },
   {
-    id: 'ports',   index: '08', aspect: '4 / 3',
+    id: 'ports',   index: '06', aspect: '4 / 3',
     src: '/gallery/ports.webp',
     alt: 'Meirro Pro — Thunderbolt and USB-C port detail',
+  },
+  {
+    id: 'real-front', index: '07', aspect: '3 / 2',
+    src: '/gallery/real-front.webp',
+    alt: 'Meirro Pro — photographed front, display on',
+    bg: '#FFFFFF',
+  },
+  {
+    id: 'real-3q', index: '08', aspect: '3 / 2',
+    src: '/gallery/real-3q.webp',
+    alt: 'Meirro Pro — photographed three-quarter front, display on',
+    bg: '#FFFFFF',
   },
 ];
 
