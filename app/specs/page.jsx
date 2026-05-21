@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Specs | Meirro Pro 32" 6K Monitor',
   description:
-    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, UHBR20 USB-C, and a CNC anodized aluminum body.',
+    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, USB-C, and a CNC anodized aluminum body.',
 };
 
 const specGroups = [
@@ -42,7 +42,7 @@ const specGroups = [
   {
     category: 'Connectivity',
     specs: [
-      { label: 'USB-C Upstream',    value: '× 1 · UHBR20 · 80 Gbps' },
+      { label: 'USB-C Upstream',    value: '× 1 · 80 Gbps' },
       { label: 'USB-C Downstream',  value: '× 4 · USB 2.0 · 480 Mbps' },
       { label: 'USB Power Delivery', value: 'Up to 96 W host charging' },
       { label: 'Protocols',         value: 'Thunderbolt 4 · USB4' },
