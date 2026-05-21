@@ -14,8 +14,8 @@ const callouts = [
   },
   {
     eyebrow: 'The Ports',
-    title:   'One Cable.',
-    detail:  '80 Gbps · 96 W · DisplayPort Alternate Mode.',
+    title:   'Your monitor is the dock.',
+    detail:  '1x TB4 compatible upstream · 80 Gbps · 96 W · 4× USB-C downstream',
   },
 ];
 
