@@ -25,7 +25,7 @@ export default function WarrantyPage() {
         <ul className="list-disc pl-5 space-y-1 mt-2">
           <li>Panel defects: dead pixels exceeding manufacturer thresholds, backlight uniformity failures, colour accuracy degradation beyond ΔE 2</li>
           <li>Structural defects: CNC aluminium enclosure, stand mechanism, port assembly</li>
-          <li>Electrical failures: power circuitry, Thunderbolt 5 ports, internal components under normal operating conditions</li>
+          <li>Electrical failures: power circuitry, Thunderbolt 4 ports, internal components under normal operating conditions</li>
         </ul>
       </Section>
 

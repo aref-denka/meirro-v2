@@ -118,7 +118,7 @@ export default function AboutPage() {
       {/* Footer strip */}
       <div className="border-t border-black/[0.06] mt-8">
         <div className="max-w-[900px] mx-auto px-6 py-6 flex items-center justify-between gap-4 flex-wrap">
-          <p className="text-[11px] text-[#0A0A0C]/40">© 2026 Meirro Technologies. All rights reserved.</p>
+          <p className="text-[11px] text-[#0A0A0C]/40">© 2026 Meirro. All rights reserved.</p>
           <Link href="/" className="text-[11px] text-[#0A0A0C]/50 hover:text-[#0A0A0C] transition-colors">
             ← Back to meirro.web.app
           </Link>

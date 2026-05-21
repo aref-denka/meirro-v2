@@ -61,12 +61,12 @@ export default function Footer() {
               transition={{ duration: 0.2 }}
               onClick={() => window.gtag?.('event', 'begin_checkout', {
                 currency: 'USD',
-                value: 1499,
+                value: 1299,
                 button_location: 'footer',
-                items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+                items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1299, quantity: 1 }],
               })}
             >
-              Buy with ClickClack — from $1,499
+              Buy with ClickClack — from $1,299
             </motion.a>
             <p className="text-[12px] text-[#0A0A0C]/60 text-center font-normal">
               Opens ClickClack's secure checkout · Ships in 5–7 business days
@@ -114,11 +114,11 @@ export default function Footer() {
       <div className="relative border-t border-black/[0.05]">
         <div className="max-w-[1100px] mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-[11px] text-[#0A0A0C]/45 font-light">
-            © 2026 Meirro Technologies. All rights reserved.
+            © 2026 Meirro. All rights reserved.
           </p>
           <div className="flex items-center gap-1 text-[11px] text-[#0A0A0C]/18 font-mono">
             <span className="w-1.5 h-1.5 rounded-full bg-black/10 inline-block" />
-            <span>REV 2026.1 · CNC 6061-T6 · ISO 9001</span>
+            <span>REV 2026.1 · 6K — 32&quot; · ISO 9001</span>
           </div>
         </div>
       </div>

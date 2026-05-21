@@ -19,7 +19,7 @@ const specGroups = [
       { label: 'Pixel Pitch',       value: '0.1134 mm' },
       { label: 'Refresh Rate',      value: '60 Hz' },
       { label: 'Response Time',     value: 'GTG 14 ms' },
-      { label: 'Brightness',        value: '450 nits typical (SDR) · 750 nits peak' },
+      { label: 'Brightness',        value: '450 nits typical (SDR) · 750 nits (HDR enabled)' },
       { label: 'Contrast',          value: '2,000:1 native' },
       { label: 'Viewing Angle',     value: '178° H · 178° V' },
       { label: 'Surface',           value: 'Anti-glare glossy' },
@@ -45,8 +45,7 @@ const specGroups = [
       { label: 'USB-C Upstream',    value: '× 1 · UHBR20 · 80 Gbps' },
       { label: 'USB-C Downstream',  value: '× 4 · USB 2.0 · 480 Mbps' },
       { label: 'USB Power Delivery', value: 'Up to 96 W host charging' },
-      { label: 'Protocols',         value: 'Thunderbolt 4 · Thunderbolt 5 · USB4' },
-      { label: 'Alt Mode',          value: 'DisplayPort 2.1 (Alt Mode)' },
+      { label: 'Protocols',         value: 'Thunderbolt 4 · USB4' },
       { label: 'Cable',             value: 'USB-C / Thunderbolt 4 cable (2 m) included' },
     ],
   },
@@ -201,7 +200,7 @@ export default function SpecsPage() {
       {/* Footer strip */}
       <div className="border-t border-black/[0.06]">
         <div className="max-w-[1100px] mx-auto px-6 py-6 flex items-center justify-between gap-4 flex-wrap">
-          <p className="text-[11px] text-[#0A0A0C]/40">© 2026 Meirro Technologies. All rights reserved.</p>
+          <p className="text-[11px] text-[#0A0A0C]/40">© 2026 Meirro. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link href="/testing-guide" className="text-[11px] text-[#0A0A0C]/50 hover:text-[#0A0A0C] transition-colors">
               Testing guide

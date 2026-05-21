@@ -69,9 +69,9 @@ export default function Nav() {
             style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
             onClick={() => window.gtag?.('event', 'begin_checkout', {
               currency: 'USD',
-              value: 1499,
+              value: 1299,
               button_location: 'nav',
-              items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+              items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1299, quantity: 1 }],
             })}
           >
             Buy with ClickClack
@@ -141,15 +141,15 @@ export default function Nav() {
                 setMobileOpen(false);
                 window.gtag?.('event', 'begin_checkout', {
                   currency: 'USD',
-                  value: 1499,
+                  value: 1299,
                   button_location: 'nav_mobile',
-                  items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1499, quantity: 1 }],
+                  items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1299, quantity: 1 }],
                 });
               }}
               className="inline-flex items-center justify-center text-[14px] font-medium text-white px-6 py-3 rounded-full mt-1"
               style={{ background: 'linear-gradient(135deg, #7C5CFC 0%, #C44BF7 100%)' }}
             >
-              Buy with ClickClack — from $1,499
+              Buy with ClickClack — from $1,299
             </a>
           </motion.div>
         )}

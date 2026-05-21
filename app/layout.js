@@ -10,12 +10,12 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
 
   title: {
-    default: 'Meirro Pro — 32-Inch 6K Retina Monitor | from $1,499',
+    default: 'Meirro Pro — 32-Inch 6K Retina Monitor | from $1,299',
     template: '%s | Meirro Pro',
   },
 
   description:
-    'Meirro Pro is a 32-inch 6K Retina monitor with 6144 × 3456 resolution, 224 ppi, 60Hz, and a full CNC-machined aluminium body. Factory-calibrated to ΔE < 1. Starting at $1,499 — stand included.',
+    'Meirro Pro is a 32-inch 6K Retina monitor with 6144 × 3456 resolution, 224 ppi, 60Hz, and a full CNC-machined aluminium body. Factory-calibrated to ΔE < 1. Starting at $1,299 — stand included.',
 
   keywords: [
     '6K monitor',
@@ -27,7 +27,7 @@ export const metadata = {
     'professional 6K monitor',
     'aluminium monitor',
     '6K 60Hz monitor',
-    'Thunderbolt 5 monitor',
+    'Thunderbolt 4 monitor',
     '32 inch professional display',
     'Meirro Pro',
     '6144x3456 monitor',
@@ -47,7 +47,7 @@ export const metadata = {
     siteName: 'Meirro',
     title: 'Meirro Pro — 32-Inch 6K Retina Monitor',
     description:
-      '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,499.',
+      '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,299.',
     locale: 'en_US',
   },
 
@@ -55,7 +55,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Meirro Pro — 32-Inch 6K Retina Monitor',
     description:
-      '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,499.',
+      '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,299.',
     creator: '@meirro',
   },
 
@@ -84,11 +84,11 @@ const jsonLd = {
     name: 'Meirro',
   },
   description:
-    'A 32-inch 6K Retina display with 6144 × 3456 resolution at 224 ppi, 60Hz, factory-calibrated to ΔE < 1, with a full CNC-machined 6061-T6 aluminium body and three Thunderbolt 5 ports.',
+    'A 32-inch 6K Retina display with 6144 × 3456 resolution at 224 ppi, 60Hz, factory-calibrated to ΔE < 1, with a full CNC-machined 6061-T6 aluminium body and three Thunderbolt 4 ports.',
   award: 'Good Design Award 2026',
   offers: {
     '@type': 'Offer',
-    price: '1499',
+    price: '1299',
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
     priceValidUntil: '2027-01-01',
@@ -106,7 +106,7 @@ const jsonLd = {
     { '@type': 'PropertyValue', name: 'Colour Gamut',    value: '98% DCI-P3' },
     { '@type': 'PropertyValue', name: 'Delta E',         value: 'ΔE < 1 factory calibrated' },
     { '@type': 'PropertyValue', name: 'Material',        value: 'CNC 6061-T6 Aluminium' },
-    { '@type': 'PropertyValue', name: 'Connectivity',    value: 'Thunderbolt 5 × 3' },
+    { '@type': 'PropertyValue', name: 'Connectivity',    value: 'Thunderbolt 4 × 3' },
     { '@type': 'PropertyValue', name: 'Host Charging',   value: 'Up to 96 W' },
     { '@type': 'PropertyValue', name: 'Peak Brightness', value: '750 nits peak' },
   ],
@@ -117,6 +117,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          href="/hero/combo.avif"
+          imageSrcSet="/hero/combo-1200.avif 1200w, /hero/combo.avif 2000w"
+          imageSizes="(max-width: 768px) calc(100vw - 48px), min(calc(100vw - 48px), 1280px)"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

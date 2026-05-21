@@ -37,7 +37,7 @@ const cards = [
   {
     id: 'price',
     eyebrow: 'Starting From',
-    value: '$1,499',
+    value: '$1,299',
     unit: '',
     detail: 'Stand included',
     accent: 'rgba(124,92,252,0.04)',
@@ -68,14 +68,14 @@ const cards = [
   },
   {
     id: 'connectivity',
-    eyebrow: 'Thunderbolt 5',
-    value: 'TB5',
+    eyebrow: 'Thunderbolt 4',
+    value: 'TB4',
     unit: '',
     detail: '80 Gbps · 96 W charging\nOne USB-C cable',
     accent: 'rgba(196,75,247,0.06)',
     span: 'col-span-1',
     tall: false,
-    explainer: 'Carries DisplayPort 2.1 video, data, and 96 W of charging over a single USB-C cable. Backwards compatible with USB4 and TB4 devices.',
+    explainer: 'Carries video, data, and 96 W of charging over a single USB-C cable. Backwards compatible with USB4 and TB4 devices.',
   },
   {
     id: 'adobergb',
@@ -228,7 +228,7 @@ function TechCard({ card }) {
 
 export default function TechGrid() {
   return (
-    <section id="specs" aria-label="Key specifications — 6K resolution, 32-inch size, aluminium build, $1,499 price" className="relative bg-[#F0F0F4] py-24 md:py-36 px-6">
+    <section id="specs" aria-label="Key specifications — 6K resolution, 32-inch size, aluminium build, $1,299 price" className="relative bg-[#F0F0F4] py-24 md:py-36 px-6">
 
       {/* Very faint violet bloom */}
       <div

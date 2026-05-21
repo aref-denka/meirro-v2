@@ -133,21 +133,41 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Monitor — foreground, covers the middle of the numerals on desktop */}
-        <motion.img
-          src="/hero/combo.webp"
-          alt="Meirro Pro — front and back view"
-          width={2000}
-          height={1427}
-          decoding="async"
-          loading="lazy"
-          className="relative z-10 block w-full h-auto max-w-7xl max-h-[68vh] md:max-h-[92vh] object-contain select-none px-6"
-          draggable={false}
+        {/* Monitor — foreground, covers the middle of the numerals on desktop.
+            <picture> serves AVIF (~200KB) to modern browsers and falls back to
+            WebP; srcset hands a 1200w version to mobile so phones aren't pulling
+            the 2000w asset. Eager + high fetchpriority pairs with the
+            <link rel="preload"> in app/layout.js so the image starts fetching
+            during initial page load, not when Screen 2 enters the viewport. */}
+        <motion.picture
+          className="relative z-10 block w-full max-w-7xl px-6"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        />
+        >
+          <source
+            type="image/avif"
+            srcSet="/hero/combo-1200.avif 1200w, /hero/combo.avif 2000w"
+            sizes="(max-width: 768px) calc(100vw - 48px), min(calc(100vw - 48px), 1280px)"
+          />
+          <source
+            type="image/webp"
+            srcSet="/hero/combo-1200.webp 1200w, /hero/combo.webp 2000w"
+            sizes="(max-width: 768px) calc(100vw - 48px), min(calc(100vw - 48px), 1280px)"
+          />
+          <img
+            src="/hero/combo.webp"
+            alt="Meirro Pro — front and back view"
+            width={2000}
+            height={1427}
+            decoding="async"
+            loading="eager"
+            fetchPriority="high"
+            className="block w-full h-auto max-h-[68vh] md:max-h-[92vh] object-contain select-none"
+            draggable={false}
+          />
+        </motion.picture>
       </div>
     </section>
   );

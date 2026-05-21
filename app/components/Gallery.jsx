@@ -18,24 +18,33 @@ const tiles = [
     alt: 'Meirro Pro — anti-glare glass detail',
   },
   {
-    id: 'ports',    index: '03', aspect: '1 / 1',
-    src: '/gallery/ports.webp',
-    alt: 'Meirro Pro — rear I/O ports',
-  },
-  {
-    id: 'back',     index: '04', aspect: '3 / 4',
-    src: '/gallery/back.webp',
-    alt: 'Meirro Pro — back view with stand',
-  },
-  {
-    id: 'side',     index: '05', aspect: '5 / 3',
+    id: 'side',     index: '03', aspect: '5 / 3',
     src: '/gallery/side-view.webp',
     alt: 'Meirro Pro — side profile',
   },
   {
-    id: 'front',    index: '06', aspect: '4 / 3',
-    src: '/gallery/front-base.webp',
-    alt: 'Meirro Pro — front view with base',
+    id: 'real-back', index: '04', aspect: '3 / 2',
+    src: '/gallery/real-back.webp',
+    alt: 'Meirro Pro — photographed back with MEIRRO mark',
+    bg: '#FFFFFF',
+  },
+  {
+    id: 'real-front', index: '05', aspect: '3 / 2',
+    src: '/gallery/real-front.webp',
+    alt: 'Meirro Pro — photographed front, display on',
+    bg: '#FFFFFF',
+  },
+  {
+    id: 'real-side', index: '06', aspect: '3 / 2',
+    src: '/gallery/real-side.webp',
+    alt: 'Meirro Pro — photographed side profile',
+    bg: '#FFFFFF',
+  },
+  {
+    id: 'real-3q', index: '07', aspect: '3 / 2',
+    src: '/gallery/real-3q.webp',
+    alt: 'Meirro Pro — photographed three-quarter front, display on',
+    bg: '#FFFFFF',
   },
 ];
 
@@ -51,11 +60,13 @@ export default function Gallery() {
   const [tileBgs, setTileBgs] = useState({});
 
   // Sample each render's corner pixels to use as the tile background, so
-  // letterbox bars from object-contain blend into the image. Runs once on
-  // mount; results cached by tile.id and reused across the 3 looped copies.
+  // letterbox bars from object-contain blend into the image. Tiles with an
+  // explicit `bg` skip sampling (used for photos with pure-white corners
+  // that would otherwise clash with the renders' soft off-white).
   useEffect(() => {
     let cancelled = false;
     tiles.forEach((tile) => {
+      if (tile.bg) return;
       const img = new window.Image();
       img.crossOrigin = 'anonymous';
       img.onload = () => {
@@ -304,7 +315,7 @@ export default function Gallery() {
                   border: '1px solid rgba(0,0,0,0.08)',
                   boxShadow:
                     '0 20px 50px rgba(0,0,0,0.10), 0 4px 14px rgba(0,0,0,0.06)',
-                  background: tileBgs[tile.id] || 'transparent',
+                  background: tile.bg || tileBgs[tile.id] || 'transparent',
                   transition: 'background-color 300ms ease',
                 }}
               >
