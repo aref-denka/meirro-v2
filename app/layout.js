@@ -41,6 +41,10 @@ export const metadata = {
     canonical: SITE_URL,
   },
 
+  verification: {
+    google: '4Zx2iv84zMt02K7_ziXrvozR39saqBWJZVFGe-cN5Eg',
+  },
+
   openGraph: {
     type: 'website',
     url: SITE_URL,
