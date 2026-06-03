@@ -8,7 +8,7 @@ export default function robots() {
         allow: '/',
       },
     ],
-    sitemap: 'https://aref-denka.github.io/meirro-v2/sitemap.xml',
-    host: 'https://aref-denka.github.io/meirro-v2',
+    sitemap: 'https://www.meirro.com/sitemap.xml',
+    host: 'https://www.meirro.com',
   };
 }

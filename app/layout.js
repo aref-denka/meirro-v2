@@ -3,7 +3,7 @@ import Script from 'next/script';
 import ScrollBar from './components/ScrollBar';
 import CookieBanner from './components/CookieBanner';
 
-const SITE_URL = 'https://aref-denka.github.io/meirro-v2';
+const SITE_URL = 'https://www.meirro.com';
 
 /* ── Metadata ─────────────────────────────────────────────────── */
 export const metadata = {
