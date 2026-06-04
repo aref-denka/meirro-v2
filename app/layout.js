@@ -38,7 +38,7 @@ export const metadata = {
   publisher: 'Meirro Technologies',
 
   alternates: {
-    canonical: SITE_URL,
+    canonical: '/',
   },
 
   verification: {
@@ -53,6 +53,12 @@ export const metadata = {
     description:
       '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,299.',
     locale: 'en_US',
+    images: [
+      {
+        url: '/hero/front.png',
+        alt: 'Meirro Pro 32-inch 6K Retina monitor, front view',
+      },
+    ],
   },
 
   twitter: {
@@ -60,7 +66,9 @@ export const metadata = {
     title: 'Meirro Pro — 32-Inch 6K Retina Monitor',
     description:
       '32 inches. 6K Retina at 224 ppi. Full CNC aluminium body. 60Hz. Starting at $1,299.',
-    creator: '@meirro',
+    site: '@Meirro_X',
+    creator: '@Meirro_X',
+    images: ['/hero/front.png'],
   },
 
   robots: {
@@ -83,6 +91,11 @@ const jsonLd = {
   '@context': 'https://schema.org/',
   '@type': 'Product',
   name: 'Meirro Pro 32-Inch 6K Retina Monitor',
+  image: [
+    `${SITE_URL}/hero/front.png`,
+    `${SITE_URL}/hero/combo.png`,
+    `${SITE_URL}/hero/side.png`,
+  ],
   brand: {
     '@type': 'Brand',
     name: 'Meirro',
@@ -101,6 +114,41 @@ const jsonLd = {
       '@type': 'Organization',
       name: 'Meirro Technologies',
     },
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '0',
+        currency: 'USD',
+      },
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'US',
+      },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 1,
+          maxValue: 2,
+          unitCode: 'DAY',
+        },
+        transitTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 3,
+          maxValue: 7,
+          unitCode: 'DAY',
+        },
+      },
+    },
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'US',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnDays: 30,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnShippingFees',
+    },
   },
   additionalProperty: [
     { '@type': 'PropertyValue', name: 'Screen Size',     value: '32 inches' },
@@ -114,6 +162,24 @@ const jsonLd = {
     { '@type': 'PropertyValue', name: 'Host Charging',   value: 'Up to 96 W' },
     { '@type': 'PropertyValue', name: 'Peak Brightness', value: '750 nits peak' },
   ],
+};
+
+const organizationLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Meirro Technologies',
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.png`,
+  description:
+    'Meirro builds professional-grade 6K displays — studio-grade clarity at a fair price.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'support@meirro.com',
+    contactType: 'customer support',
+    areaServed: 'US',
+    availableLanguage: 'English',
+  },
+  sameAs: ['https://x.com/Meirro_X'],
 };
 
 /* ── Root layout ──────────────────────────────────────────────── */
@@ -133,6 +199,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
         />
       </head>
       <body>

@@ -4,6 +4,7 @@ export const metadata = {
   title: 'Specs | Meirro Pro 32" 6K Monitor',
   description:
     'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, USB-C, and a CNC anodized aluminum body.',
+  alternates: { canonical: '/specs' },
 };
 
 const specGroups = [

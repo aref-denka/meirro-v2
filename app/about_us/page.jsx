@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'About Us | Meirro',
   description: 'Meirro was built to fill the gap left in the professional 32″ 6K display market. The story of who we are and why we built the Pro Display 6K.',
+  alternates: { canonical: '/about_us' },
 };
 
 export default function AboutPage() {

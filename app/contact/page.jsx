@@ -3,6 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Contact | Meirro',
   description: 'Get in touch with the Meirro team for support, partnerships, and inquiries.',
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {
