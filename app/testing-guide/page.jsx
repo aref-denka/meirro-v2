@@ -640,12 +640,11 @@ export default function TestingGuide() {
                         url: 'https://www.lightillusion.com',
                       },
                       {
-                        name: 'DisplayCAL',
-                        by: 'Open source',
-                        badge: 'Free',
-                        badgeGreen: true,
-                        desc: 'A free, open-source option that covers all the essentials. The best starting point if you\'re new to display calibration.',
-                        url: 'https://displaycal.net',
+                        name: 'ColourSpace DPS',
+                        by: 'by Light Illusion',
+                        badge: 'Affordable',
+                        desc: 'A lower-cost license focused on manual calibration and verification — a practical entry point if you\'re new to display calibration.',
+                        url: 'https://www.lightillusion.com/colourspace.html',
                       },
                     ].map(({ name, by, badge, badgeGreen, desc, url }) => (
                       <a
@@ -851,7 +850,7 @@ export default function TestingGuide() {
               <div className="sm:grid sm:grid-cols-[1fr_auto] sm:gap-8 sm:items-start">
                 <div>
                   <p className="text-[13px] leading-relaxed mb-5 text-white/45">
-                    Open your calibration software (Calman, LightSpace, or DisplayCAL) and start a new measurement session. <strong className="text-white/70 font-semibold">Rest the colorimeter probe flat against the centre of the screen</strong> — the software will prompt you to display specific colour patches. Use ← → to cycle through them here, and tick each one off below once the software has recorded it.
+                    Open your calibration software (Calman, LightSpace, or ColourSpace) and start a new measurement session. <strong className="text-white/70 font-semibold">Rest the colorimeter probe flat against the centre of the screen</strong> — the software will prompt you to display specific colour patches. Use ← → to cycle through them here, and tick each one off below once the software has recorded it.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {step4Items.map(({ id, label }, i) => {
