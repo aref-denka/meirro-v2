@@ -46,8 +46,7 @@ const specGroups = [
       { label: 'USB-C Upstream',    value: '× 1 · 80 Gbps' },
       { label: 'USB-C Downstream',  value: '× 4 · USB 2.0 · 480 Mbps' },
       { label: 'USB Power Delivery', value: 'Up to 96 W host charging' },
-      { label: 'Protocols',         value: 'Thunderbolt 4 · USB4' },
-      { label: 'Cable',             value: 'USB-C display cable (2 m) included' },
+      { label: 'Cable',             value: 'USB4 80Gbps Cable' },
     ],
   },
   {
@@ -86,7 +85,7 @@ const specGroups = [
     specs: [
       { label: 'Display',           value: 'Meirro Pro 32" 6K Monitor' },
       { label: 'Stand',             value: 'CNC anodized aluminum stand' },
-      { label: 'Cable',             value: 'USB-C display cable (2 m)' },
+      { label: 'Cable',             value: 'USB4 80Gbps Cable' },
       { label: 'Power',             value: 'Detachable IEC C13 cable' },
       { label: 'Documents',         value: 'Per-unit calibration report · Quick-start guide' },
     ],

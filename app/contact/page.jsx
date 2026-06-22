@@ -41,7 +41,7 @@ export default function ContactPage() {
               ground up — starting with a CNC-machined 6061-T6 aluminum chassis and ending with a
               pixel-perfect panel calibrated to exacting color accuracy standards. We believe that the
               tools you work with should be as refined as the work you produce. Every detail — from the
-              Thunderbolt 4 connectivity to the precision stand mechanism — reflects our commitment to
+              USB4 connectivity to the precision stand mechanism — reflects our commitment to
               craftsmanship, performance, and elevated everyday use.
             </p>
           </Section>
