@@ -70,7 +70,7 @@ export default function AboutPage() {
             </p>
             <p>
               It&apos;s built to live on a Mac. HDR works out of the box. Brightness adjusts directly
-              from macOS without any software workarounds. Thunderbolt 4+ handles charging over a
+              from macOS without any software workarounds. USB4 handles charging over a
               single cable, and four USB-C ports mean your desk stays clean.
             </p>
             <p>

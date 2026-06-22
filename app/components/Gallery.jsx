@@ -37,7 +37,7 @@ const tiles = [
   {
     id: 'ports',   index: '06', aspect: '4 / 3',
     src: '/gallery/ports.webp',
-    alt: 'Meirro Pro — Thunderbolt and USB-C port detail',
+    alt: 'Meirro Pro — USB4 and USB-C port detail',
   },
   {
     id: 'real-front', index: '07', aspect: '3 / 2',

@@ -15,7 +15,7 @@ const callouts = [
   {
     eyebrow: 'The Ports',
     title:   'Your monitor is the dock.',
-    detail:  '1x TB4 compatible upstream · 80 Gbps · 96 W · 4× USB-C downstream',
+    detail:  '1× USB4 upstream · 80 Gbps · 96 W · 4× USB-C downstream',
   },
 ];
 
