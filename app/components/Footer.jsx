@@ -61,12 +61,12 @@ export default function Footer() {
               transition={{ duration: 0.2 }}
               onClick={() => window.gtag?.('event', 'begin_checkout', {
                 currency: 'USD',
-                value: 1299,
+                value: 1199,
                 button_location: 'footer',
-                items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1299, quantity: 1 }],
+                items: [{ item_id: 'MEIRRO-PRO-32', item_name: 'Meirro Pro 32" 6K Monitor', item_brand: 'Meirro', item_category: 'Monitors', price: 1199, quantity: 1 }],
               })}
             >
-              Buy with ClickClack — from $1,299
+              Pre-order with ClickClack — Save $100 Now
             </motion.a>
             <p className="text-[12px] text-[#0A0A0C]/60 text-center font-normal">
               Opens ClickClack's secure checkout · Ships in 5–7 business days
