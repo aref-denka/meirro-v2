@@ -187,6 +187,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Consolidate the GitHub Pages duplicate into meirro.com.
+            Host-guarded: inert on meirro.com, only fires when served from github.io. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){if(location.hostname==='aref-denka.github.io'){" +
+              "var p=location.pathname.replace(/^\\/meirro-v2/,'')||'/';" +
+              "location.replace('https://www.meirro.com'+p+location.search+location.hash);}})();",
+          }}
+        />
         <link
           rel="preload"
           as="image"
