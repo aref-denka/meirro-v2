@@ -51,7 +51,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4 shrink-0">
             <motion.a
-              href="https://clickclack.io/cart/add?id=50987364581412&quantity=1&return_to=%2Fcheckout"
+              href="https://clickclack.io/products/meirro-pro"
               target="_blank"
               rel="noopener"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white text-[15px]"
