@@ -62,7 +62,7 @@ export default function Nav() {
         <div className="flex items-center gap-3 justify-end">
           {/* Desktop CTA */}
           <a
-            href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
+            href="https://clickclack.io/cart/add?id=50987364581412&quantity=1&return_to=%2Fcheckout"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex text-[13px] font-medium text-white px-4 py-1.5 rounded-full transition-opacity duration-200 hover:opacity-80"
@@ -134,7 +134,7 @@ export default function Nav() {
               )
             )}
             <a
-              href="https://clickclack.io/cart/add?id=43946138763300&quantity=1&return_to=%2Fcheckout"
+              href="https://clickclack.io/cart/add?id=50987364581412&quantity=1&return_to=%2Fcheckout"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
