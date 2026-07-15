@@ -67,6 +67,7 @@ const step1Items = [
   { id: 'warmup',   label: 'Monitor powered on for at least 30 minutes to stabilize the backlight' },
   { id: 'lighting', label: 'Room lighting is completely dark or strictly controlled' },
   { id: 'osd',      label: 'Monitor reset to Factory Default settings via the OSD menu' },
+  { id: 'profile',  label: 'Operating system set to the default display colour profile — not a custom ICC profile (a custom profile can cap luminance and skew every reading)' },
   { id: 'hw',       label: 'Hardware calibrator connected flush against the center of the panel' },
 ];
 
@@ -91,7 +92,7 @@ const specs = [
     label: 'Peak Luminance',
     value: '500',
     unit: 'nits',
-    how: 'Open your calibration software, place the colorimeter probe flat against the centre of the screen, then trigger a 100% white patch. The software will show a live brightness reading in nits.',
+    how: 'Open your calibration software, place the colorimeter probe flat against the centre of the screen, then trigger a 100% white patch. The software will show a live brightness reading in nits. In Calibrite Profiler 3 you can also read luminance under Advanced profiling — set the target to Custom, then Measured Luminance — which reports white point and luminance together.',
   },
   {
     label: 'DCI-P3',
@@ -582,7 +583,7 @@ export default function TestingGuide() {
                 </div>
               </div>
               <p className="text-[13px] text-white/40 leading-relaxed mb-6 pl-11">
-                Step 3 requires two things: a <strong className="text-white/65 font-medium">colorimeter</strong> (a small probe you clip or place against the screen that physically reads the light and colour it emits) and <strong className="text-white/65 font-medium">calibration software</strong> that interprets those readings. Here's what we recommend.
+                Step 3 requires two things: a <strong className="text-white/65 font-medium">colorimeter</strong> (a small probe you clip or place against the screen that physically reads the light and colour it emits) and <strong className="text-white/65 font-medium">calibration software</strong> that interprets those readings. Every option below runs on macOS — natively, or via Parallels where noted — and the first two are free, so you don&apos;t need an expensive Windows-only suite. Here's what we recommend.
               </p>
 
               <div className="space-y-4">
@@ -607,12 +608,12 @@ export default function TestingGuide() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
-                        <p className="text-[14px] font-semibold text-white/90">Calibrite ColorChecker Display</p>
+                        <p className="text-[14px] font-semibold text-white/90">Calibrite Display Plus HL</p>
                         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full" style={{ background: 'rgba(124,92,252,0.15)', color: PURPLE_SOFT }}>Hardware</span>
                         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#7C5CFC]/20" style={{ color: PURPLE_SOFT }}>Recommended</span>
                       </div>
                       <p className="mt-1 text-[12px] text-white/45 leading-relaxed">
-                        The physical probe you rest against the screen. It plugs into your computer via USB and works with all the software below. No colorimeter, no hardware measurements.
+                        The physical probe you rest against the screen, connected over USB. The HL (high-luminance) model reads bright HDR panels accurately and now has native support in macOS. Works with every software option below, on both macOS and Windows. No colorimeter, no hardware measurements.
                       </p>
                     </div>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0 mt-1 opacity-30 group-hover:opacity-60 transition-opacity">
@@ -623,28 +624,37 @@ export default function TestingGuide() {
 
                 <div>
                   <p className="text-[10px] font-semibold tracking-[2.5px] uppercase text-white/25 mb-2.5 pl-1">Software — Calibration Suite <span className="normal-case tracking-normal text-white/20 font-normal">· pick one</span></p>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
+                      {
+                        name: 'Calibrite Profiler 3',
+                        by: 'by Calibrite · free with the probe',
+                        badge: 'Free · Mac + Win',
+                        badgeGreen: true,
+                        desc: 'The software bundled with Calibrite colorimeters, running natively on macOS and Windows. Handles calibration, profiling, and the Monitor Quick Check and uniformity utilities. Note: it does not report gamut coverage percentages — cross-check those visually in ColorSync.',
+                        url: 'https://calibrite.com',
+                      },
+                      {
+                        name: 'DisplayCAL (Python 3)',
+                        by: 'open-source · ArgyllCMS',
+                        badge: 'Free · macOS',
+                        badgeGreen: true,
+                        desc: 'A free, open-source suite with native Apple Silicon support. The most capable no-cost option for detailed gamut and greyscale analysis on a Mac.',
+                        url: 'https://github.com/eoyilmaz/displaycal-py3',
+                      },
+                      {
+                        name: 'ColourSpace CMS',
+                        by: 'by Light Illusion',
+                        badge: 'Pro · Windows',
+                        desc: 'Professional colour management used in broadcast and cinema. Windows-only — run on a Mac via Parallels Desktop. ColourSpace is the more affordable license; LightSpace is the higher tier.',
+                        url: 'https://www.lightillusion.com/colourspace.html',
+                      },
                       {
                         name: 'Calman',
                         by: 'by Portrait Displays',
-                        badge: 'Professional',
-                        desc: 'The industry standard for display manufacturers. Automates the full measurement sequence — just connect your probe and follow the on-screen steps.',
+                        badge: 'Pro · Windows',
+                        desc: 'The industry-standard suite display manufacturers use. Windows-only — best if you already work in a Windows calibration environment.',
                         url: 'https://www.portrait.com/calman-home/',
-                      },
-                      {
-                        name: 'LightSpace CMS',
-                        by: 'by Light Illusion',
-                        badge: 'Professional',
-                        desc: 'Widely used in broadcast and cinema post-production. Excels at colour management and detailed gamut analysis.',
-                        url: 'https://www.lightillusion.com',
-                      },
-                      {
-                        name: 'ColourSpace DPS',
-                        by: 'by Light Illusion',
-                        badge: 'Affordable',
-                        desc: 'A lower-cost license focused on manual calibration and verification — a practical entry point if you\'re new to display calibration.',
-                        url: 'https://www.lightillusion.com/colourspace.html',
                       },
                     ].map(({ name, by, badge, badgeGreen, desc, url }) => (
                       <a
@@ -681,6 +691,11 @@ export default function TestingGuide() {
                   </div>
                 </div>
               </div>
+
+              <p className="mt-5 pl-1 text-[11px] leading-relaxed text-white/35">
+                <span className="font-semibold text-white/55">On macOS: </span>
+                use the built-in <strong className="text-white/60 font-medium">ColorSync Utility</strong> to confirm and manage the active display profile, and to compare the display gamut against a target in its 3D Lab plot. Apple&apos;s <strong className="text-white/60 font-medium">Pro Display Calibrator</strong> app only hardware-calibrates Apple displays with a reference mode (Pro Display XDR, Studio Display, MacBook Pro) — not external monitors like the Meirro Pro, so use one of the tools above.
+              </p>
             </div>
           </div>
 
@@ -762,6 +777,22 @@ export default function TestingGuide() {
                     <p className="text-[11px] leading-relaxed text-white/38">{how}</p>
                   </div>
                 ))}
+              </div>
+
+              <div
+                className="flex items-start gap-3 p-4 rounded-xl border mb-4"
+                style={{ background: 'rgba(124,92,252,0.05)', borderColor: 'rgba(124,92,252,0.20)' }}
+              >
+                <div
+                  className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 text-[11px] font-bold mt-0.5"
+                  style={{ background: 'rgba(124,92,252,0.15)', color: PURPLE_SOFT, fontFamily: 'Georgia, serif', fontStyle: 'italic' }}
+                >
+                  i
+                </div>
+                <p className="text-[12px] leading-relaxed text-white/45">
+                  <span className="font-semibold text-white/70">Reading gamut coverage: </span>
+                  DCI-P3 and sRGB percentages require software that reports them (Calman, LightSpace, or ColourSpace above). The free Calibrite Profiler 3 bundled with the probe does not output coverage percentages — for a visual check, open Apple ColorSync Utility and compare the display gamut against the target standard in its 3D Lab plot.
+                </p>
               </div>
 
               <div className="space-y-2 mb-5">
