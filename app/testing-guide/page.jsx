@@ -631,7 +631,7 @@ export default function TestingGuide() {
                         by: 'by Calibrite · free with the probe',
                         badge: 'Free · Mac + Win',
                         badgeGreen: true,
-                        desc: 'The software bundled with Calibrite colorimeters, running natively on macOS and Windows. Handles calibration, profiling, and the Monitor Quick Check and uniformity utilities. Note: it does not report gamut coverage percentages — cross-check those visually in ColorSync.',
+                        desc: 'The software bundled with Calibrite colorimeters, running natively on macOS and Windows. Handles monitor calibration, profiling, and validation, with utilities to check luminance, accuracy, and uniformity.',
                         url: 'https://calibrite.com',
                       },
                       {
@@ -694,7 +694,7 @@ export default function TestingGuide() {
 
               <p className="mt-5 pl-1 text-[11px] leading-relaxed text-white/35">
                 <span className="font-semibold text-white/55">On macOS: </span>
-                use the built-in <strong className="text-white/60 font-medium">ColorSync Utility</strong> to confirm and manage the active display profile, and to compare the display gamut against a target in its 3D Lab plot. Apple&apos;s <strong className="text-white/60 font-medium">Pro Display Calibrator</strong> app only hardware-calibrates Apple displays with a reference mode (Pro Display XDR, Studio Display, MacBook Pro) — not external monitors like the Meirro Pro, so use one of the tools above.
+                use the built-in <strong className="text-white/60 font-medium">ColorSync Utility</strong> and <strong className="text-white/60 font-medium">System Settings</strong> to confirm and manage the active display color profile, and to compare the display gamut against a target in its 3D Lab plot.
               </p>
             </div>
           </div>
