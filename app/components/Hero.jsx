@@ -168,6 +168,25 @@ export default function Hero() {
             draggable={false}
           />
         </motion.picture>
+
+        {/* Origin signature — sits under the render, ahead of the callouts.
+            Hairline rule above it reads as a deliberate mark (colophon), which
+            lets the type stay small without looking like a stray caption. */}
+        <motion.div
+          className="relative z-10 mt-6 md:mt-8 flex flex-col items-center gap-4"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span aria-hidden="true" className="block w-8 h-px bg-[#0A0A0C]/15" />
+          <p
+            className="px-6 max-w-[24ch] md:max-w-none text-center text-[10px] md:text-[12px] xl:text-[13px] font-semibold uppercase tracking-[2.5px] md:tracking-[3px] xl:tracking-[3.5px] text-[#0A0A0C]/50"
+            style={{ textWrap: 'balance' }}
+          >
+            Proudly designed in California by Meirro
+          </p>
+        </motion.div>
       </div>
     </section>
   );
