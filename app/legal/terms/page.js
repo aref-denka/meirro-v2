@@ -22,7 +22,7 @@ export default function TermsPage() {
       </Section>
 
       <Section title="3. Shipping and Delivery">
-        <p>Orders ship within 5–7 business days of payment confirmation. Estimated delivery windows are provided in good faith and are not guaranteed. Meirro is not liable for delays caused by carriers, customs authorities, or events outside our control.</p>
+        <p>Estimated dispatch and delivery windows are provided by ClickClack, our fulfilment partner, at the time of order. They are estimates offered in good faith and are not guaranteed. Meirro is not liable for delays caused by carriers, customs authorities, or events outside our control.</p>
         <p>Risk of loss passes to the buyer upon handover to the carrier. If your order arrives damaged, contact us within 7 days of delivery at <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a>.</p>
       </Section>
 
