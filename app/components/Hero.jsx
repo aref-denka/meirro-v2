@@ -77,7 +77,11 @@ export default function Hero() {
       </div>
 
       {/* Screen 2 — spec numerals + combo render */}
-      <div ref={screen2Ref} className="relative h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* min-h-screen, not h-screen: at 92vh the render plus the origin
+          signature can exceed the viewport, and a fixed height would clip the
+          signature against overflow-hidden (which has to stay for the drifting
+          numerals). Taller viewports are unaffected — content still centres. */}
+      <div ref={screen2Ref} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
         {/* Background numerals — desktop only, drift apart on scroll behind the monitor */}
         <div
           aria-hidden="true"
@@ -171,12 +175,14 @@ export default function Hero() {
 
         {/* Origin signature — sits under the render, ahead of the callouts.
             Hairline rule above it reads as a deliberate mark (colophon), which
-            lets the type stay small without looking like a stray caption. */}
+            lets the type stay small without looking like a stray caption.
+            amount stays low: this block sits at the bottom of a tall screen, so
+            a high threshold can leave it stuck at opacity 0. */}
         <motion.div
           className="relative z-10 mt-6 md:mt-8 flex flex-col items-center gap-4"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
         >
           <span aria-hidden="true" className="block w-8 h-px bg-[#0A0A0C]/15" />
