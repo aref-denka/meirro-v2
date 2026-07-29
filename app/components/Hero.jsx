@@ -190,7 +190,7 @@ export default function Hero() {
             className="px-6 max-w-[24ch] md:max-w-none text-center text-[10px] md:text-[12px] xl:text-[13px] font-semibold uppercase tracking-[2.5px] md:tracking-[3px] xl:tracking-[3.5px] text-[#0A0A0C]/50"
             style={{ textWrap: 'balance' }}
           >
-            Proudly designed in California by Meirro
+            Designed in California by Meirro
           </p>
         </motion.div>
       </div>
