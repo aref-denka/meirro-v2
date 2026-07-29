@@ -5,11 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const cards = [
   {
-    id: 'resolution',
-    eyebrow: '6K',
+    // Resolution and size merged into one card: 6K carries the headline, 32"
+    // rides along as the unit, and the detail lines cover both specs.
+    id: 'panel',
+    eyebrow: 'Panel',
     value: '6K',
-    unit: '',
-    detail: '6144 × 3456 pixels\n224 ppi · 60Hz',
+    sep: '–',
+    unit: '32"',
+    detail: '6144 × 3456 pixels · 224 ppi\nNano IPS Black · 16:9 · 60Hz\nFully laminated AR glass',
     accent: 'rgba(124,92,252,0.07)',
     span: 'col-span-1 md:col-span-2',
     tall: true,
@@ -45,16 +48,6 @@ const cards = [
     tall: false,
   },
   {
-    id: 'size',
-    eyebrow: '32 Inches',
-    value: '32"',
-    unit: '',
-    detail: 'Nano IPS Black · 16:9\nFully laminated AR glass',
-    accent: 'rgba(196,75,247,0.06)',
-    span: 'col-span-1',
-    tall: false,
-  },
-  {
     id: 'gamut',
     eyebrow: 'DCI-P3',
     value: '98%',
@@ -86,6 +79,17 @@ const cards = [
     span: 'col-span-1',
     tall: false,
     explainer: 'A wider colour gamut built for print and photo work. 99% means on-screen colours match the final printed result.',
+  },
+  {
+    id: 'srgb',
+    eyebrow: 'sRGB',
+    value: '99%',
+    unit: '',
+    detail: 'Web · UI · everyday content\nAccurate out of the box',
+    accent: 'rgba(196,75,247,0.04)',
+    span: 'col-span-1',
+    tall: false,
+    explainer: 'The baseline colour space of the web and most software. 99% means everyday content looks exactly as its creator intended.',
   },
 ];
 
@@ -131,9 +135,11 @@ function TechCard({ card }) {
         {card.eyebrow}
       </p>
 
-      {/* Value */}
+      {/* Value. With `sep` set, value and unit are two co-equal specs joined by
+          a muted dash (6K – 32"), so the unit gets near-headline weight instead
+          of the small light treatment a true unit suffix would use. */}
       <div className={`${card.tall ? 'mt-8' : 'mt-6'}`}>
-        <div className="flex items-baseline gap-2 leading-none">
+        <div className={`flex items-baseline leading-none ${card.sep ? 'gap-3' : 'gap-2'}`}>
           <span
             className="font-black tracking-[-0.05em] text-[#0A0A0C]"
             style={{
@@ -146,10 +152,25 @@ function TechCard({ card }) {
           >
             {card.value}
           </span>
+          {card.sep && (
+            <span
+              aria-hidden="true"
+              className="font-light text-[#0A0A0C]/25"
+              style={{ fontSize: card.tall ? 'clamp(30px, 3.6vw, 44px)' : 'clamp(20px, 2.4vw, 28px)' }}
+            >
+              {card.sep}
+            </span>
+          )}
           {card.unit && (
             <span
-              className="font-light text-[#0A0A0C]/55"
-              style={{ fontSize: card.tall ? 'clamp(22px, 2.8vw, 34px)' : 'clamp(16px, 2vw, 24px)' }}
+              className={card.sep
+                ? 'font-black tracking-[-0.05em] text-[#0A0A0C]/85'
+                : 'font-light text-[#0A0A0C]/55'}
+              style={{
+                fontSize: card.sep
+                  ? (card.tall ? 'clamp(40px, 5vw, 60px)' : 'clamp(28px, 3.2vw, 40px)')
+                  : (card.tall ? 'clamp(22px, 2.8vw, 34px)' : 'clamp(16px, 2vw, 24px)'),
+              }}
             >
               {card.unit}
             </span>
