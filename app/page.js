@@ -15,11 +15,11 @@ export default function Home() {
       <main aria-label="Meirro Pro — 32-Inch 6K Monitor product page">
         <Hero />
         <FeatureCallouts />
+        <Reviews />
         <ThePanel />
         <TheStand />
         <TechGrid />
         <Gallery />
-        <Reviews />
       </main>
       <Footer />
     </>

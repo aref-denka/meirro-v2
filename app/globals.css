@@ -131,6 +131,14 @@ body {
   }
 }
 
+/* The cards are links now, so a moving target has to stop moving. !important
+   because the play state is also set inline by the offscreen-pause observer.
+   Guarded on (hover: hover) so it can't latch on touch devices. */
+@media (hover: hover) {
+  .marquee-track:hover { animation-play-state: paused !important; }
+}
+.marquee-track:focus-within { animation-play-state: paused !important; }
+
 /* Stop the marquee for anyone who asked for less motion, and let them swipe the
    strip by hand instead so the later cards stay reachable. */
 @media (prefers-reduced-motion: reduce) {
