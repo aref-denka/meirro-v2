@@ -111,3 +111,29 @@ body {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
+
+/* Creator review cards (Reviews.jsx) */
+.creator-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* A dozen blur-sampling cards moving at once is the single most expensive thing
+   on this page for a phone GPU. The cards sit on a static gradient, so a denser
+   flat fill reads near-identically without the per-frame backdrop sample. */
+@media (max-width: 767px) {
+  .creator-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Stop the marquee for anyone who asked for less motion, and let them swipe the
+   strip by hand instead so the later cards stay reachable. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none !important; }
+  .marquee-viewport { overflow-x: auto; }
+}

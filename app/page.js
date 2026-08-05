@@ -5,6 +5,7 @@ import ThePanel         from './components/ThePanel';
 import TheStand         from './components/TheStand';
 import TechGrid         from './components/TechGrid';
 import Gallery          from './components/Gallery';
+import Reviews          from './components/Reviews';
 import Footer           from './components/Footer';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <TheStand />
         <TechGrid />
         <Gallery />
+        <Reviews />
       </main>
       <Footer />
     </>

@@ -5,9 +5,14 @@ import Link from 'next/link';
 
 const links = [
   { label: 'Specs',    href: '/specs'         },
+  { label: 'Creators', href: '#reviews'       },
   { label: 'Testing',  href: '/testing-guide' },
   { label: 'About Us', href: '/about_us'      },
 ];
+
+// Route-style hrefs get a Next <Link>; same-page hashes need a plain <a> so the
+// browser's native smooth scroll handles them.
+const isRoute = (href) => href.startsWith('/') && !href.includes('#');
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,9 +42,9 @@ export default function Nav() {
         </span>
 
         {/* Desktop links — centered */}
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-6 lg:gap-7">
           {links.map(({ label, href }) =>
-            href.startsWith('/') ? (
+            isRoute(href) ? (
               <Link
                 key={label}
                 href={href}
@@ -113,7 +118,7 @@ export default function Nav() {
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
             {links.map(({ label, href }) =>
-              href.startsWith('/') ? (
+              isRoute(href) ? (
                 <Link
                   key={label}
                   href={href}
