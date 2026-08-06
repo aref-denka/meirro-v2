@@ -5,6 +5,7 @@ const cols = [
   {
     heading: 'Support',
     links: [
+      { label: 'FAQ',           href: '/faq' },
       { label: 'Warranty',      href: '/legal/warranty' },
       { label: 'Return Policy', href: '/legal/returns'  },
       { label: 'Contact',       href: '/contact' },

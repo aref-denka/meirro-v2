@@ -7,6 +7,7 @@ const links = [
   { label: 'Specs',    href: '/specs'         },
   { label: 'Creators', href: '#reviews'       },
   { label: 'Testing',  href: '/testing-guide' },
+  { label: 'FAQ',      href: '/faq'           },
   { label: 'About Us', href: '/about_us'      },
 ];
 
