@@ -10,10 +10,10 @@ export default function ReturnsPage() {
       <h1 className="text-[32px] md:text-[40px] font-black tracking-[-0.04em] text-[#0A0A0C] mb-2">
         Return Policy
       </h1>
-      <p className="text-[13px] text-[#0A0A0C]/45 mb-12">Last updated: April 2026</p>
+      <p className="text-[13px] text-[#0A0A0C]/45 mb-12">Last updated: August 2026</p>
 
       <Section title="30-Day Returns">
-        <p>We want you to love your Meirro Pro. If for any reason you are not satisfied, you may return your purchase within <strong>30 days</strong> of the delivery date for a full refund of the product price.</p>
+        <p>We want you to love your Meirro Pro. If for any reason you are not satisfied, you may return your purchase within <strong>30 days</strong> of the delivery date for a refund of the product price, less the payment processing fee described under <strong>Refunds</strong> below.</p>
         <p>The Meirro Pro is currently sold exclusively through <strong>ClickClack</strong> (clickclack.io), our authorised retail partner. Returns for orders placed through ClickClack are subject to the same terms described in this policy. Please contact ClickClack support in the first instance — they manage the returns process for their platform. If ClickClack is unable to assist, contact us directly at <a href="mailto:support@meirro.com" className="text-[#7C5CFC] hover:underline">support@meirro.com</a> with your order confirmation as proof of purchase.</p>
       </Section>
 
@@ -44,6 +44,7 @@ export default function ReturnsPage() {
 
       <Section title="Refunds">
         <p>Approved refunds are issued to the original payment method. Original shipping charges are non-refundable unless the return is due to a defect or our error.</p>
+        <p><strong>Payment processing fee.</strong> Card networks and payment providers charge a processing fee on every transaction and do not return that fee when an order is refunded. Because of this, <strong>ClickClack withholds a 4% payment processing fee</strong> from refunds on change-of-mind returns and cancellations — the same policy that applies to all ClickClack orders. This fee is <strong>not</strong> withheld when the return is due to a defect, damage in transit, an incorrect item, or our error; in those cases you receive a full refund.</p>
         <p>Depending on your bank or payment provider, refunds may take 5–10 business days to appear on your statement after processing.</p>
       </Section>
 

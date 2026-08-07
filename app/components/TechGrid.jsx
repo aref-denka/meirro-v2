@@ -12,7 +12,7 @@ const cards = [
     value: '6K',
     sep: '–',
     unit: '32"',
-    detail: '6144 × 3456 pixels · 224 ppi\nNano IPS Black · 16:9 · 60Hz\nFully laminated AR glass',
+    detail: '6144 × 3456 pixels · 224 ppi\nLG Nano IPS Black · 16:9 · 60Hz\nFully laminated AR glass',
     accent: 'rgba(124,92,252,0.07)',
     span: 'col-span-1 md:col-span-2',
     tall: true,

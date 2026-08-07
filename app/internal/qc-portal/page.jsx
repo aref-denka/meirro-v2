@@ -79,7 +79,7 @@ const step2Items = [
 ];
 
 const step3Items = [
-  { id: 'lum',    label: 'SDR Luminance ≥ 400 nits — pass confirmed' },
+  { id: 'lum',    label: 'SDR Luminance ≥ 450 nits — pass confirmed' },
   { id: 'dcip3',  label: 'DCI-P3 coverage ≥ 98% — pass confirmed' },
   { id: 'srgb',   label: 'sRGB coverage ≥ 99% — pass confirmed' },
   { id: 'deltae', label: 'Delta E avg ≤ 2.0 — pass confirmed' },
@@ -89,7 +89,7 @@ const step4Items = refPatches.map(({ label }) => ({ id: label.toLowerCase(), lab
 
 const specs = [
   {
-    label: 'Peak Luminance',
+    label: 'Typical SDR Luminance',
     value: '500',
     unit: 'nits',
     how: 'Open your calibration software, place the colorimeter probe flat against the centre of the screen, then trigger a 100% white patch. The software will show a live brightness reading in nits.',

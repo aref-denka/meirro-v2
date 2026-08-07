@@ -3,7 +3,7 @@ import Link from 'next/link';
 export const metadata = {
   title: 'Specs | Meirro Pro 32" 6K Monitor',
   description:
-    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, USB-C, and a CNC anodized aluminum body.',
+    'Full technical specifications for the Meirro Pro 32-inch 6K monitor — LG Nano IPS Black panel, 6144 × 3456 at 224 ppi, 98% DCI-P3, factory ΔE < 2, USB-C, and a CNC anodized aluminum body.',
   alternates: { canonical: '/specs' },
 };
 
@@ -11,7 +11,7 @@ const specGroups = [
   {
     category: 'Display',
     specs: [
-      { label: 'Panel Type',        value: 'Nano IPS Black' },
+      { label: 'Panel Type',        value: 'LG Nano IPS Black' },
       { label: 'Size',              value: '32.0" diagonal' },
       { label: 'Aspect Ratio',      value: '16:9' },
       { label: 'Active Area',       value: '696.73 × 391.91 mm' },
@@ -20,7 +20,7 @@ const specGroups = [
       { label: 'Pixel Pitch',       value: '0.1134 mm' },
       { label: 'Refresh Rate',      value: '60 Hz' },
       { label: 'Response Time',     value: 'GTG 14 ms' },
-      { label: 'Brightness',        value: '450 nits typical (SDR) · 750 nits (HDR enabled)' },
+      { label: 'Brightness',        value: '500 nits typical (SDR) · 750 nits (HDR enabled)' },
       { label: 'Contrast',          value: '2,000:1 native' },
       { label: 'Viewing Angle',     value: '178° H · 178° V' },
       { label: 'Surface',           value: 'Anti-glare glossy' },

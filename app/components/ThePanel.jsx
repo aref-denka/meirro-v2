@@ -12,7 +12,7 @@ export default function ThePanel() {
   return (
     <section
       id="design"
-      aria-label="32-inch 6K Nano IPS Black panel — colour accuracy and display technology"
+      aria-label="32-inch 6K LG Nano IPS Black panel — colour accuracy and display technology"
       className="relative bg-[#F7F7F9] py-20 md:py-32 px-6 overflow-hidden"
     >
       <div className="relative max-w-[1100px] mx-auto">
